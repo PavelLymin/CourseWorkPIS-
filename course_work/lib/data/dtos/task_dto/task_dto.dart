@@ -1,37 +1,23 @@
 import 'package:course_work/domain/models/task.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'task_dto.freezed.dart';
 part 'task_dto.g.dart';
 
-@JsonSerializable()
-class TaskDto {
-  TaskDto({
-    this.id,
-    required this.title,
-    required this.description,
-    required this.amountOfHours,
-    required this.price,
-    required this.priority,
-    required this.startDate,
-    required this.finishDate,
-  });
+@freezed
+class TaskDto with _$TaskDto {
+  const TaskDto._();
 
-  final String? id;
-  final String title;
-  final String description;
-  @JsonKey(name: 'amount_of_hours')
-  final int amountOfHours;
-  final double price;
-  @JsonKey(
-    name: 'priority',
-    toJson: _toJsonPriority,
-    fromJson: _fromJsonPriority,
-  )
-  final Priority priority;
-  @JsonKey(name: 'start_date')
-  final DateTime startDate;
-  @JsonKey(name: 'finish_date')
-  final DateTime finishDate;
+  factory TaskDto({
+    required String? id,
+    required String title,
+    required String description,
+    @JsonKey(name: 'amount_of_hours') required int amountOfHours,
+    required double price,
+    @JsonKey(name: 'start_date') required DateTime startDate,
+    @JsonKey(name: 'finish_date') required DateTime finishDate,
+    required String priority,
+  }) = _TaskDto;
 
   Task toDomain() => Task(
         id: id,
@@ -39,7 +25,7 @@ class TaskDto {
         description: description,
         amountOfHours: amountOfHours,
         price: price,
-        priority: priority,
+        priority: getPriority(priority),
         startDate: startDate,
         finishDate: finishDate,
       );
@@ -50,7 +36,7 @@ class TaskDto {
         description: object.description,
         amountOfHours: object.amountOfHours,
         price: object.price,
-        priority: object.priority,
+        priority: object.priority.value,
         startDate: object.startDate,
         finishDate: object.finishDate,
       );
@@ -58,16 +44,9 @@ class TaskDto {
   factory TaskDto.fromJson(Map<String, dynamic> json) =>
       _$TaskDtoFromJson(json);
 
-  static String _toJsonPriority(Priority priority) => priority.toJson();
-  static Priority _fromJsonPriority(String json) => PriorityJson.fromJson(json);
-}
-
-extension PriorityJson on Priority {
-  String toJson() => value;
-
-  static Priority fromJson(String json) {
+  Priority getPriority(String priority) {
     return Priority.values.firstWhere(
-      (item) => item.value == json,
+      (item) => item.value == priority,
       orElse: () => Priority.none,
     );
   }

@@ -1,23 +1,19 @@
-class Task {
-  Task({
-    required this.id,
-    required this.title,
-    required this.description,
-    required this.amountOfHours,
-    required this.price,
-    required this.priority,
-    required this.startDate,
-    required this.finishDate,
-  });
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  final String? id;
-  final String title;
-  final String description;
-  final int amountOfHours;
-  final double price;
-  final Priority priority;
-  final DateTime startDate;
-  final DateTime finishDate;
+part 'task.freezed.dart';
+
+@freezed
+class Task with _$Task {
+  const factory Task({
+    required String? id,
+    required String title,
+    required String description,
+    required int amountOfHours,
+    required double price,
+    required DateTime startDate,
+    required DateTime finishDate,
+    @Default(Priority.none) Priority priority,
+  }) = _Task;
 }
 
 enum Priority {
