@@ -6,7 +6,7 @@ part 'department_dto.g.dart';
 @JsonSerializable()
 class DepartmentDto {
   DepartmentDto({
-    required this.id,
+    this.id,
     required this.name,
   });
 

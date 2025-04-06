@@ -16,6 +16,7 @@ class DepartmentRepositoryImpl implements IDepartmentRepository {
       {required Department department}) async {
     try {
       final json = DepartmentDto.fromDomain(department).toJson();
+      json.remove('id');
 
       await dataBase.from(TableNames.department).insert(json);
 

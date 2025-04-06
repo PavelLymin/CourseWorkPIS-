@@ -1,0 +1,14 @@
+import 'package:course_work/core/routes/route_names.dart';
+import 'package:course_work/presentation/department/pages/department_page.dart';
+import 'package:go_router/go_router.dart';
+
+final GoRouter router = GoRouter(routes: [
+  GoRoute(
+      name: RoutesNames.login,
+      path: '/login',
+      builder: (context, state) => const DepartmentPage()),
+  GoRoute(
+      name: RoutesNames.department,
+      path: '/',
+      builder: (context, state) => const DepartmentPage()),
+]);

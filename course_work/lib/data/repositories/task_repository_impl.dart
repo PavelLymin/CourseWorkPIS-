@@ -72,7 +72,7 @@ class TaskRepositoryImpl implements ITaskRepository {
           dataBase
               .from(TableNames.departmentTask)
               .select('task_id')
-              .eq('department_tas', id));
+              .eq('department_id', id));
 
       final tasks =
           jsonList.map((json) => TaskDto.fromJson(json).toDomain()).toList();

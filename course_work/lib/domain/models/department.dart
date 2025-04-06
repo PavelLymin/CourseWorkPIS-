@@ -1,6 +1,6 @@
 class Department {
   Department({
-    required this.id,
+    this.id,
     required this.name,
   });
 

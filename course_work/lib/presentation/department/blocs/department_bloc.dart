@@ -25,6 +25,8 @@ class DepartmentBloc extends Bloc<DepartmentEvent, DepartmentState> {
 
   Future<void> _addDepartment(
       Emitter<DepartmentState> emit, _AddDepartment event) async {
+    emit(DepartmentState.loading());
+
     final result = await repository.addDepartment(department: event.department);
 
     result.fold(
@@ -45,6 +47,8 @@ class DepartmentBloc extends Bloc<DepartmentEvent, DepartmentState> {
 
   Future<void> _updateDepartment(
       Emitter<DepartmentState> emit, _UpdateDepartment event) async {
+    emit(DepartmentState.loading());
+
     final result =
         await repository.updateDepartment(department: event.department);
 

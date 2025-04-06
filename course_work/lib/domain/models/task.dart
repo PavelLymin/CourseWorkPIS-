@@ -9,7 +9,7 @@ class Task with _$Task {
     required String title,
     required String description,
     required int amountOfHours,
-    required double price,
+    required double payment,
     required DateTime startDate,
     required DateTime finishDate,
     @Default(Priority.none) Priority priority,
