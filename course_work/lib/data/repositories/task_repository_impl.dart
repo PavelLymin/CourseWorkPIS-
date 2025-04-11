@@ -94,12 +94,14 @@ class TaskRepositoryImpl implements ITaskRepository {
   Future<Either<Failure, Unit>> updateTask(
       {required TaskModel originalTask, required TaskModel changedTask}) async {
     try {
-      final id = originalTask.id;
-      final taskDb = TaskDto.fromDomain(originalTask).toDataBase();
+      final id = changedTask.id;
+      final oldTask = TaskDto.fromDomain(originalTask);
+      final newTask = TaskDto.fromDomain(changedTask);
+      final changes = oldTask.getChangesData(newTask);
 
       database.update(database.tasks)
         ..where((task) => task.id.equals(id!))
-        ..write(taskDb);
+        ..write(changes);
 
       return right(unit);
     } catch (e) {

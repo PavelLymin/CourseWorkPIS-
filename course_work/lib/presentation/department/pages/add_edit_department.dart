@@ -8,10 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddEditDepartment extends StatefulWidget {
-  const AddEditDepartment(
-      {super.key, this.isEdit = false, this.nameDepartment});
+  const AddEditDepartment({super.key, this.isEdit = false, this.department});
   final bool isEdit;
-  final String? nameDepartment;
+  final DepartmentModel? department;
 
   @override
   State<AddEditDepartment> createState() => _AddDepartmentState();
@@ -29,8 +28,8 @@ class _AddDepartmentState extends State<AddEditDepartment> {
 
   @override
   void initState() {
-    if (widget.isEdit && widget.nameDepartment != null) {
-      _nameController.text = widget.nameDepartment!;
+    if (widget.isEdit && widget.department != null) {
+      _nameController.text = widget.department!.title;
     }
     super.initState();
   }

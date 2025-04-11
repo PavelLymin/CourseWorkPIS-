@@ -1,9 +1,11 @@
-class DepartmentModel {
-  DepartmentModel({
-    this.id,
-    required this.title,
-  });
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  final int? id;
-  final String title;
+part 'department.freezed.dart';
+
+@freezed
+class DepartmentModel with _$DepartmentModel {
+  const factory DepartmentModel({
+    int? id,
+    required String title,
+  }) = _DepartmentModel;
 }

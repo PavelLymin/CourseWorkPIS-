@@ -13,7 +13,6 @@ class ListTileTask extends StatelessWidget {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
         width: MediaQuery.of(context).size.width,
         margin: const EdgeInsets.only(bottom: 12),
         child: Container(

@@ -11,7 +11,10 @@ import '../../data/data_base/data_base.dart';
 final getIt = GetIt.instance;
 
 Future<void> setUp() async {
-  getIt.registerLazySingleton<AppDatabase>(() => AppDatabase());
+  getIt.registerLazySingleton<AppDatabase>(
+    () => AppDatabase(),
+    dispose: (db) => db.onDispose(),
+  );
 
   _initDepartment();
 

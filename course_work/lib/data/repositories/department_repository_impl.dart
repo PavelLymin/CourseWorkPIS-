@@ -17,9 +17,9 @@ class DepartmentRepositoryImpl implements IDepartmentRepository {
       {required DepartmentModel department}) async {
     try {
       _clearCache();
-      final dbDepartment = DepartmentDto.fromDomain(department).toDataBase();
+      final departmentDb = DepartmentDto.fromDomain(department).toDataBase();
 
-      await database.into(database.departments).insert(dbDepartment);
+      await database.into(database.departments).insert(departmentDb);
 
       return right(unit);
     } catch (e) {
@@ -36,6 +36,7 @@ class DepartmentRepositoryImpl implements IDepartmentRepository {
       await (database.delete(database.departments)
             ..where((row) => row.id.equals(departmentId)))
           .go();
+
       return right(unit);
     } catch (e) {
       return left(Failure(message: e.toString()));
@@ -48,9 +49,9 @@ class DepartmentRepositoryImpl implements IDepartmentRepository {
       if (cache.isNotEmpty) {
         return right(cache);
       }
-      final dbDepartments = await database.select(database.departments).get();
+      final departmentsDb = await database.select(database.departments).get();
 
-      final departments = dbDepartments
+      final departments = departmentsDb
           .map((element) => DepartmentDto.fromDataBase(element).toDomain())
           .toList();
 
@@ -68,11 +69,11 @@ class DepartmentRepositoryImpl implements IDepartmentRepository {
       _clearCache();
 
       final id = department.id;
-      final dbDepartment = DepartmentDto.fromDomain(department).toDataBase();
+      final departmentDb = DepartmentDto.fromDomain(department).toDataBase();
 
       database.update(database.departments)
         ..where((department) => department.id.equals(id!))
-        ..write(dbDepartment);
+        ..write(departmentDb);
 
       return right(unit);
     } catch (e) {

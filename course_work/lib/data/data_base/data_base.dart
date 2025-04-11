@@ -1,5 +1,9 @@
+import 'dart:async';
+
+import 'package:course_work/core/secrets/secrets.dart';
 import 'package:drift/drift.dart';
 import 'package:drift_postgres/drift_postgres.dart';
+import 'package:get_it/get_it.dart';
 import 'package:postgres/postgres.dart' as pg;
 
 part 'data_base.g.dart';
@@ -29,24 +33,31 @@ class Tasks extends Table {
 }
 
 @DriftDatabase(tables: [DepartmentTasks, Departments, Tasks])
-class AppDatabase extends _$AppDatabase {
+class AppDatabase extends _$AppDatabase implements Disposable {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
   @override
   int get schemaVersion => 1;
 
+  static PgDatabase? _connection;
   static QueryExecutor _openConnection() {
-    return PgDatabase(
+    return _connection ??= PgDatabase(
       endpoint: pg.Endpoint(
         host: '10.0.2.2',
         port: 5432,
-        database: 'course_work',
-        username: 'postgres',
-        password: 'VaPa15022005',
+        database: AppSecrets.dataBase,
+        username: AppSecrets.username,
+        password: AppSecrets.password,
       ),
       settings: pg.ConnectionSettings(
         sslMode: pg.SslMode.disable,
       ),
     );
+  }
+
+  @override
+  Future<void> onDispose() async {
+    await _connection?.close();
+    _connection = null;
   }
 }

@@ -11,7 +11,7 @@ class EmployeeDto {
     required this.login,
   });
 
-  final String? id;
+  final int? id;
   final String? departmentId;
   final String firstName;
   final String lastName;

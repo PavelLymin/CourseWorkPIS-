@@ -5,7 +5,7 @@ part 'task.freezed.dart';
 @freezed
 class TaskModel with _$TaskModel {
   const factory TaskModel({
-    required int? id,
+    int? id,
     required String title,
     required String description,
     required int amountOfHours,

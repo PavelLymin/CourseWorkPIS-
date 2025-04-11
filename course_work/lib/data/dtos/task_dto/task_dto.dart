@@ -3,6 +3,8 @@ import 'package:course_work/domain/models/task/task.dart';
 import 'package:drift/drift.dart';
 import 'package:drift_postgres/drift_postgres.dart';
 
+import '../set_changed.dart';
+
 class TaskDto {
   TaskDto({
     this.id,
@@ -57,7 +59,6 @@ class TaskDto {
   }
 
   TasksCompanion toDataBase() => TasksCompanion(
-        id: Value(id!),
         title: Value(title),
         description: Value(description),
         amountOfHours: Value(amountOfHours),
@@ -79,4 +80,19 @@ class TaskDto {
         finishTime: object.finishTime.dateTime,
         priority: object.priority,
       );
+
+  TasksCompanion getChangesData(TaskDto newTask) {
+    return TasksCompanion(
+      title: setIfChanged(title, newTask.title),
+      description: setIfChanged(description, newTask.description),
+      amountOfHours: setIfChanged(amountOfHours, newTask.amountOfHours),
+      payment: setIfChanged(payment, newTask.payment),
+      date: setIfChanged(
+          PgDate.fromDateTime(date), PgDate.fromDateTime(newTask.date)),
+      startTime: setIfChanged(
+          PgDateTime(newTask.startTime), PgDateTime(newTask.startTime)),
+      finishTime: setIfChanged(
+          PgDateTime(newTask.finishTime), PgDateTime(newTask.finishTime)),
+    );
+  }
 }

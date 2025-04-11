@@ -23,7 +23,7 @@ class ListTileDepartment extends StatelessWidget {
               builder: (newContext) {
                 return AddEditDepartment(
                   isEdit: true,
-                  nameDepartment: department.title,
+                  department: department,
                 );
               },
             );
