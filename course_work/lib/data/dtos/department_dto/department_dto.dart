@@ -1,30 +1,32 @@
-import 'package:course_work/domain/models/department.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:course_work/data/data_base/data_base.dart';
+import 'package:course_work/domain/models/department/department.dart';
+import 'package:drift/drift.dart';
 
-part 'department_dto.g.dart';
-
-@JsonSerializable()
 class DepartmentDto {
   DepartmentDto({
     this.id,
-    required this.name,
+    required this.title,
   });
 
-  final String? id;
-  final String name;
+  final int? id;
+  final String title;
 
-  Department toDomain() => Department(
+  DepartmentModel toDomain() => DepartmentModel(
         id: id,
-        name: name,
+        title: title,
       );
 
-  factory DepartmentDto.fromDomain(Department object) => DepartmentDto(
+  factory DepartmentDto.fromDomain(DepartmentModel object) => DepartmentDto(
         id: object.id,
-        name: object.name,
+        title: object.title,
       );
 
-  factory DepartmentDto.fromJson(Map<String, dynamic> json) =>
-      _$DepartmentDtoFromJson(json);
+  DepartmentsCompanion toDataBase() => DepartmentsCompanion(
+        title: Value(title),
+      );
 
-  Map<String, dynamic> toJson() => _$DepartmentDtoToJson(this);
+  factory DepartmentDto.fromDataBase(Department object) => DepartmentDto(
+        id: object.id,
+        title: object.title,
+      );
 }

@@ -1,5 +1,5 @@
-class Employee {
-  Employee({
+class EmployeeModel {
+  EmployeeModel({
     required this.id,
     required this.firstName,
     required this.lastName,

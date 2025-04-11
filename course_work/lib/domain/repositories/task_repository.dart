@@ -1,25 +1,25 @@
 import 'package:course_work/core/errors/failure.dart';
+import 'package:course_work/domain/models/task/task.dart';
 import 'package:fpdart/fpdart.dart' show Either, Unit;
 
-import '../models/task.dart';
-
 abstract interface class ITaskRepository {
-  Future<Either<Failure, List<Task>>> getAllTask();
+  Future<Either<Failure, List<TaskModel>>> getAllTask();
 
-  Future<Either<Failure, List<Task>>> getTaskByIdDepartment({
-    required String id,
+  Future<Either<Failure, List<TaskModel>>> getTaskByIdDepartment({
+    required int departmentId,
   });
 
   Future<Either<Failure, Unit>> deleteTask({
-    required String id,
+    required int taskId,
   });
 
   Future<Either<Failure, Unit>> updateTask({
-    required Task task,
+    required TaskModel originalTask,
+    required TaskModel changedTask,
   });
 
   Future<Either<Failure, Unit>> addTask({
-    required Task task,
-    required String departmentId,
+    required TaskModel task,
+    required int departmentId,
   });
 }

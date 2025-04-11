@@ -1,24 +1,25 @@
 import 'package:course_work/core/errors/failure.dart';
-import 'package:course_work/core/utils/table_names.dart';
+import 'package:course_work/data/data_base/data_base.dart';
 import 'package:course_work/data/dtos/department_dto/department_dto.dart';
-import 'package:course_work/domain/models/department.dart';
 import 'package:course_work/domain/repositories/department_repository.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:fpdart/src/unit.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../../domain/models/department/department.dart';
 
 class DepartmentRepositoryImpl implements IDepartmentRepository {
-  DepartmentRepositoryImpl({required this.dataBase});
-  final SupabaseClient dataBase;
+  DepartmentRepositoryImpl({required this.database});
+  final AppDatabase database;
+  final List<DepartmentModel> cache = [];
 
   @override
   Future<Either<Failure, Unit>> addDepartment(
-      {required Department department}) async {
+      {required DepartmentModel department}) async {
     try {
-      final json = DepartmentDto.fromDomain(department).toJson();
-      json.remove('id');
+      _clearCache();
+      final dbDepartment = DepartmentDto.fromDomain(department).toDataBase();
 
-      await dataBase.from(TableNames.department).insert(json);
+      await database.into(database.departments).insert(dbDepartment);
 
       return right(unit);
     } catch (e) {
@@ -27,14 +28,33 @@ class DepartmentRepositoryImpl implements IDepartmentRepository {
   }
 
   @override
-  Future<Either<Failure, List<Department>>> getAllDepartment() async {
+  Future<Either<Failure, Unit>> deleteDepartment(
+      {required int departmentId}) async {
     try {
-      final jsonList = await dataBase.from(TableNames.department).select();
+      _clearCache();
 
-      final departments = jsonList
-          .map((json) => DepartmentDto.fromJson(json).toDomain())
+      await (database.delete(database.departments)
+            ..where((row) => row.id.equals(departmentId)))
+          .go();
+      return right(unit);
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<DepartmentModel>>> getAllDepartment() async {
+    try {
+      if (cache.isNotEmpty) {
+        return right(cache);
+      }
+      final dbDepartments = await database.select(database.departments).get();
+
+      final departments = dbDepartments
+          .map((element) => DepartmentDto.fromDataBase(element).toDomain())
           .toList();
 
+      _updateCache(departments);
       return right(departments);
     } catch (e) {
       return left(Failure(message: e.toString()));
@@ -42,15 +62,17 @@ class DepartmentRepositoryImpl implements IDepartmentRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updateDepartment({
-    required Department department,
-  }) async {
+  Future<Either<Failure, Unit>> updateDepartment(
+      {required DepartmentModel department}) async {
     try {
-      final id = department.id;
-      final json = DepartmentDto.fromDomain(department).toJson();
-      json.remove('id');
+      _clearCache();
 
-      await dataBase.from(TableNames.department).update(json).eq('id', id!);
+      final id = department.id;
+      final dbDepartment = DepartmentDto.fromDomain(department).toDataBase();
+
+      database.update(database.departments)
+        ..where((department) => department.id.equals(id!))
+        ..write(dbDepartment);
 
       return right(unit);
     } catch (e) {
@@ -58,16 +80,11 @@ class DepartmentRepositoryImpl implements IDepartmentRepository {
     }
   }
 
-  @override
-  Future<Either<Failure, Unit>> deleteDepartment({
-    required String id,
-  }) async {
-    try {
-      await dataBase.from(TableNames.department).delete().eq('id', id);
+  void _clearCache() {
+    cache.clear();
+  }
 
-      return right(unit);
-    } catch (e) {
-      return left(Failure(message: e.toString()));
-    }
+  void _updateCache(List<DepartmentModel> data) {
+    cache.addAll(data);
   }
 }

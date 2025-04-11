@@ -33,7 +33,10 @@ class RoundedElevatedButton extends StatelessWidget {
           ),
         ),
       ),
-      child: Text(text),
+      child: Text(
+        text,
+        style: Theme.of(context).textTheme.titleLarge,
+      ),
     );
   }
 }

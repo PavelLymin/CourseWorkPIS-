@@ -3,17 +3,18 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'task.freezed.dart';
 
 @freezed
-class Task with _$Task {
-  const factory Task({
-    required String? id,
+class TaskModel with _$TaskModel {
+  const factory TaskModel({
+    required int? id,
     required String title,
     required String description,
     required int amountOfHours,
     required double payment,
-    required DateTime startDate,
-    required DateTime finishDate,
+    required DateTime date,
+    required DateTime startTime,
+    required DateTime finishTime,
     @Default(Priority.none) Priority priority,
-  }) = _Task;
+  }) = _TaskModel;
 }
 
 enum Priority {

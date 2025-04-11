@@ -1,32 +1,29 @@
 import 'package:course_work/core/errors/failure.dart';
-import 'package:course_work/core/utils/table_names.dart';
 import 'package:course_work/data/dtos/task_dto/task_dto.dart';
-import 'package:course_work/domain/models/task.dart';
+import 'package:course_work/domain/models/task/task.dart';
 import 'package:course_work/domain/repositories/task_repository.dart';
+import 'package:drift/drift.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:fpdart/src/unit.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../data_base/data_base.dart';
 
 class TaskRepositoryImpl implements ITaskRepository {
-  final SupabaseClient dataBase;
-  TaskRepositoryImpl({required this.dataBase});
+  TaskRepositoryImpl({required this.database});
+  final AppDatabase database;
 
   @override
   Future<Either<Failure, Unit>> addTask(
-      {required Task task, required String departmentId}) async {
+      {required TaskModel task, required int departmentId}) async {
     try {
-      final json = TaskDto.fromDomain(task).toJson();
-      final insertedTask = await dataBase
-          .from(TableNames.task)
-          .insert(json)
-          .select('id')
-          .single();
+      final dbTask = TaskDto.fromDomain(task).toDataBase();
 
-      final taskId = insertedTask['id'];
+      await database.transaction(() async {
+        final taskId = await database.into(database.tasks).insert(dbTask);
 
-      await dataBase.from(TableNames.departmentTask).insert({
-        'department_id': departmentId,
-        'id': taskId,
+        await database.into(database.departmentTasks).insert(
+            DepartmentTasksCompanion(
+                departmentId: Value(departmentId), taskId: Value(taskId)));
       });
 
       return right(unit);
@@ -36,11 +33,17 @@ class TaskRepositoryImpl implements ITaskRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> deleteTask({required String id}) async {
+  Future<Either<Failure, Unit>> deleteTask({required int taskId}) async {
     try {
-      await dataBase.from(TableNames.task).delete().eq('id', id);
+      await database.transaction(() async {
+        await (database.delete(database.tasks)
+              ..where((row) => row.id.equals(taskId)))
+            .go();
 
-      await dataBase.from(TableNames.departmentTask).delete().eq('task_id', id);
+        await (database.delete(database.departmentTasks)
+              ..where((row) => row.taskId.equals(taskId)))
+            .go();
+      });
 
       return right(unit);
     } catch (e) {
@@ -49,12 +52,13 @@ class TaskRepositoryImpl implements ITaskRepository {
   }
 
   @override
-  Future<Either<Failure, List<Task>>> getAllTask() async {
+  Future<Either<Failure, List<TaskModel>>> getAllTask() async {
     try {
-      final jsonList = await dataBase.from(TableNames.task).select();
+      final tasksDb = await database.select(database.tasks).get();
 
-      final tasks =
-          jsonList.map((json) => TaskDto.fromJson(json).toDomain()).toList();
+      final tasks = tasksDb
+          .map((element) => TaskDto.fromDataBase(element).toDomain())
+          .toList();
 
       return right(tasks);
     } catch (e) {
@@ -63,19 +67,22 @@ class TaskRepositoryImpl implements ITaskRepository {
   }
 
   @override
-  Future<Either<Failure, List<Task>>> getTaskByIdDepartment(
-      {required String id}) async {
+  Future<Either<Failure, List<TaskModel>>> getTaskByIdDepartment(
+      {required int departmentId}) async {
     try {
-      final jsonList = await dataBase.from(TableNames.task).select().filter(
-          'id',
-          'in',
-          dataBase
-              .from(TableNames.departmentTask)
-              .select('task_id')
-              .eq('department_id', id));
+      final query = database.select(database.tasks).join([
+        innerJoin(
+            database.departmentTasks,
+            database.tasks.id.equalsExp(database.tasks.id) &
+                database.departmentTasks.departmentId.equals(departmentId))
+      ]);
 
-      final tasks =
-          jsonList.map((json) => TaskDto.fromJson(json).toDomain()).toList();
+      final tasksDb =
+          await query.map((row) => row.readTable(database.tasks)).get();
+
+      final tasks = tasksDb
+          .map((element) => TaskDto.fromDataBase(element).toDomain())
+          .toList();
 
       return right(tasks);
     } catch (e) {
@@ -84,13 +91,15 @@ class TaskRepositoryImpl implements ITaskRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updateTask({
-    required Task task,
-  }) async {
+  Future<Either<Failure, Unit>> updateTask(
+      {required TaskModel originalTask, required TaskModel changedTask}) async {
     try {
-      final json = TaskDto.fromDomain(task).toJson();
+      final id = originalTask.id;
+      final taskDb = TaskDto.fromDomain(originalTask).toDataBase();
 
-      await dataBase.from(TableNames.task).update(json);
+      database.update(database.tasks)
+        ..where((task) => task.id.equals(id!))
+        ..write(taskDb);
 
       return right(unit);
     } catch (e) {

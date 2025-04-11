@@ -1,48 +1,53 @@
-import 'package:course_work/domain/models/task.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:course_work/data/data_base/data_base.dart';
+import 'package:course_work/domain/models/task/task.dart';
+import 'package:drift/drift.dart';
+import 'package:drift_postgres/drift_postgres.dart';
 
-part 'task_dto.freezed.dart';
-part 'task_dto.g.dart';
+class TaskDto {
+  TaskDto({
+    this.id,
+    required this.title,
+    required this.description,
+    required this.amountOfHours,
+    required this.payment,
+    required this.date,
+    required this.startTime,
+    required this.finishTime,
+    required this.priority,
+  });
+  final int? id;
+  final String title;
+  final String description;
+  final int amountOfHours;
+  final double payment;
+  final DateTime date;
+  final DateTime startTime;
+  final DateTime finishTime;
+  final String priority;
 
-@freezed
-class TaskDto with _$TaskDto {
-  const TaskDto._();
-
-  factory TaskDto({
-    required String? id,
-    required String title,
-    required String description,
-    @JsonKey(name: 'amount_of_hours') required int amountOfHours,
-    required double payment,
-    @JsonKey(name: 'start_date') required DateTime startDate,
-    @JsonKey(name: 'finish_date') required DateTime finishDate,
-    required String priority,
-  }) = _TaskDto;
-
-  Task toDomain() => Task(
+  TaskModel toDomain() => TaskModel(
         id: id,
         title: title,
         description: description,
         amountOfHours: amountOfHours,
         payment: payment,
         priority: getPriority(priority),
-        startDate: startDate,
-        finishDate: finishDate,
+        date: date,
+        startTime: startTime,
+        finishTime: finishTime,
       );
 
-  factory TaskDto.fromDomain(Task object) => TaskDto(
+  factory TaskDto.fromDomain(TaskModel object) => TaskDto(
         id: object.id,
         title: object.title,
         description: object.description,
         amountOfHours: object.amountOfHours,
         payment: object.payment,
         priority: object.priority.value,
-        startDate: object.startDate,
-        finishDate: object.finishDate,
+        date: object.date,
+        startTime: object.startTime,
+        finishTime: object.finishTime,
       );
-
-  factory TaskDto.fromJson(Map<String, dynamic> json) =>
-      _$TaskDtoFromJson(json);
 
   Priority getPriority(String priority) {
     return Priority.values.firstWhere(
@@ -50,4 +55,28 @@ class TaskDto with _$TaskDto {
       orElse: () => Priority.none,
     );
   }
+
+  TasksCompanion toDataBase() => TasksCompanion(
+        id: Value(id!),
+        title: Value(title),
+        description: Value(description),
+        amountOfHours: Value(amountOfHours),
+        payment: Value(payment),
+        priority: Value(priority),
+        date: Value(PgDate.fromDateTime(date)),
+        startTime: Value(PgDateTime(startTime)),
+        finishTime: Value(PgDateTime(startTime)),
+      );
+
+  factory TaskDto.fromDataBase(Task object) => TaskDto(
+        id: object.id,
+        title: object.title,
+        description: object.description,
+        amountOfHours: object.amountOfHours,
+        payment: object.payment,
+        date: object.date.toDateTime(),
+        startTime: object.startTime.dateTime,
+        finishTime: object.finishTime.dateTime,
+        priority: object.priority,
+      );
 }

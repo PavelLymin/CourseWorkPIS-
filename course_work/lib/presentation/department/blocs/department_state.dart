@@ -5,7 +5,7 @@ class DepartmentState with _$DepartmentState {
   const factory DepartmentState.loading() = _Loading;
 
   const factory DepartmentState.load({
-    required List<Department> departments,
+    required List<DepartmentModel> departments,
   }) = _Load;
 
   const factory DepartmentState.failure({

@@ -1,9 +1,5 @@
-import 'package:course_work/domain/models/employee.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:course_work/domain/models/employee/employee.dart';
 
-part 'employee_dto.g.dart';
-
-@JsonSerializable()
 class EmployeeDto {
   EmployeeDto({
     this.id,
@@ -16,17 +12,14 @@ class EmployeeDto {
   });
 
   final String? id;
-  @JsonKey(name: 'department_id')
   final String? departmentId;
-  @JsonKey(name: 'first_name')
   final String firstName;
-  @JsonKey(name: 'last_name')
   final String lastName;
   final String position;
   final String role;
   final String login;
 
-  Employee toDomain() => Employee(
+  EmployeeModel toDomain() => EmployeeModel(
         id: id,
         firstName: firstName,
         lastName: lastName,
@@ -35,7 +28,7 @@ class EmployeeDto {
         login: login,
       );
 
-  factory EmployeeDto.fromDomain(Employee object) => EmployeeDto(
+  factory EmployeeDto.fromDomain(EmployeeModel object) => EmployeeDto(
         id: object.id,
         firstName: object.firstName,
         lastName: object.lastName,
@@ -43,9 +36,4 @@ class EmployeeDto {
         role: object.role,
         login: object.login,
       );
-
-  factory EmployeeDto.fromJson(Map<String, dynamic> json) =>
-      _$EmployeeDtoFromJson(json);
-
-  Map<String, dynamic> toJson() => _$EmployeeDtoToJson(this);
 }

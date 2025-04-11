@@ -1,20 +1,30 @@
-import 'package:course_work/core/widgets/rounded_elevated_button.dart';
+import 'package:course_work/core/routes/route_names.dart';
+import 'package:course_work/presentation/task/blocs/task_bloc.dart';
+import 'package:course_work/presentation/task/widgets/list_tile_task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/utils/app_strings.dart';
-import '../blocs/department_bloc.dart';
-import '../widgets/list_tile_department.dart';
-import 'add_edit_department.dart';
+import '../../../core/widgets/rounded_elevated_button.dart';
 
-class DepartmentPage extends StatelessWidget {
-  const DepartmentPage({super.key});
+class TaskPage extends StatelessWidget {
+  const TaskPage({super.key, required this.departmentId});
+  final int departmentId;
 
   @override
   Widget build(BuildContext context) {
+    context
+        .read<TaskBloc>()
+        .add(TaskEvent.loadTaskByDepartmentId(departmentId: departmentId));
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppStrings.department),
+        title: Text(AppStrings.tasks),
+        leading: BackButton(
+          onPressed: () {
+            context.replaceNamed(RoutesNames.department);
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25.0, horizontal: 20.0),
@@ -22,7 +32,7 @@ class DepartmentPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: BlocBuilder<DepartmentBloc, DepartmentState>(
+              child: BlocBuilder<TaskBloc, TaskState>(
                 builder: (context, state) {
                   return state.map(
                     loading: (_) => Center(
@@ -35,10 +45,10 @@ class DepartmentPage extends StatelessWidget {
                             height: 15.0,
                           );
                         },
-                        itemCount: state.departments.length,
+                        itemCount: state.tasks.length,
                         itemBuilder: (context, index) {
-                          return ListTileDepartment(
-                            department: state.departments[index],
+                          return ListTileTask(
+                            task: state.tasks[index],
                           );
                         },
                       );
@@ -60,7 +70,7 @@ class DepartmentPage extends StatelessWidget {
                     useRootNavigator: false,
                     isScrollControlled: true,
                     builder: (newContext) {
-                      return AddEditDepartment();
+                      return Container();
                     },
                   );
                 },

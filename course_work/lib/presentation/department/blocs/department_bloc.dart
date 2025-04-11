@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:course_work/domain/repositories/department_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../domain/models/department.dart';
+import '../../../domain/models/department/department.dart';
 
 part 'department_bloc.freezed.dart';
 part 'department_event.dart';
@@ -60,7 +60,8 @@ class DepartmentBloc extends Bloc<DepartmentEvent, DepartmentState> {
 
   Future<void> _deleteDepartment(
       Emitter<DepartmentState> emit, _DeleteDepartment event) async {
-    final result = await repository.deleteDepartment(id: event.id);
+    final result =
+        await repository.deleteDepartment(departmentId: event.departmentId);
 
     result.fold(
       (failure) => emit(DepartmentState.failure(message: failure.message)),

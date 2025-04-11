@@ -1,13 +1,16 @@
 import 'package:course_work/presentation/department/blocs/department_bloc.dart';
+import 'package:course_work/presentation/task/blocs/task_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'core/dependencies/dependencies.dart';
 import 'core/routes/route.dart';
-import 'core/utils/app_colors.dart';
+import 'core/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  initializeDateFormatting("ru_RU");
   await setUp();
   runApp(
     MultiBlocProvider(
@@ -15,6 +18,7 @@ void main() async {
         BlocProvider(
             create: (_) => getIt<DepartmentBloc>()
               ..add(DepartmentEvent.loadDepartments())),
+        BlocProvider(create: (_) => getIt<TaskBloc>()),
       ],
       child: const MyApp(),
     ),
@@ -33,25 +37,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: AppColors.backGroundColor,
-        ),
-        textTheme: TextTheme(
-          titleMedium: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
-          ),
-          headlineLarge: TextStyle(
-            fontSize: 35,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        primaryColor: AppColors.primaryColor,
-        useMaterial3: true,
-        scaffoldBackgroundColor: AppColors.backGroundColor,
-        colorScheme: ColorScheme.dark(surface: Color(0xFF232323)),
-      ),
+      theme: appTheme,
       routerConfig: router,
     );
   }
