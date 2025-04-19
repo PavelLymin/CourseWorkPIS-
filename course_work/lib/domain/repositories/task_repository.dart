@@ -5,7 +5,7 @@ import 'package:fpdart/fpdart.dart' show Either, Unit;
 abstract interface class ITaskRepository {
   Future<Either<Failure, List<TaskModel>>> getAllTask();
 
-  Future<Either<Failure, List<TaskModel>>> getTaskByIdDepartment({
+  Future<Either<Failure, List<TaskModel>>> getTaskByDepartmentId({
     required int departmentId,
   });
 

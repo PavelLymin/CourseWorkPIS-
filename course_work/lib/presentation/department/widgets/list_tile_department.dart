@@ -2,10 +2,9 @@ import 'package:course_work/core/routes/route_names.dart';
 import 'package:course_work/core/utils/app_colors.dart';
 import 'package:course_work/core/utils/app_strings.dart';
 import 'package:course_work/domain/models/department/department.dart';
-import 'package:course_work/presentation/department/blocs/department_bloc.dart';
 import 'package:course_work/presentation/department/pages/add_edit_department.dart';
+import 'package:course_work/presentation/department/widgets/delete_dialog_window.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class ListTileDepartment extends StatelessWidget {
@@ -49,9 +48,12 @@ class ListTileDepartment extends StatelessWidget {
                   ),
                   IconButton(
                     onPressed: () {
-                      context.read<DepartmentBloc>().add(
-                          DepartmentEvent.deleteDepartment(
-                              departmentId: department.id!));
+                      showDialog(
+                          context: context,
+                          builder: (newContext) {
+                            return DeleteDialogWindow(
+                                departmentId: department.id!);
+                          });
                     },
                     icon: const Icon(
                       Icons.remove_circle_outline_rounded,

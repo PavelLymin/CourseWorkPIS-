@@ -874,6 +874,422 @@ class DepartmentTasksCompanion extends UpdateCompanion<DepartmentTask> {
   }
 }
 
+class $EmployeesTable extends Employees
+    with TableInfo<$EmployeesTable, Employee> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $EmployeesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _departmentIdMeta =
+      const VerificationMeta('departmentId');
+  @override
+  late final GeneratedColumn<int> departmentId = GeneratedColumn<int>(
+      'department_id', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: true,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('REFERENCES departments (id)'));
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _firstNameMeta =
+      const VerificationMeta('firstName');
+  @override
+  late final GeneratedColumn<String> firstName = GeneratedColumn<String>(
+      'first_name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _lastNameMeta =
+      const VerificationMeta('lastName');
+  @override
+  late final GeneratedColumn<String> lastName = GeneratedColumn<String>(
+      'last_name', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _positionMeta =
+      const VerificationMeta('position');
+  @override
+  late final GeneratedColumn<String> position = GeneratedColumn<String>(
+      'position', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _roleMeta = const VerificationMeta('role');
+  @override
+  late final GeneratedColumn<String> role = GeneratedColumn<String>(
+      'role', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _loginMeta = const VerificationMeta('login');
+  @override
+  late final GeneratedColumn<String> login = GeneratedColumn<String>(
+      'login', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _passwordMeta =
+      const VerificationMeta('password');
+  @override
+  late final GeneratedColumn<String> password = GeneratedColumn<String>(
+      'password', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns =>
+      [departmentId, id, firstName, lastName, position, role, login, password];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'employees';
+  @override
+  VerificationContext validateIntegrity(Insertable<Employee> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('department_id')) {
+      context.handle(
+          _departmentIdMeta,
+          departmentId.isAcceptableOrUnknown(
+              data['department_id']!, _departmentIdMeta));
+    } else if (isInserting) {
+      context.missing(_departmentIdMeta);
+    }
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('first_name')) {
+      context.handle(_firstNameMeta,
+          firstName.isAcceptableOrUnknown(data['first_name']!, _firstNameMeta));
+    } else if (isInserting) {
+      context.missing(_firstNameMeta);
+    }
+    if (data.containsKey('last_name')) {
+      context.handle(_lastNameMeta,
+          lastName.isAcceptableOrUnknown(data['last_name']!, _lastNameMeta));
+    } else if (isInserting) {
+      context.missing(_lastNameMeta);
+    }
+    if (data.containsKey('position')) {
+      context.handle(_positionMeta,
+          position.isAcceptableOrUnknown(data['position']!, _positionMeta));
+    } else if (isInserting) {
+      context.missing(_positionMeta);
+    }
+    if (data.containsKey('role')) {
+      context.handle(
+          _roleMeta, role.isAcceptableOrUnknown(data['role']!, _roleMeta));
+    } else if (isInserting) {
+      context.missing(_roleMeta);
+    }
+    if (data.containsKey('login')) {
+      context.handle(
+          _loginMeta, login.isAcceptableOrUnknown(data['login']!, _loginMeta));
+    } else if (isInserting) {
+      context.missing(_loginMeta);
+    }
+    if (data.containsKey('password')) {
+      context.handle(_passwordMeta,
+          password.isAcceptableOrUnknown(data['password']!, _passwordMeta));
+    } else if (isInserting) {
+      context.missing(_passwordMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  Employee map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Employee(
+      departmentId: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}department_id'])!,
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      firstName: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}first_name'])!,
+      lastName: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}last_name'])!,
+      position: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}position'])!,
+      role: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}role'])!,
+      login: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}login'])!,
+      password: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}password'])!,
+    );
+  }
+
+  @override
+  $EmployeesTable createAlias(String alias) {
+    return $EmployeesTable(attachedDatabase, alias);
+  }
+}
+
+class Employee extends DataClass implements Insertable<Employee> {
+  final int departmentId;
+  final int id;
+  final String firstName;
+  final String lastName;
+  final String position;
+  final String role;
+  final String login;
+  final String password;
+  const Employee(
+      {required this.departmentId,
+      required this.id,
+      required this.firstName,
+      required this.lastName,
+      required this.position,
+      required this.role,
+      required this.login,
+      required this.password});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['department_id'] = Variable<int>(departmentId);
+    map['id'] = Variable<int>(id);
+    map['first_name'] = Variable<String>(firstName);
+    map['last_name'] = Variable<String>(lastName);
+    map['position'] = Variable<String>(position);
+    map['role'] = Variable<String>(role);
+    map['login'] = Variable<String>(login);
+    map['password'] = Variable<String>(password);
+    return map;
+  }
+
+  EmployeesCompanion toCompanion(bool nullToAbsent) {
+    return EmployeesCompanion(
+      departmentId: Value(departmentId),
+      id: Value(id),
+      firstName: Value(firstName),
+      lastName: Value(lastName),
+      position: Value(position),
+      role: Value(role),
+      login: Value(login),
+      password: Value(password),
+    );
+  }
+
+  factory Employee.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return Employee(
+      departmentId: serializer.fromJson<int>(json['departmentId']),
+      id: serializer.fromJson<int>(json['id']),
+      firstName: serializer.fromJson<String>(json['firstName']),
+      lastName: serializer.fromJson<String>(json['lastName']),
+      position: serializer.fromJson<String>(json['position']),
+      role: serializer.fromJson<String>(json['role']),
+      login: serializer.fromJson<String>(json['login']),
+      password: serializer.fromJson<String>(json['password']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'departmentId': serializer.toJson<int>(departmentId),
+      'id': serializer.toJson<int>(id),
+      'firstName': serializer.toJson<String>(firstName),
+      'lastName': serializer.toJson<String>(lastName),
+      'position': serializer.toJson<String>(position),
+      'role': serializer.toJson<String>(role),
+      'login': serializer.toJson<String>(login),
+      'password': serializer.toJson<String>(password),
+    };
+  }
+
+  Employee copyWith(
+          {int? departmentId,
+          int? id,
+          String? firstName,
+          String? lastName,
+          String? position,
+          String? role,
+          String? login,
+          String? password}) =>
+      Employee(
+        departmentId: departmentId ?? this.departmentId,
+        id: id ?? this.id,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        position: position ?? this.position,
+        role: role ?? this.role,
+        login: login ?? this.login,
+        password: password ?? this.password,
+      );
+  Employee copyWithCompanion(EmployeesCompanion data) {
+    return Employee(
+      departmentId: data.departmentId.present
+          ? data.departmentId.value
+          : this.departmentId,
+      id: data.id.present ? data.id.value : this.id,
+      firstName: data.firstName.present ? data.firstName.value : this.firstName,
+      lastName: data.lastName.present ? data.lastName.value : this.lastName,
+      position: data.position.present ? data.position.value : this.position,
+      role: data.role.present ? data.role.value : this.role,
+      login: data.login.present ? data.login.value : this.login,
+      password: data.password.present ? data.password.value : this.password,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('Employee(')
+          ..write('departmentId: $departmentId, ')
+          ..write('id: $id, ')
+          ..write('firstName: $firstName, ')
+          ..write('lastName: $lastName, ')
+          ..write('position: $position, ')
+          ..write('role: $role, ')
+          ..write('login: $login, ')
+          ..write('password: $password')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      departmentId, id, firstName, lastName, position, role, login, password);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is Employee &&
+          other.departmentId == this.departmentId &&
+          other.id == this.id &&
+          other.firstName == this.firstName &&
+          other.lastName == this.lastName &&
+          other.position == this.position &&
+          other.role == this.role &&
+          other.login == this.login &&
+          other.password == this.password);
+}
+
+class EmployeesCompanion extends UpdateCompanion<Employee> {
+  final Value<int> departmentId;
+  final Value<int> id;
+  final Value<String> firstName;
+  final Value<String> lastName;
+  final Value<String> position;
+  final Value<String> role;
+  final Value<String> login;
+  final Value<String> password;
+  const EmployeesCompanion({
+    this.departmentId = const Value.absent(),
+    this.id = const Value.absent(),
+    this.firstName = const Value.absent(),
+    this.lastName = const Value.absent(),
+    this.position = const Value.absent(),
+    this.role = const Value.absent(),
+    this.login = const Value.absent(),
+    this.password = const Value.absent(),
+  });
+  EmployeesCompanion.insert({
+    required int departmentId,
+    this.id = const Value.absent(),
+    required String firstName,
+    required String lastName,
+    required String position,
+    required String role,
+    required String login,
+    required String password,
+  })  : departmentId = Value(departmentId),
+        firstName = Value(firstName),
+        lastName = Value(lastName),
+        position = Value(position),
+        role = Value(role),
+        login = Value(login),
+        password = Value(password);
+  static Insertable<Employee> custom({
+    Expression<int>? departmentId,
+    Expression<int>? id,
+    Expression<String>? firstName,
+    Expression<String>? lastName,
+    Expression<String>? position,
+    Expression<String>? role,
+    Expression<String>? login,
+    Expression<String>? password,
+  }) {
+    return RawValuesInsertable({
+      if (departmentId != null) 'department_id': departmentId,
+      if (id != null) 'id': id,
+      if (firstName != null) 'first_name': firstName,
+      if (lastName != null) 'last_name': lastName,
+      if (position != null) 'position': position,
+      if (role != null) 'role': role,
+      if (login != null) 'login': login,
+      if (password != null) 'password': password,
+    });
+  }
+
+  EmployeesCompanion copyWith(
+      {Value<int>? departmentId,
+      Value<int>? id,
+      Value<String>? firstName,
+      Value<String>? lastName,
+      Value<String>? position,
+      Value<String>? role,
+      Value<String>? login,
+      Value<String>? password}) {
+    return EmployeesCompanion(
+      departmentId: departmentId ?? this.departmentId,
+      id: id ?? this.id,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      position: position ?? this.position,
+      role: role ?? this.role,
+      login: login ?? this.login,
+      password: password ?? this.password,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (departmentId.present) {
+      map['department_id'] = Variable<int>(departmentId.value);
+    }
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (firstName.present) {
+      map['first_name'] = Variable<String>(firstName.value);
+    }
+    if (lastName.present) {
+      map['last_name'] = Variable<String>(lastName.value);
+    }
+    if (position.present) {
+      map['position'] = Variable<String>(position.value);
+    }
+    if (role.present) {
+      map['role'] = Variable<String>(role.value);
+    }
+    if (login.present) {
+      map['login'] = Variable<String>(login.value);
+    }
+    if (password.present) {
+      map['password'] = Variable<String>(password.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('EmployeesCompanion(')
+          ..write('departmentId: $departmentId, ')
+          ..write('id: $id, ')
+          ..write('firstName: $firstName, ')
+          ..write('lastName: $lastName, ')
+          ..write('position: $position, ')
+          ..write('role: $role, ')
+          ..write('login: $login, ')
+          ..write('password: $password')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -881,12 +1297,13 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $DepartmentsTable departments = $DepartmentsTable(this);
   late final $DepartmentTasksTable departmentTasks =
       $DepartmentTasksTable(this);
+  late final $EmployeesTable employees = $EmployeesTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [tasks, departments, departmentTasks];
+      [tasks, departments, departmentTasks, employees];
 }
 
 typedef $$TasksTableCreateCompanionBuilder = TasksCompanion Function({
@@ -1229,6 +1646,21 @@ final class $$DepartmentsTableReferences
     return ProcessedTableManager(
         manager.$state.copyWith(prefetchedData: cache));
   }
+
+  static MultiTypedResultKey<$EmployeesTable, List<Employee>>
+      _employeesRefsTable(_$AppDatabase db) =>
+          MultiTypedResultKey.fromTable(db.employees,
+              aliasName: $_aliasNameGenerator(
+                  db.departments.id, db.employees.departmentId));
+
+  $$EmployeesTableProcessedTableManager get employeesRefs {
+    final manager = $$EmployeesTableTableManager($_db, $_db.employees)
+        .filter((f) => f.departmentId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_employeesRefsTable($_db));
+    return ProcessedTableManager(
+        manager.$state.copyWith(prefetchedData: cache));
+  }
 }
 
 class $$DepartmentsTableFilterComposer
@@ -1259,6 +1691,27 @@ class $$DepartmentsTableFilterComposer
             $$DepartmentTasksTableFilterComposer(
               $db: $db,
               $table: $db.departmentTasks,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return f(composer);
+  }
+
+  Expression<bool> employeesRefs(
+      Expression<bool> Function($$EmployeesTableFilterComposer f) f) {
+    final $$EmployeesTableFilterComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.id,
+        referencedTable: $db.employees,
+        getReferencedColumn: (t) => t.departmentId,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$EmployeesTableFilterComposer(
+              $db: $db,
+              $table: $db.employees,
               $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
               joinBuilder: joinBuilder,
               $removeJoinBuilderFromRootComposer:
@@ -1319,6 +1772,27 @@ class $$DepartmentsTableAnnotationComposer
             ));
     return f(composer);
   }
+
+  Expression<T> employeesRefs<T extends Object>(
+      Expression<T> Function($$EmployeesTableAnnotationComposer a) f) {
+    final $$EmployeesTableAnnotationComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.id,
+        referencedTable: $db.employees,
+        getReferencedColumn: (t) => t.departmentId,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$EmployeesTableAnnotationComposer(
+              $db: $db,
+              $table: $db.employees,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return f(composer);
+  }
 }
 
 class $$DepartmentsTableTableManager extends RootTableManager<
@@ -1332,7 +1806,7 @@ class $$DepartmentsTableTableManager extends RootTableManager<
     $$DepartmentsTableUpdateCompanionBuilder,
     (Department, $$DepartmentsTableReferences),
     Department,
-    PrefetchHooks Function({bool departmentTasksRefs})> {
+    PrefetchHooks Function({bool departmentTasksRefs, bool employeesRefs})> {
   $$DepartmentsTableTableManager(_$AppDatabase db, $DepartmentsTable table)
       : super(TableManagerState(
           db: db,
@@ -1365,11 +1839,13 @@ class $$DepartmentsTableTableManager extends RootTableManager<
                     $$DepartmentsTableReferences(db, table, e)
                   ))
               .toList(),
-          prefetchHooksCallback: ({departmentTasksRefs = false}) {
+          prefetchHooksCallback: (
+              {departmentTasksRefs = false, employeesRefs = false}) {
             return PrefetchHooks(
               db: db,
               explicitlyWatchedTables: [
-                if (departmentTasksRefs) db.departmentTasks
+                if (departmentTasksRefs) db.departmentTasks,
+                if (employeesRefs) db.employees
               ],
               addJoins: null,
               getPrefetchedDataCallback: (items) async {
@@ -1383,6 +1859,19 @@ class $$DepartmentsTableTableManager extends RootTableManager<
                         managerFromTypedResult: (p0) =>
                             $$DepartmentsTableReferences(db, table, p0)
                                 .departmentTasksRefs,
+                        referencedItemsForCurrentItem:
+                            (item, referencedItems) => referencedItems
+                                .where((e) => e.departmentId == item.id),
+                        typedResults: items),
+                  if (employeesRefs)
+                    await $_getPrefetchedData<Department, $DepartmentsTable,
+                            Employee>(
+                        currentTable: table,
+                        referencedTable: $$DepartmentsTableReferences
+                            ._employeesRefsTable(db),
+                        managerFromTypedResult: (p0) =>
+                            $$DepartmentsTableReferences(db, table, p0)
+                                .employeesRefs,
                         referencedItemsForCurrentItem:
                             (item, referencedItems) => referencedItems
                                 .where((e) => e.departmentId == item.id),
@@ -1405,7 +1894,7 @@ typedef $$DepartmentsTableProcessedTableManager = ProcessedTableManager<
     $$DepartmentsTableUpdateCompanionBuilder,
     (Department, $$DepartmentsTableReferences),
     Department,
-    PrefetchHooks Function({bool departmentTasksRefs})>;
+    PrefetchHooks Function({bool departmentTasksRefs, bool employeesRefs})>;
 typedef $$DepartmentTasksTableCreateCompanionBuilder = DepartmentTasksCompanion
     Function({
   Value<int> id,
@@ -1723,6 +2212,318 @@ typedef $$DepartmentTasksTableProcessedTableManager = ProcessedTableManager<
     (DepartmentTask, $$DepartmentTasksTableReferences),
     DepartmentTask,
     PrefetchHooks Function({bool taskId, bool departmentId})>;
+typedef $$EmployeesTableCreateCompanionBuilder = EmployeesCompanion Function({
+  required int departmentId,
+  Value<int> id,
+  required String firstName,
+  required String lastName,
+  required String position,
+  required String role,
+  required String login,
+  required String password,
+});
+typedef $$EmployeesTableUpdateCompanionBuilder = EmployeesCompanion Function({
+  Value<int> departmentId,
+  Value<int> id,
+  Value<String> firstName,
+  Value<String> lastName,
+  Value<String> position,
+  Value<String> role,
+  Value<String> login,
+  Value<String> password,
+});
+
+final class $$EmployeesTableReferences
+    extends BaseReferences<_$AppDatabase, $EmployeesTable, Employee> {
+  $$EmployeesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $DepartmentsTable _departmentIdTable(_$AppDatabase db) =>
+      db.departments.createAlias(
+          $_aliasNameGenerator(db.employees.departmentId, db.departments.id));
+
+  $$DepartmentsTableProcessedTableManager get departmentId {
+    final $_column = $_itemColumn<int>('department_id')!;
+
+    final manager = $$DepartmentsTableTableManager($_db, $_db.departments)
+        .filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_departmentIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+        manager.$state.copyWith(prefetchedData: [item]));
+  }
+}
+
+class $$EmployeesTableFilterComposer
+    extends Composer<_$AppDatabase, $EmployeesTable> {
+  $$EmployeesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get firstName => $composableBuilder(
+      column: $table.firstName, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get lastName => $composableBuilder(
+      column: $table.lastName, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get position => $composableBuilder(
+      column: $table.position, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get role => $composableBuilder(
+      column: $table.role, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get login => $composableBuilder(
+      column: $table.login, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get password => $composableBuilder(
+      column: $table.password, builder: (column) => ColumnFilters(column));
+
+  $$DepartmentsTableFilterComposer get departmentId {
+    final $$DepartmentsTableFilterComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.departmentId,
+        referencedTable: $db.departments,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$DepartmentsTableFilterComposer(
+              $db: $db,
+              $table: $db.departments,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return composer;
+  }
+}
+
+class $$EmployeesTableOrderingComposer
+    extends Composer<_$AppDatabase, $EmployeesTable> {
+  $$EmployeesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get firstName => $composableBuilder(
+      column: $table.firstName, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get lastName => $composableBuilder(
+      column: $table.lastName, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get position => $composableBuilder(
+      column: $table.position, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get role => $composableBuilder(
+      column: $table.role, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get login => $composableBuilder(
+      column: $table.login, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get password => $composableBuilder(
+      column: $table.password, builder: (column) => ColumnOrderings(column));
+
+  $$DepartmentsTableOrderingComposer get departmentId {
+    final $$DepartmentsTableOrderingComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.departmentId,
+        referencedTable: $db.departments,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$DepartmentsTableOrderingComposer(
+              $db: $db,
+              $table: $db.departments,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return composer;
+  }
+}
+
+class $$EmployeesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $EmployeesTable> {
+  $$EmployeesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get firstName =>
+      $composableBuilder(column: $table.firstName, builder: (column) => column);
+
+  GeneratedColumn<String> get lastName =>
+      $composableBuilder(column: $table.lastName, builder: (column) => column);
+
+  GeneratedColumn<String> get position =>
+      $composableBuilder(column: $table.position, builder: (column) => column);
+
+  GeneratedColumn<String> get role =>
+      $composableBuilder(column: $table.role, builder: (column) => column);
+
+  GeneratedColumn<String> get login =>
+      $composableBuilder(column: $table.login, builder: (column) => column);
+
+  GeneratedColumn<String> get password =>
+      $composableBuilder(column: $table.password, builder: (column) => column);
+
+  $$DepartmentsTableAnnotationComposer get departmentId {
+    final $$DepartmentsTableAnnotationComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.departmentId,
+        referencedTable: $db.departments,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$DepartmentsTableAnnotationComposer(
+              $db: $db,
+              $table: $db.departments,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return composer;
+  }
+}
+
+class $$EmployeesTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $EmployeesTable,
+    Employee,
+    $$EmployeesTableFilterComposer,
+    $$EmployeesTableOrderingComposer,
+    $$EmployeesTableAnnotationComposer,
+    $$EmployeesTableCreateCompanionBuilder,
+    $$EmployeesTableUpdateCompanionBuilder,
+    (Employee, $$EmployeesTableReferences),
+    Employee,
+    PrefetchHooks Function({bool departmentId})> {
+  $$EmployeesTableTableManager(_$AppDatabase db, $EmployeesTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$EmployeesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$EmployeesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$EmployeesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<int> departmentId = const Value.absent(),
+            Value<int> id = const Value.absent(),
+            Value<String> firstName = const Value.absent(),
+            Value<String> lastName = const Value.absent(),
+            Value<String> position = const Value.absent(),
+            Value<String> role = const Value.absent(),
+            Value<String> login = const Value.absent(),
+            Value<String> password = const Value.absent(),
+          }) =>
+              EmployeesCompanion(
+            departmentId: departmentId,
+            id: id,
+            firstName: firstName,
+            lastName: lastName,
+            position: position,
+            role: role,
+            login: login,
+            password: password,
+          ),
+          createCompanionCallback: ({
+            required int departmentId,
+            Value<int> id = const Value.absent(),
+            required String firstName,
+            required String lastName,
+            required String position,
+            required String role,
+            required String login,
+            required String password,
+          }) =>
+              EmployeesCompanion.insert(
+            departmentId: departmentId,
+            id: id,
+            firstName: firstName,
+            lastName: lastName,
+            position: position,
+            role: role,
+            login: login,
+            password: password,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (
+                    e.readTable(table),
+                    $$EmployeesTableReferences(db, table, e)
+                  ))
+              .toList(),
+          prefetchHooksCallback: ({departmentId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins: <
+                  T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic>>(state) {
+                if (departmentId) {
+                  state = state.withJoin(
+                    currentTable: table,
+                    currentColumn: table.departmentId,
+                    referencedTable:
+                        $$EmployeesTableReferences._departmentIdTable(db),
+                    referencedColumn:
+                        $$EmployeesTableReferences._departmentIdTable(db).id,
+                  ) as T;
+                }
+
+                return state;
+              },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ));
+}
+
+typedef $$EmployeesTableProcessedTableManager = ProcessedTableManager<
+    _$AppDatabase,
+    $EmployeesTable,
+    Employee,
+    $$EmployeesTableFilterComposer,
+    $$EmployeesTableOrderingComposer,
+    $$EmployeesTableAnnotationComposer,
+    $$EmployeesTableCreateCompanionBuilder,
+    $$EmployeesTableUpdateCompanionBuilder,
+    (Employee, $$EmployeesTableReferences),
+    Employee,
+    PrefetchHooks Function({bool departmentId})>;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -1733,4 +2534,6 @@ class $AppDatabaseManager {
       $$DepartmentsTableTableManager(_db, _db.departments);
   $$DepartmentTasksTableTableManager get departmentTasks =>
       $$DepartmentTasksTableTableManager(_db, _db.departmentTasks);
+  $$EmployeesTableTableManager get employees =>
+      $$EmployeesTableTableManager(_db, _db.employees);
 }

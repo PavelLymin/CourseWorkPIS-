@@ -1,5 +1,6 @@
 import 'package:course_work/core/routes/route_names.dart';
 import 'package:course_work/presentation/task/blocs/task_bloc.dart';
+import 'package:course_work/presentation/task/pages/add_task_page.dart';
 import 'package:course_work/presentation/task/widgets/list_tile_task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,7 +71,10 @@ class TaskPage extends StatelessWidget {
                     useRootNavigator: false,
                     isScrollControlled: true,
                     builder: (newContext) {
-                      return Container();
+                      return SizedBox(
+                        height: MediaQuery.of(context).size.height - 80,
+                        child: AddTaskPage(),
+                      );
                     },
                   );
                 },

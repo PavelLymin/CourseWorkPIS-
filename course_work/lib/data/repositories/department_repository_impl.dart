@@ -10,13 +10,14 @@ import '../../domain/models/department/department.dart';
 class DepartmentRepositoryImpl implements IDepartmentRepository {
   DepartmentRepositoryImpl({required this.database});
   final AppDatabase database;
-  final List<DepartmentModel> cache = [];
+  final List<DepartmentModel> _cache = [];
 
   @override
   Future<Either<Failure, Unit>> addDepartment(
       {required DepartmentModel department}) async {
     try {
       _clearCache();
+
       final departmentDb = DepartmentDto.fromDomain(department).toDataBase();
 
       await database.into(database.departments).insert(departmentDb);
@@ -32,10 +33,15 @@ class DepartmentRepositoryImpl implements IDepartmentRepository {
       {required int departmentId}) async {
     try {
       _clearCache();
+      await database.transaction(() async {
+        await (database.delete(database.departmentTasks)
+              ..where((row) => row.departmentId.equals(departmentId)))
+            .go();
 
-      await (database.delete(database.departments)
-            ..where((row) => row.id.equals(departmentId)))
-          .go();
+        await (database.delete(database.departments)
+              ..where((row) => row.id.equals(departmentId)))
+            .go();
+      });
 
       return right(unit);
     } catch (e) {
@@ -46,9 +52,10 @@ class DepartmentRepositoryImpl implements IDepartmentRepository {
   @override
   Future<Either<Failure, List<DepartmentModel>>> getAllDepartment() async {
     try {
-      if (cache.isNotEmpty) {
-        return right(cache);
+      if (_cache.isNotEmpty) {
+        return right(_cache);
       }
+
       final departmentsDb = await database.select(database.departments).get();
 
       final departments = departmentsDb
@@ -71,9 +78,9 @@ class DepartmentRepositoryImpl implements IDepartmentRepository {
       final id = department.id;
       final departmentDb = DepartmentDto.fromDomain(department).toDataBase();
 
-      database.update(database.departments)
-        ..where((department) => department.id.equals(id!))
-        ..write(departmentDb);
+      await (database.update(database.departments)
+            ..where((department) => department.id.equals(id!)))
+          .write(departmentDb);
 
       return right(unit);
     } catch (e) {
@@ -82,10 +89,10 @@ class DepartmentRepositoryImpl implements IDepartmentRepository {
   }
 
   void _clearCache() {
-    cache.clear();
+    _cache.clear();
   }
 
   void _updateCache(List<DepartmentModel> data) {
-    cache.addAll(data);
+    _cache.addAll(data);
   }
 }

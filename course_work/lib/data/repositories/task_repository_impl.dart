@@ -13,17 +13,22 @@ class TaskRepositoryImpl implements ITaskRepository {
   final AppDatabase database;
 
   @override
-  Future<Either<Failure, Unit>> addTask(
-      {required TaskModel task, required int departmentId}) async {
+  Future<Either<Failure, Unit>> addTask({
+    required TaskModel task,
+    required int departmentId,
+  }) async {
     try {
       final dbTask = TaskDto.fromDomain(task).toDataBase();
 
       await database.transaction(() async {
         final taskId = await database.into(database.tasks).insert(dbTask);
 
-        await database.into(database.departmentTasks).insert(
-            DepartmentTasksCompanion(
-                departmentId: Value(departmentId), taskId: Value(taskId)));
+        await database
+            .into(database.departmentTasks)
+            .insert(DepartmentTasksCompanion(
+              departmentId: Value(departmentId),
+              taskId: Value(taskId),
+            ));
       });
 
       return right(unit);
@@ -33,7 +38,9 @@ class TaskRepositoryImpl implements ITaskRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> deleteTask({required int taskId}) async {
+  Future<Either<Failure, Unit>> deleteTask({
+    required int taskId,
+  }) async {
     try {
       await database.transaction(() async {
         await (database.delete(database.tasks)
@@ -67,8 +74,9 @@ class TaskRepositoryImpl implements ITaskRepository {
   }
 
   @override
-  Future<Either<Failure, List<TaskModel>>> getTaskByIdDepartment(
-      {required int departmentId}) async {
+  Future<Either<Failure, List<TaskModel>>> getTaskByDepartmentId({
+    required int departmentId,
+  }) async {
     try {
       final query = database.select(database.tasks).join([
         innerJoin(
@@ -91,17 +99,19 @@ class TaskRepositoryImpl implements ITaskRepository {
   }
 
   @override
-  Future<Either<Failure, Unit>> updateTask(
-      {required TaskModel originalTask, required TaskModel changedTask}) async {
+  Future<Either<Failure, Unit>> updateTask({
+    required TaskModel originalTask,
+    required TaskModel changedTask,
+  }) async {
     try {
       final id = changedTask.id;
       final oldTask = TaskDto.fromDomain(originalTask);
       final newTask = TaskDto.fromDomain(changedTask);
       final changes = oldTask.getChangesData(newTask);
 
-      database.update(database.tasks)
-        ..where((task) => task.id.equals(id!))
-        ..write(changes);
+      await (database.update(database.tasks)
+            ..where((task) => task.id.equals(id!)))
+          .write(changes);
 
       return right(unit);
     } catch (e) {

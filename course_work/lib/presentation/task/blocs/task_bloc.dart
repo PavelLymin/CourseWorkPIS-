@@ -55,7 +55,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       Emitter<TaskState> emit, _LoadTaskByDepartmentId event) async {
     emit(TaskState.loading());
 
-    final result = await repository.getTaskByIdDepartment(
+    final result = await repository.getTaskByDepartmentId(
         departmentId: event.departmentId);
 
     result.fold((failure) => emit(TaskState.failure(message: failure.message)),

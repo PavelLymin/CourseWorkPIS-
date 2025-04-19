@@ -51,19 +51,22 @@ class DepartmentPage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 150,
-              child: RoundedElevatedButton(
-                text: AppStrings.add,
-                onPressed: () {
-                  showModalBottomSheet<void>(
-                    context: context,
-                    useRootNavigator: false,
-                    isScrollControlled: true,
-                    builder: (newContext) {
-                      return AddEditDepartment();
-                    },
-                  );
-                },
+              width: 160,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RoundedElevatedButton(
+                  text: AppStrings.add,
+                  onPressed: () {
+                    showModalBottomSheet<void>(
+                      context: context,
+                      useRootNavigator: false,
+                      isScrollControlled: true,
+                      builder: (newContext) {
+                        return AddEditDepartment();
+                      },
+                    );
+                  },
+                ),
               ),
             ),
           ],

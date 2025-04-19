@@ -8,7 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddEditDepartment extends StatefulWidget {
-  const AddEditDepartment({super.key, this.isEdit = false, this.department});
+  const AddEditDepartment({
+    super.key,
+    this.isEdit = false,
+    this.department,
+  });
   final bool isEdit;
   final DepartmentModel? department;
 
@@ -18,18 +22,18 @@ class AddEditDepartment extends StatefulWidget {
 
 class _AddDepartmentState extends State<AddEditDepartment> {
   final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
+  final _titleController = TextEditingController();
 
   @override
   void dispose() {
-    _nameController.dispose();
+    _titleController.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     if (widget.isEdit && widget.department != null) {
-      _nameController.text = widget.department!.title;
+      _titleController.text = widget.department!.title;
     }
     super.initState();
   }
@@ -64,10 +68,7 @@ class _AddDepartmentState extends State<AddEditDepartment> {
               height: 35.0,
             ),
             CustomTextFormField(
-              onChanged: (text) {
-                setState(() {});
-              },
-              controller: _nameController,
+              controller: _titleController,
               hintText: AppStrings.nameDepartment,
               validator: (value) {
                 if (value!.isEmpty) {
@@ -75,16 +76,6 @@ class _AddDepartmentState extends State<AddEditDepartment> {
                 }
                 return null;
               },
-              suffixIcon: _nameController.text.isNotEmpty
-                  ? IconButton(
-                      onPressed: () {
-                        setState(() {
-                          _nameController.clear();
-                        });
-                      },
-                      icon: const Icon(Icons.clear),
-                    )
-                  : null,
             ),
             const SizedBox(
               height: 35.0,
@@ -99,8 +90,9 @@ class _AddDepartmentState extends State<AddEditDepartment> {
                   if (_formKey.currentState!.validate()) {
                     if (widget.isEdit) {
                       _updateDepartment(context);
+                    } else {
+                      _addDepartment(context);
                     }
-                    _addDepartment(context);
                   }
                 },
               ),
@@ -114,7 +106,7 @@ class _AddDepartmentState extends State<AddEditDepartment> {
   void _addDepartment(BuildContext context) {
     context.read<DepartmentBloc>().add(
           DepartmentEvent.addDepartment(
-            department: DepartmentModel(title: _nameController.text),
+            department: DepartmentModel(title: _titleController.text),
           ),
         );
   }
@@ -122,7 +114,8 @@ class _AddDepartmentState extends State<AddEditDepartment> {
   void _updateDepartment(BuildContext context) {
     context.read<DepartmentBloc>().add(
           DepartmentEvent.updateDepartment(
-            department: DepartmentModel(title: _nameController.text),
+            department:
+                widget.department!.copyWith(title: _titleController.text),
           ),
         );
   }

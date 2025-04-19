@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class CustomTextFormField extends StatefulWidget {
   const CustomTextFormField(
       {super.key,
       required this.controller,
@@ -25,21 +25,37 @@ class CustomTextFormField extends StatelessWidget {
   final ValueChanged<String>? onChanged;
 
   @override
+  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
+}
+
+class _CustomTextFormFieldState extends State<CustomTextFormField> {
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: obscureText,
-      controller: controller,
-      keyboardType: keyboardType,
-      validator: validator,
-      maxLines: maxLines,
-      onChanged: onChanged,
+      obscureText: widget.obscureText,
+      controller: widget.controller,
+      keyboardType: widget.keyboardType,
+      validator: widget.validator,
+      maxLines: widget.maxLines,
+      onChanged: (text) {
+        setState(() {});
+      },
       style: TextStyle(
-        color: color,
+        color: widget.color,
       ),
       decoration: InputDecoration(
-        suffixIcon: suffixIcon,
-        hintText: hintText,
-        hintStyle: TextStyle(color: color),
+        suffixIcon: widget.controller.text.isNotEmpty
+            ? IconButton(
+                onPressed: () {
+                  setState(() {
+                    widget.controller.clear();
+                  });
+                },
+                icon: const Icon(Icons.clear),
+              )
+            : null,
+        hintText: widget.hintText,
+        hintStyle: TextStyle(color: widget.color),
         errorStyle: TextStyle(
           fontSize: 11,
         ),

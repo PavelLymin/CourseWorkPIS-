@@ -32,7 +32,18 @@ class Tasks extends Table {
   TextColumn get priority => text()();
 }
 
-@DriftDatabase(tables: [DepartmentTasks, Departments, Tasks])
+class Employees extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  late final departmentId = integer().references(Departments, #id)();
+  TextColumn get firstName => text()();
+  TextColumn get lastName => text()();
+  TextColumn get position => text()();
+  TextColumn get role => text()();
+  TextColumn get login => text()();
+  TextColumn get password => text()();
+}
+
+@DriftDatabase(tables: [DepartmentTasks, Departments, Tasks, Employees])
 class AppDatabase extends _$AppDatabase implements Disposable {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
