@@ -15,14 +15,13 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
       await event.map(
           addTask: (event) => _addTask(emit, event),
           deleteTask: (event) => _deleteTask(emit, event),
-          update: (event) => _update(emit, event),
+          updateTask: (event) => _updateTask(emit, event),
           loadTaskByDepartmentId: (event) =>
               _loadTaskByDepartmentId(emit, event));
     });
   }
 
-  Future<void> _addTask(
-      Emitter<TaskState> emit, _AddTaskAndLoadSomeTask event) async {
+  Future<void> _addTask(Emitter<TaskState> emit, _AddTask event) async {
     emit(TaskState.loading());
 
     final result = await repository.addTask(
@@ -41,7 +40,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         (_) => add(_LoadTaskByDepartmentId(departmentId: event.departmentId)));
   }
 
-  Future<void> _update(Emitter<TaskState> emit, _UpdateTask event) async {
+  Future<void> _updateTask(Emitter<TaskState> emit, _UpdateTask event) async {
     emit(TaskState.loading());
 
     final result = await repository.updateTask(

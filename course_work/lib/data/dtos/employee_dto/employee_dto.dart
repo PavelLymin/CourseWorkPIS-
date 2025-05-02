@@ -24,6 +24,7 @@ class EmployeeDto {
 
   EmployeeModel toDomain() => EmployeeModel(
         id: id,
+        departmentId: departmentId,
         firstName: firstName,
         lastName: lastName,
         position: position,
@@ -33,6 +34,7 @@ class EmployeeDto {
 
   factory EmployeeDto.fromDomain(EmployeeModel object) => EmployeeDto(
         id: object.id,
+        departmentId: object.departmentId,
         firstName: object.firstName,
         lastName: object.lastName,
         position: object.position,
@@ -52,6 +54,7 @@ class EmployeeDto {
 
   factory EmployeeDto.fromDataBase(Employee object) => EmployeeDto(
         id: object.id,
+        departmentId: object.departmentId,
         firstName: object.firstName,
         lastName: object.lastName,
         position: object.position,
@@ -61,6 +64,7 @@ class EmployeeDto {
 
   EmployeesCompanion getChangesData(EmployeeDto employee) {
     return EmployeesCompanion(
+      departmentId: setIfChanged(departmentId, employee.departmentId),
       firstName: setIfChanged(firstName, employee.firstName),
       lastName: setIfChanged(lastName, employee.lastName),
       position: setIfChanged(position, employee.position),

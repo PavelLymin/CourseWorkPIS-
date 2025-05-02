@@ -43,12 +43,11 @@ class TaskRepositoryImpl implements ITaskRepository {
   }) async {
     try {
       await database.transaction(() async {
-        await (database.delete(database.tasks)
-              ..where((row) => row.id.equals(taskId)))
-            .go();
-
         await (database.delete(database.departmentTasks)
               ..where((row) => row.taskId.equals(taskId)))
+            .go();
+        await (database.delete(database.tasks)
+              ..where((row) => row.id.equals(taskId)))
             .go();
       });
 
@@ -79,11 +78,10 @@ class TaskRepositoryImpl implements ITaskRepository {
   }) async {
     try {
       final query = database.select(database.tasks).join([
-        innerJoin(
-            database.departmentTasks,
-            database.tasks.id.equalsExp(database.tasks.id) &
-                database.departmentTasks.departmentId.equals(departmentId))
-      ]);
+        innerJoin(database.departmentTasks,
+            database.departmentTasks.taskId.equalsExp(database.tasks.id))
+      ])
+        ..where(database.departmentTasks.departmentId.equals(departmentId));
 
       final tasksDb =
           await query.map((row) => row.readTable(database.tasks)).get();

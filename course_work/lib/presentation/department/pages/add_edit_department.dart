@@ -1,11 +1,13 @@
-import 'package:course_work/core/utils/app_colors.dart';
 import 'package:course_work/core/utils/app_strings.dart';
+import 'package:course_work/core/utils/validator.dart';
 import 'package:course_work/core/widgets/custom_text_form_field.dart';
 import 'package:course_work/core/widgets/rounded_elevated_button.dart';
 import 'package:course_work/domain/models/department/department.dart';
 import 'package:course_work/presentation/department/blocs/department_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/widgets/scroll_line.dart';
 
 class AddEditDepartment extends StatefulWidget {
   const AddEditDepartment({
@@ -47,14 +49,7 @@ class _AddDepartmentState extends State<AddEditDepartment> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              width: 250,
-              height: 6,
-              decoration: BoxDecoration(
-                color: AppColors.primaryColor,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-            ),
+            ScrollLine(),
             const SizedBox(
               height: 25.0,
             ),
@@ -68,13 +63,13 @@ class _AddDepartmentState extends State<AddEditDepartment> {
               height: 35.0,
             ),
             CustomTextFormField(
+              onChanged: (text) {
+                setState(() {});
+              },
               controller: _titleController,
               hintText: AppStrings.nameDepartment,
               validator: (value) {
-                if (value!.isEmpty) {
-                  return AppStrings.required;
-                }
-                return null;
+                return Validator.titleDepartmentValidate(value!);
               },
             ),
             const SizedBox(
@@ -94,6 +89,7 @@ class _AddDepartmentState extends State<AddEditDepartment> {
                       _addDepartment(context);
                     }
                   }
+                  Navigator.pop(context);
                 },
               ),
             ),

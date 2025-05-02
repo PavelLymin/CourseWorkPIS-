@@ -66,7 +66,7 @@ class TaskDto {
         priority: Value(priority),
         date: Value(PgDate.fromDateTime(date)),
         startTime: Value(PgDateTime(startTime)),
-        finishTime: Value(PgDateTime(startTime)),
+        finishTime: Value(PgDateTime(finishTime)),
       );
 
   factory TaskDto.fromDataBase(Task object) => TaskDto(

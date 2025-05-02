@@ -23,7 +23,7 @@ mixin _$TaskEvent {
     required TResult Function(int taskId, int departmentId) deleteTask,
     required TResult Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)
-        update,
+        updateTask,
     required TResult Function(int departmentId) loadTaskByDepartmentId,
   }) =>
       throw _privateConstructorUsedError;
@@ -33,7 +33,7 @@ mixin _$TaskEvent {
     TResult? Function(int taskId, int departmentId)? deleteTask,
     TResult? Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
-        update,
+        updateTask,
     TResult? Function(int departmentId)? loadTaskByDepartmentId,
   }) =>
       throw _privateConstructorUsedError;
@@ -43,33 +43,33 @@ mixin _$TaskEvent {
     TResult Function(int taskId, int departmentId)? deleteTask,
     TResult Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
-        update,
+        updateTask,
     TResult Function(int departmentId)? loadTaskByDepartmentId,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AddTaskAndLoadSomeTask value) addTask,
+    required TResult Function(_AddTask value) addTask,
     required TResult Function(_DeleteTask value) deleteTask,
-    required TResult Function(_UpdateTask value) update,
+    required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_LoadTaskByDepartmentId value)
         loadTaskByDepartmentId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddTaskAndLoadSomeTask value)? addTask,
+    TResult? Function(_AddTask value)? addTask,
     TResult? Function(_DeleteTask value)? deleteTask,
-    TResult? Function(_UpdateTask value)? update,
+    TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddTaskAndLoadSomeTask value)? addTask,
+    TResult Function(_AddTask value)? addTask,
     TResult Function(_DeleteTask value)? deleteTask,
-    TResult Function(_UpdateTask value)? update,
+    TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
     required TResult orElse(),
   }) =>
@@ -117,12 +117,11 @@ class _$TaskEventCopyWithImpl<$Res, $Val extends TaskEvent>
 }
 
 /// @nodoc
-abstract class _$$AddTaskAndLoadSomeTaskImplCopyWith<$Res>
+abstract class _$$AddTaskImplCopyWith<$Res>
     implements $TaskEventCopyWith<$Res> {
-  factory _$$AddTaskAndLoadSomeTaskImplCopyWith(
-          _$AddTaskAndLoadSomeTaskImpl value,
-          $Res Function(_$AddTaskAndLoadSomeTaskImpl) then) =
-      __$$AddTaskAndLoadSomeTaskImplCopyWithImpl<$Res>;
+  factory _$$AddTaskImplCopyWith(
+          _$AddTaskImpl value, $Res Function(_$AddTaskImpl) then) =
+      __$$AddTaskImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({TaskModel task, int departmentId});
@@ -131,12 +130,11 @@ abstract class _$$AddTaskAndLoadSomeTaskImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$AddTaskAndLoadSomeTaskImplCopyWithImpl<$Res>
-    extends _$TaskEventCopyWithImpl<$Res, _$AddTaskAndLoadSomeTaskImpl>
-    implements _$$AddTaskAndLoadSomeTaskImplCopyWith<$Res> {
-  __$$AddTaskAndLoadSomeTaskImplCopyWithImpl(
-      _$AddTaskAndLoadSomeTaskImpl _value,
-      $Res Function(_$AddTaskAndLoadSomeTaskImpl) _then)
+class __$$AddTaskImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$AddTaskImpl>
+    implements _$$AddTaskImplCopyWith<$Res> {
+  __$$AddTaskImplCopyWithImpl(
+      _$AddTaskImpl _value, $Res Function(_$AddTaskImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of TaskEvent
@@ -147,7 +145,7 @@ class __$$AddTaskAndLoadSomeTaskImplCopyWithImpl<$Res>
     Object? task = null,
     Object? departmentId = null,
   }) {
-    return _then(_$AddTaskAndLoadSomeTaskImpl(
+    return _then(_$AddTaskImpl(
       task: null == task
           ? _value.task
           : task // ignore: cast_nullable_to_non_nullable
@@ -172,9 +170,8 @@ class __$$AddTaskAndLoadSomeTaskImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AddTaskAndLoadSomeTaskImpl implements _AddTaskAndLoadSomeTask {
-  const _$AddTaskAndLoadSomeTaskImpl(
-      {required this.task, required this.departmentId});
+class _$AddTaskImpl implements _AddTask {
+  const _$AddTaskImpl({required this.task, required this.departmentId});
 
   @override
   final TaskModel task;
@@ -190,7 +187,7 @@ class _$AddTaskAndLoadSomeTaskImpl implements _AddTaskAndLoadSomeTask {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AddTaskAndLoadSomeTaskImpl &&
+            other is _$AddTaskImpl &&
             (identical(other.task, task) || other.task == task) &&
             (identical(other.departmentId, departmentId) ||
                 other.departmentId == departmentId));
@@ -204,9 +201,8 @@ class _$AddTaskAndLoadSomeTaskImpl implements _AddTaskAndLoadSomeTask {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AddTaskAndLoadSomeTaskImplCopyWith<_$AddTaskAndLoadSomeTaskImpl>
-      get copyWith => __$$AddTaskAndLoadSomeTaskImplCopyWithImpl<
-          _$AddTaskAndLoadSomeTaskImpl>(this, _$identity);
+  _$$AddTaskImplCopyWith<_$AddTaskImpl> get copyWith =>
+      __$$AddTaskImplCopyWithImpl<_$AddTaskImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -215,7 +211,7 @@ class _$AddTaskAndLoadSomeTaskImpl implements _AddTaskAndLoadSomeTask {
     required TResult Function(int taskId, int departmentId) deleteTask,
     required TResult Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)
-        update,
+        updateTask,
     required TResult Function(int departmentId) loadTaskByDepartmentId,
   }) {
     return addTask(task, departmentId);
@@ -228,7 +224,7 @@ class _$AddTaskAndLoadSomeTaskImpl implements _AddTaskAndLoadSomeTask {
     TResult? Function(int taskId, int departmentId)? deleteTask,
     TResult? Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
-        update,
+        updateTask,
     TResult? Function(int departmentId)? loadTaskByDepartmentId,
   }) {
     return addTask?.call(task, departmentId);
@@ -241,7 +237,7 @@ class _$AddTaskAndLoadSomeTaskImpl implements _AddTaskAndLoadSomeTask {
     TResult Function(int taskId, int departmentId)? deleteTask,
     TResult Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
-        update,
+        updateTask,
     TResult Function(int departmentId)? loadTaskByDepartmentId,
     required TResult orElse(),
   }) {
@@ -254,9 +250,9 @@ class _$AddTaskAndLoadSomeTaskImpl implements _AddTaskAndLoadSomeTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AddTaskAndLoadSomeTask value) addTask,
+    required TResult Function(_AddTask value) addTask,
     required TResult Function(_DeleteTask value) deleteTask,
-    required TResult Function(_UpdateTask value) update,
+    required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_LoadTaskByDepartmentId value)
         loadTaskByDepartmentId,
   }) {
@@ -266,9 +262,9 @@ class _$AddTaskAndLoadSomeTaskImpl implements _AddTaskAndLoadSomeTask {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddTaskAndLoadSomeTask value)? addTask,
+    TResult? Function(_AddTask value)? addTask,
     TResult? Function(_DeleteTask value)? deleteTask,
-    TResult? Function(_UpdateTask value)? update,
+    TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
   }) {
     return addTask?.call(this);
@@ -277,9 +273,9 @@ class _$AddTaskAndLoadSomeTaskImpl implements _AddTaskAndLoadSomeTask {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddTaskAndLoadSomeTask value)? addTask,
+    TResult Function(_AddTask value)? addTask,
     TResult Function(_DeleteTask value)? deleteTask,
-    TResult Function(_UpdateTask value)? update,
+    TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
     required TResult orElse(),
   }) {
@@ -290,10 +286,10 @@ class _$AddTaskAndLoadSomeTaskImpl implements _AddTaskAndLoadSomeTask {
   }
 }
 
-abstract class _AddTaskAndLoadSomeTask implements TaskEvent {
-  const factory _AddTaskAndLoadSomeTask(
+abstract class _AddTask implements TaskEvent {
+  const factory _AddTask(
       {required final TaskModel task,
-      required final int departmentId}) = _$AddTaskAndLoadSomeTaskImpl;
+      required final int departmentId}) = _$AddTaskImpl;
 
   TaskModel get task;
   @override
@@ -303,8 +299,8 @@ abstract class _AddTaskAndLoadSomeTask implements TaskEvent {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AddTaskAndLoadSomeTaskImplCopyWith<_$AddTaskAndLoadSomeTaskImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$AddTaskImplCopyWith<_$AddTaskImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -390,7 +386,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     required TResult Function(int taskId, int departmentId) deleteTask,
     required TResult Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)
-        update,
+        updateTask,
     required TResult Function(int departmentId) loadTaskByDepartmentId,
   }) {
     return deleteTask(taskId, departmentId);
@@ -403,7 +399,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult? Function(int taskId, int departmentId)? deleteTask,
     TResult? Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
-        update,
+        updateTask,
     TResult? Function(int departmentId)? loadTaskByDepartmentId,
   }) {
     return deleteTask?.call(taskId, departmentId);
@@ -416,7 +412,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult Function(int taskId, int departmentId)? deleteTask,
     TResult Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
-        update,
+        updateTask,
     TResult Function(int departmentId)? loadTaskByDepartmentId,
     required TResult orElse(),
   }) {
@@ -429,9 +425,9 @@ class _$DeleteTaskImpl implements _DeleteTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AddTaskAndLoadSomeTask value) addTask,
+    required TResult Function(_AddTask value) addTask,
     required TResult Function(_DeleteTask value) deleteTask,
-    required TResult Function(_UpdateTask value) update,
+    required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_LoadTaskByDepartmentId value)
         loadTaskByDepartmentId,
   }) {
@@ -441,9 +437,9 @@ class _$DeleteTaskImpl implements _DeleteTask {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddTaskAndLoadSomeTask value)? addTask,
+    TResult? Function(_AddTask value)? addTask,
     TResult? Function(_DeleteTask value)? deleteTask,
-    TResult? Function(_UpdateTask value)? update,
+    TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
   }) {
     return deleteTask?.call(this);
@@ -452,9 +448,9 @@ class _$DeleteTaskImpl implements _DeleteTask {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddTaskAndLoadSomeTask value)? addTask,
+    TResult Function(_AddTask value)? addTask,
     TResult Function(_DeleteTask value)? deleteTask,
-    TResult Function(_UpdateTask value)? update,
+    TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
     required TResult orElse(),
   }) {
@@ -567,7 +563,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
 
   @override
   String toString() {
-    return 'TaskEvent.update(originalTask: $originalTask, changedTask: $changedTask, departmentId: $departmentId)';
+    return 'TaskEvent.updateTask(originalTask: $originalTask, changedTask: $changedTask, departmentId: $departmentId)';
   }
 
   @override
@@ -602,10 +598,10 @@ class _$UpdateTaskImpl implements _UpdateTask {
     required TResult Function(int taskId, int departmentId) deleteTask,
     required TResult Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)
-        update,
+        updateTask,
     required TResult Function(int departmentId) loadTaskByDepartmentId,
   }) {
-    return update(originalTask, changedTask, departmentId);
+    return updateTask(originalTask, changedTask, departmentId);
   }
 
   @override
@@ -615,10 +611,10 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult? Function(int taskId, int departmentId)? deleteTask,
     TResult? Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
-        update,
+        updateTask,
     TResult? Function(int departmentId)? loadTaskByDepartmentId,
   }) {
-    return update?.call(originalTask, changedTask, departmentId);
+    return updateTask?.call(originalTask, changedTask, departmentId);
   }
 
   @override
@@ -628,12 +624,12 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult Function(int taskId, int departmentId)? deleteTask,
     TResult Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
-        update,
+        updateTask,
     TResult Function(int departmentId)? loadTaskByDepartmentId,
     required TResult orElse(),
   }) {
-    if (update != null) {
-      return update(originalTask, changedTask, departmentId);
+    if (updateTask != null) {
+      return updateTask(originalTask, changedTask, departmentId);
     }
     return orElse();
   }
@@ -641,37 +637,37 @@ class _$UpdateTaskImpl implements _UpdateTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AddTaskAndLoadSomeTask value) addTask,
+    required TResult Function(_AddTask value) addTask,
     required TResult Function(_DeleteTask value) deleteTask,
-    required TResult Function(_UpdateTask value) update,
+    required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_LoadTaskByDepartmentId value)
         loadTaskByDepartmentId,
   }) {
-    return update(this);
+    return updateTask(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddTaskAndLoadSomeTask value)? addTask,
+    TResult? Function(_AddTask value)? addTask,
     TResult? Function(_DeleteTask value)? deleteTask,
-    TResult? Function(_UpdateTask value)? update,
+    TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
   }) {
-    return update?.call(this);
+    return updateTask?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddTaskAndLoadSomeTask value)? addTask,
+    TResult Function(_AddTask value)? addTask,
     TResult Function(_DeleteTask value)? deleteTask,
-    TResult Function(_UpdateTask value)? update,
+    TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
     required TResult orElse(),
   }) {
-    if (update != null) {
-      return update(this);
+    if (updateTask != null) {
+      return updateTask(this);
     }
     return orElse();
   }
@@ -774,7 +770,7 @@ class _$LoadTaskByDepartmentIdImpl implements _LoadTaskByDepartmentId {
     required TResult Function(int taskId, int departmentId) deleteTask,
     required TResult Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)
-        update,
+        updateTask,
     required TResult Function(int departmentId) loadTaskByDepartmentId,
   }) {
     return loadTaskByDepartmentId(departmentId);
@@ -787,7 +783,7 @@ class _$LoadTaskByDepartmentIdImpl implements _LoadTaskByDepartmentId {
     TResult? Function(int taskId, int departmentId)? deleteTask,
     TResult? Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
-        update,
+        updateTask,
     TResult? Function(int departmentId)? loadTaskByDepartmentId,
   }) {
     return loadTaskByDepartmentId?.call(departmentId);
@@ -800,7 +796,7 @@ class _$LoadTaskByDepartmentIdImpl implements _LoadTaskByDepartmentId {
     TResult Function(int taskId, int departmentId)? deleteTask,
     TResult Function(
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
-        update,
+        updateTask,
     TResult Function(int departmentId)? loadTaskByDepartmentId,
     required TResult orElse(),
   }) {
@@ -813,9 +809,9 @@ class _$LoadTaskByDepartmentIdImpl implements _LoadTaskByDepartmentId {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AddTaskAndLoadSomeTask value) addTask,
+    required TResult Function(_AddTask value) addTask,
     required TResult Function(_DeleteTask value) deleteTask,
-    required TResult Function(_UpdateTask value) update,
+    required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_LoadTaskByDepartmentId value)
         loadTaskByDepartmentId,
   }) {
@@ -825,9 +821,9 @@ class _$LoadTaskByDepartmentIdImpl implements _LoadTaskByDepartmentId {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddTaskAndLoadSomeTask value)? addTask,
+    TResult? Function(_AddTask value)? addTask,
     TResult? Function(_DeleteTask value)? deleteTask,
-    TResult? Function(_UpdateTask value)? update,
+    TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
   }) {
     return loadTaskByDepartmentId?.call(this);
@@ -836,9 +832,9 @@ class _$LoadTaskByDepartmentIdImpl implements _LoadTaskByDepartmentId {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddTaskAndLoadSomeTask value)? addTask,
+    TResult Function(_AddTask value)? addTask,
     TResult Function(_DeleteTask value)? deleteTask,
-    TResult Function(_UpdateTask value)? update,
+    TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
     required TResult orElse(),
   }) {

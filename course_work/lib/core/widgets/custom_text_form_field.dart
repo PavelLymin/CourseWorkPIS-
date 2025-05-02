@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 import '../utils/app_colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField(
-      {super.key,
-      required this.controller,
-      required this.hintText,
-      this.validator,
-      this.suffixIcon,
-      this.color,
-      this.onChanged,
-      this.keyboardType,
-      this.obscureText = false,
-      this.maxLines = 1});
+  const CustomTextFormField({
+    super.key,
+    required this.controller,
+    required this.hintText,
+    this.validator,
+    this.suffixIcon,
+    this.color,
+    this.onChanged,
+    this.keyboardType,
+    this.obscureText = false,
+    this.maxLines = 1,
+    this.readOnly = false,
+  });
   final TextEditingController controller;
   final String? Function(String? val)? validator;
   final TextInputType? keyboardType;
@@ -21,7 +23,8 @@ class CustomTextFormField extends StatefulWidget {
   final Widget? suffixIcon;
   final Color? color;
   final bool obscureText;
-  final int? maxLines;
+  final int maxLines;
+  final bool readOnly;
   final ValueChanged<String>? onChanged;
 
   @override
@@ -37,9 +40,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       keyboardType: widget.keyboardType,
       validator: widget.validator,
       maxLines: widget.maxLines,
-      onChanged: (text) {
-        setState(() {});
-      },
+      readOnly: widget.readOnly,
+      onChanged: widget.onChanged,
       style: TextStyle(
         color: widget.color,
       ),

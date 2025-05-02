@@ -18,7 +18,12 @@ class AppStrings {
   static const add = 'Добавить';
   static const update = 'Редактировать';
   static const required = 'Обязательное поле';
+  static const correctNumberHours = 'Введите правильное количество часов';
+  static const correctAmount = 'Введите правильную сумму';
+
   static const warning = 'Внимание';
   static const deleteDialogInfo =
       'При удалении кафедры, удаляться все задания этой кафедры';
+  static const searchEmployee = 'Введите ФИО сотрудника';
+  static const notFoundEmployee = 'Пользователь не найден.';
 }

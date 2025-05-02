@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$EmployeeModel {
   int? get id => throw _privateConstructorUsedError;
+  int? get departmentId => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get position => throw _privateConstructorUsedError;
@@ -38,6 +39,7 @@ abstract class $EmployeeModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
+      int? departmentId,
       String firstName,
       String lastName,
       String position,
@@ -61,6 +63,7 @@ class _$EmployeeModelCopyWithImpl<$Res, $Val extends EmployeeModel>
   @override
   $Res call({
     Object? id = freezed,
+    Object? departmentId = freezed,
     Object? firstName = null,
     Object? lastName = null,
     Object? position = null,
@@ -71,6 +74,10 @@ class _$EmployeeModelCopyWithImpl<$Res, $Val extends EmployeeModel>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
               as int?,
       firstName: null == firstName
           ? _value.firstName
@@ -106,6 +113,7 @@ abstract class _$$EmployeeModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
+      int? departmentId,
       String firstName,
       String lastName,
       String position,
@@ -127,6 +135,7 @@ class __$$EmployeeModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? departmentId = freezed,
     Object? firstName = null,
     Object? lastName = null,
     Object? position = null,
@@ -137,6 +146,10 @@ class __$$EmployeeModelImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      departmentId: freezed == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
               as int?,
       firstName: null == firstName
           ? _value.firstName
@@ -167,6 +180,7 @@ class __$$EmployeeModelImplCopyWithImpl<$Res>
 class _$EmployeeModelImpl implements _EmployeeModel {
   const _$EmployeeModelImpl(
       {this.id,
+      this.departmentId,
       required this.firstName,
       required this.lastName,
       required this.position,
@@ -175,6 +189,8 @@ class _$EmployeeModelImpl implements _EmployeeModel {
 
   @override
   final int? id;
+  @override
+  final int? departmentId;
   @override
   final String firstName;
   @override
@@ -188,7 +204,7 @@ class _$EmployeeModelImpl implements _EmployeeModel {
 
   @override
   String toString() {
-    return 'EmployeeModel(id: $id, firstName: $firstName, lastName: $lastName, position: $position, role: $role, login: $login)';
+    return 'EmployeeModel(id: $id, departmentId: $departmentId, firstName: $firstName, lastName: $lastName, position: $position, role: $role, login: $login)';
   }
 
   @override
@@ -197,6 +213,8 @@ class _$EmployeeModelImpl implements _EmployeeModel {
         (other.runtimeType == runtimeType &&
             other is _$EmployeeModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -208,8 +226,8 @@ class _$EmployeeModelImpl implements _EmployeeModel {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, firstName, lastName, position, role, login);
+  int get hashCode => Object.hash(runtimeType, id, departmentId, firstName,
+      lastName, position, role, login);
 
   /// Create a copy of EmployeeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -223,6 +241,7 @@ class _$EmployeeModelImpl implements _EmployeeModel {
 abstract class _EmployeeModel implements EmployeeModel {
   const factory _EmployeeModel(
       {final int? id,
+      final int? departmentId,
       required final String firstName,
       required final String lastName,
       required final String position,
@@ -231,6 +250,8 @@ abstract class _EmployeeModel implements EmployeeModel {
 
   @override
   int? get id;
+  @override
+  int? get departmentId;
   @override
   String get firstName;
   @override

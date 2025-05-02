@@ -1,7 +1,10 @@
 import 'package:course_work/presentation/department/blocs/department_bloc.dart';
+import 'package:course_work/presentation/employee/blocs/employee_bloc/employee_bloc.dart';
+import 'package:course_work/presentation/employee/blocs/search_employee_bloc/search_employee_bloc.dart';
 import 'package:course_work/presentation/task/blocs/task_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'core/dependencies/dependencies.dart';
@@ -10,7 +13,8 @@ import 'core/theme/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  initializeDateFormatting("ru_RU");
+  await dotenv.load(fileName: "assets/database_secrets.env");
+  initializeDateFormatting('ru');
   await setUp();
   runApp(
     MultiBlocProvider(
@@ -19,6 +23,8 @@ void main() async {
             create: (_) => getIt<DepartmentBloc>()
               ..add(DepartmentEvent.loadDepartments())),
         BlocProvider(create: (_) => getIt<TaskBloc>()),
+        BlocProvider(create: (_) => getIt<EmployeeBloc>()),
+        BlocProvider(create: (_) => getIt<SearchEmployeeBloc>()),
       ],
       child: const MyApp(),
     ),
@@ -38,6 +44,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: appTheme,
+      title: 'Course Work',
       routerConfig: router,
     );
   }

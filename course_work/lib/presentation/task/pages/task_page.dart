@@ -1,6 +1,6 @@
 import 'package:course_work/core/routes/route_names.dart';
 import 'package:course_work/presentation/task/blocs/task_bloc.dart';
-import 'package:course_work/presentation/task/pages/add_task_page.dart';
+import 'package:course_work/presentation/task/pages/add_edit_task_page.dart';
 import 'package:course_work/presentation/task/widgets/list_tile_task.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,7 +20,7 @@ class TaskPage extends StatelessWidget {
         .add(TaskEvent.loadTaskByDepartmentId(departmentId: departmentId));
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppStrings.tasks),
+        title: const Text(AppStrings.tasks),
         leading: BackButton(
           onPressed: () {
             context.replaceNamed(RoutesNames.department);
@@ -36,20 +36,21 @@ class TaskPage extends StatelessWidget {
               child: BlocBuilder<TaskBloc, TaskState>(
                 builder: (context, state) {
                   return state.map(
-                    loading: (_) => Center(
+                    loading: (_) => const Center(
                       child: CircularProgressIndicator(),
                     ),
                     load: (state) {
                       return ListView.separated(
-                        separatorBuilder: (context, index) {
+                        itemCount: state.tasks.length,
+                        separatorBuilder: (context, _) {
                           return SizedBox(
                             height: 15.0,
                           );
                         },
-                        itemCount: state.tasks.length,
                         itemBuilder: (context, index) {
                           return ListTileTask(
                             task: state.tasks[index],
+                            departmentId: departmentId,
                           );
                         },
                       );
@@ -62,22 +63,24 @@ class TaskPage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 150,
-              child: RoundedElevatedButton(
-                text: AppStrings.add,
-                onPressed: () {
-                  showModalBottomSheet<void>(
-                    context: context,
-                    useRootNavigator: false,
-                    isScrollControlled: true,
-                    builder: (newContext) {
-                      return SizedBox(
-                        height: MediaQuery.of(context).size.height - 80,
-                        child: AddTaskPage(),
-                      );
-                    },
-                  );
-                },
+              width: 160,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: RoundedElevatedButton(
+                  text: AppStrings.add,
+                  onPressed: () {
+                    showModalBottomSheet<void>(
+                      context: context,
+                      useRootNavigator: false,
+                      isScrollControlled: true,
+                      builder: (newContext) {
+                        return SizedBox(
+                            height: MediaQuery.of(context).size.height - 80,
+                            child: AddEditTaskPage(departmentId: departmentId));
+                      },
+                    );
+                  },
+                ),
               ),
             ),
           ],

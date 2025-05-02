@@ -1,8 +1,12 @@
 import 'package:course_work/data/repositories/department_repository_impl.dart';
+import 'package:course_work/data/repositories/employee_repository_impl.dart';
 import 'package:course_work/data/repositories/task_repository_impl.dart';
 import 'package:course_work/domain/repositories/department_repository.dart';
+import 'package:course_work/domain/repositories/employee_repository.dart';
 import 'package:course_work/domain/repositories/task_repository.dart';
 import 'package:course_work/presentation/department/blocs/department_bloc.dart';
+import 'package:course_work/presentation/employee/blocs/employee_bloc/employee_bloc.dart';
+import 'package:course_work/presentation/employee/blocs/search_employee_bloc/search_employee_bloc.dart';
 import 'package:course_work/presentation/task/blocs/task_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -17,8 +21,9 @@ Future<void> setUp() async {
   );
 
   _initDepartment();
-
   _initTaskForDepartment();
+  _initEmployee();
+  _initSearchEmployee();
 }
 
 void _initDepartment() {
@@ -35,4 +40,18 @@ void _initTaskForDepartment() {
 
   getIt.registerLazySingleton<TaskBloc>(
       () => TaskBloc(repository: getIt<ITaskRepository>()));
+}
+
+void _initEmployee() {
+  getIt.registerLazySingleton<IEmployeeRepository>(
+      () => EmployeeRepositoryImpl(database: getIt<AppDatabase>()));
+
+  getIt.registerLazySingleton<EmployeeBloc>(() => EmployeeBloc(
+        repository: getIt<IEmployeeRepository>(),
+      ));
+}
+
+void _initSearchEmployee() {
+  getIt.registerLazySingleton<SearchEmployeeBloc>(
+      () => SearchEmployeeBloc(stream: getIt<EmployeeBloc>().stream));
 }

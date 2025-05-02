@@ -14,7 +14,7 @@ class DepartmentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppStrings.department),
+        title: const Text(AppStrings.department),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -25,17 +25,17 @@ class DepartmentPage extends StatelessWidget {
               child: BlocBuilder<DepartmentBloc, DepartmentState>(
                 builder: (context, state) {
                   return state.map(
-                    loading: (_) => Center(
+                    loading: (_) => const Center(
                       child: CircularProgressIndicator(),
                     ),
                     load: (state) {
                       return ListView.separated(
-                        separatorBuilder: (context, index) {
+                        itemCount: state.departments.length,
+                        separatorBuilder: (context, _) {
                           return SizedBox(
                             height: 15.0,
                           );
                         },
-                        itemCount: state.departments.length,
                         itemBuilder: (context, index) {
                           return ListTileDepartment(
                             department: state.departments[index],
@@ -62,7 +62,7 @@ class DepartmentPage extends StatelessWidget {
                       useRootNavigator: false,
                       isScrollControlled: true,
                       builder: (newContext) {
-                        return AddEditDepartment();
+                        return const AddEditDepartment();
                       },
                     );
                   },

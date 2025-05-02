@@ -6,6 +6,7 @@ part 'employee.freezed.dart';
 class EmployeeModel with _$EmployeeModel {
   const factory EmployeeModel({
     int? id,
+    int? departmentId,
     required String firstName,
     required String lastName,
     required String position,

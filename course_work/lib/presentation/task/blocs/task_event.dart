@@ -5,14 +5,14 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.addTask({
     required TaskModel task,
     required int departmentId,
-  }) = _AddTaskAndLoadSomeTask;
+  }) = _AddTask;
 
   const factory TaskEvent.deleteTask({
     required int taskId,
     required int departmentId,
   }) = _DeleteTask;
 
-  const factory TaskEvent.update({
+  const factory TaskEvent.updateTask({
     required TaskModel originalTask,
     required TaskModel changedTask,
     required int departmentId,

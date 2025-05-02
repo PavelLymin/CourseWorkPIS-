@@ -3,7 +3,6 @@ import 'package:course_work/data/data_base/data_base.dart';
 import 'package:course_work/data/dtos/employee_dto/employee_dto.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
 import 'package:course_work/domain/repositories/employee_repository.dart';
-import 'package:drift/drift.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:fpdart/src/unit.dart';
 
@@ -42,7 +41,7 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
   }
 
   @override
-  Future<Either<Failure, List<EmployeeModel>>> getAllTask() async {
+  Future<Either<Failure, List<EmployeeModel>>> getAllEmployees() async {
     try {
       final tasksDb = await database.select(database.employees).get();
 
@@ -57,25 +56,19 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
   }
 
   @override
-  Future<Either<Failure, List<EmployeeModel>>> getTaskByDepartmentId({
+  Future<Either<Failure, List<EmployeeModel>>> getEmployeesByDepartmentId({
     required int departmentId,
   }) async {
     try {
-      final query = database.select(database.employees).join([
-        innerJoin(
-            database.employees,
-            database.employees.id.equalsExp(database.employees.id) &
-                database.departmentTasks.departmentId.equals(departmentId))
-      ]);
+      final tasksDb = await (database.select(database.employees)
+            ..where((row) => row.departmentId.equals(departmentId)))
+          .get();
 
-      final employeeDb =
-          await query.map((row) => row.readTable(database.employees)).get();
-
-      final employees = employeeDb
+      final tasks = tasksDb
           .map((element) => EmployeeDto.fromDataBase(element).toDomain())
           .toList();
 
-      return right(employees);
+      return right(tasks);
     } catch (e) {
       return left(Failure(message: e.toString()));
     }

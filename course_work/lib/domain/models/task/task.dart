@@ -18,8 +18,8 @@ class TaskModel with _$TaskModel {
 }
 
 enum Priority {
-  high('Высокий'),
-  medium('Средний'),
+  busy('Занят'),
+  free('Свободен'),
   low('Низкий'),
   none('Без приоритета');
 
