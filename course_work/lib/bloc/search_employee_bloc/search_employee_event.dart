@@ -2,9 +2,9 @@ part of 'search_employee_bloc.dart';
 
 @freezed
 class SearchEmployeeEvent with _$SearchEmployeeEvent {
-  const factory SearchEmployeeEvent.search({
+  const factory SearchEmployeeEvent.searchEmployee({
     required String query,
-  }) = _Search;
+  }) = _SearchEmployee;
 
   const factory SearchEmployeeEvent.resetSearch() = _ResetSearch;
 

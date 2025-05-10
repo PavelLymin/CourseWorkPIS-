@@ -5,5 +5,5 @@ import '../../core/errors/failure.dart';
 
 abstract interface class IAuthRepository {
   Future<Either<Failure, EmployeeModel>> loginWithEmailPassword(
-      {required String login, required String password});
+      {required String email, required String password});
 }

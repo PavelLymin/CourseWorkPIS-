@@ -1,7 +1,8 @@
 import 'package:course_work/core/utils/app_strings.dart';
-import 'package:course_work/presentation/department/blocs/department_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../bloc/department_bloc/department_bloc.dart';
 
 class DeleteDialogWindow extends StatelessWidget {
   const DeleteDialogWindow({super.key, required this.departmentId});

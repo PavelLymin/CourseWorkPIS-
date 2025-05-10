@@ -3,6 +3,7 @@ import 'package:course_work/domain/models/task/task.dart';
 import 'package:drift/drift.dart';
 import 'package:drift_postgres/drift_postgres.dart';
 
+import '../../../domain/enums/status_task.dart';
 import '../set_changed.dart';
 
 class TaskDto {

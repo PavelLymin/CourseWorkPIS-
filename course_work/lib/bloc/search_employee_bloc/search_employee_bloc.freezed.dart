@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SearchEmployeeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String query) search,
+    required TResult Function(String query) searchEmployee,
     required TResult Function() resetSearch,
     required TResult Function() updateStateLoading,
     required TResult Function(List<EmployeeModel> employees) updateStateLoaded,
@@ -27,7 +27,7 @@ mixin _$SearchEmployeeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String query)? search,
+    TResult? Function(String query)? searchEmployee,
     TResult? Function()? resetSearch,
     TResult? Function()? updateStateLoading,
     TResult? Function(List<EmployeeModel> employees)? updateStateLoaded,
@@ -36,7 +36,7 @@ mixin _$SearchEmployeeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String query)? search,
+    TResult Function(String query)? searchEmployee,
     TResult Function()? resetSearch,
     TResult Function()? updateStateLoading,
     TResult Function(List<EmployeeModel> employees)? updateStateLoaded,
@@ -46,7 +46,7 @@ mixin _$SearchEmployeeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Search value) search,
+    required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
     required TResult Function(_UpdateStateLoading value) updateStateLoading,
     required TResult Function(_UpdateStateLoaded value) updateStateLoaded,
@@ -55,7 +55,7 @@ mixin _$SearchEmployeeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Search value)? search,
+    TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
     TResult? Function(_UpdateStateLoading value)? updateStateLoading,
     TResult? Function(_UpdateStateLoaded value)? updateStateLoaded,
@@ -64,7 +64,7 @@ mixin _$SearchEmployeeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Search value)? search,
+    TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
     TResult Function(_UpdateStateLoading value)? updateStateLoading,
     TResult Function(_UpdateStateLoaded value)? updateStateLoaded,
@@ -96,20 +96,20 @@ class _$SearchEmployeeEventCopyWithImpl<$Res, $Val extends SearchEmployeeEvent>
 }
 
 /// @nodoc
-abstract class _$$SearchImplCopyWith<$Res> {
-  factory _$$SearchImplCopyWith(
-          _$SearchImpl value, $Res Function(_$SearchImpl) then) =
-      __$$SearchImplCopyWithImpl<$Res>;
+abstract class _$$SearchEmployeeImplCopyWith<$Res> {
+  factory _$$SearchEmployeeImplCopyWith(_$SearchEmployeeImpl value,
+          $Res Function(_$SearchEmployeeImpl) then) =
+      __$$SearchEmployeeImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String query});
 }
 
 /// @nodoc
-class __$$SearchImplCopyWithImpl<$Res>
-    extends _$SearchEmployeeEventCopyWithImpl<$Res, _$SearchImpl>
-    implements _$$SearchImplCopyWith<$Res> {
-  __$$SearchImplCopyWithImpl(
-      _$SearchImpl _value, $Res Function(_$SearchImpl) _then)
+class __$$SearchEmployeeImplCopyWithImpl<$Res>
+    extends _$SearchEmployeeEventCopyWithImpl<$Res, _$SearchEmployeeImpl>
+    implements _$$SearchEmployeeImplCopyWith<$Res> {
+  __$$SearchEmployeeImplCopyWithImpl(
+      _$SearchEmployeeImpl _value, $Res Function(_$SearchEmployeeImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SearchEmployeeEvent
@@ -119,7 +119,7 @@ class __$$SearchImplCopyWithImpl<$Res>
   $Res call({
     Object? query = null,
   }) {
-    return _then(_$SearchImpl(
+    return _then(_$SearchEmployeeImpl(
       query: null == query
           ? _value.query
           : query // ignore: cast_nullable_to_non_nullable
@@ -130,22 +130,22 @@ class __$$SearchImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SearchImpl implements _Search {
-  const _$SearchImpl({required this.query});
+class _$SearchEmployeeImpl implements _SearchEmployee {
+  const _$SearchEmployeeImpl({required this.query});
 
   @override
   final String query;
 
   @override
   String toString() {
-    return 'SearchEmployeeEvent.search(query: $query)';
+    return 'SearchEmployeeEvent.searchEmployee(query: $query)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SearchImpl &&
+            other is _$SearchEmployeeImpl &&
             (identical(other.query, query) || other.query == query));
   }
 
@@ -157,45 +157,46 @@ class _$SearchImpl implements _Search {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
-      __$$SearchImplCopyWithImpl<_$SearchImpl>(this, _$identity);
+  _$$SearchEmployeeImplCopyWith<_$SearchEmployeeImpl> get copyWith =>
+      __$$SearchEmployeeImplCopyWithImpl<_$SearchEmployeeImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String query) search,
+    required TResult Function(String query) searchEmployee,
     required TResult Function() resetSearch,
     required TResult Function() updateStateLoading,
     required TResult Function(List<EmployeeModel> employees) updateStateLoaded,
     required TResult Function(String message) updateStateFailure,
   }) {
-    return search(query);
+    return searchEmployee(query);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String query)? search,
+    TResult? Function(String query)? searchEmployee,
     TResult? Function()? resetSearch,
     TResult? Function()? updateStateLoading,
     TResult? Function(List<EmployeeModel> employees)? updateStateLoaded,
     TResult? Function(String message)? updateStateFailure,
   }) {
-    return search?.call(query);
+    return searchEmployee?.call(query);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String query)? search,
+    TResult Function(String query)? searchEmployee,
     TResult Function()? resetSearch,
     TResult Function()? updateStateLoading,
     TResult Function(List<EmployeeModel> employees)? updateStateLoaded,
     TResult Function(String message)? updateStateFailure,
     required TResult orElse(),
   }) {
-    if (search != null) {
-      return search(query);
+    if (searchEmployee != null) {
+      return searchEmployee(query);
     }
     return orElse();
   }
@@ -203,53 +204,54 @@ class _$SearchImpl implements _Search {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Search value) search,
+    required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
     required TResult Function(_UpdateStateLoading value) updateStateLoading,
     required TResult Function(_UpdateStateLoaded value) updateStateLoaded,
     required TResult Function(_UpdateStateFailure value) updateStateFailure,
   }) {
-    return search(this);
+    return searchEmployee(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Search value)? search,
+    TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
     TResult? Function(_UpdateStateLoading value)? updateStateLoading,
     TResult? Function(_UpdateStateLoaded value)? updateStateLoaded,
     TResult? Function(_UpdateStateFailure value)? updateStateFailure,
   }) {
-    return search?.call(this);
+    return searchEmployee?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Search value)? search,
+    TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
     TResult Function(_UpdateStateLoading value)? updateStateLoading,
     TResult Function(_UpdateStateLoaded value)? updateStateLoaded,
     TResult Function(_UpdateStateFailure value)? updateStateFailure,
     required TResult orElse(),
   }) {
-    if (search != null) {
-      return search(this);
+    if (searchEmployee != null) {
+      return searchEmployee(this);
     }
     return orElse();
   }
 }
 
-abstract class _Search implements SearchEmployeeEvent {
-  const factory _Search({required final String query}) = _$SearchImpl;
+abstract class _SearchEmployee implements SearchEmployeeEvent {
+  const factory _SearchEmployee({required final String query}) =
+      _$SearchEmployeeImpl;
 
   String get query;
 
   /// Create a copy of SearchEmployeeEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SearchImplCopyWith<_$SearchImpl> get copyWith =>
+  _$$SearchEmployeeImplCopyWith<_$SearchEmployeeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -294,7 +296,7 @@ class _$ResetSearchImpl implements _ResetSearch {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String query) search,
+    required TResult Function(String query) searchEmployee,
     required TResult Function() resetSearch,
     required TResult Function() updateStateLoading,
     required TResult Function(List<EmployeeModel> employees) updateStateLoaded,
@@ -306,7 +308,7 @@ class _$ResetSearchImpl implements _ResetSearch {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String query)? search,
+    TResult? Function(String query)? searchEmployee,
     TResult? Function()? resetSearch,
     TResult? Function()? updateStateLoading,
     TResult? Function(List<EmployeeModel> employees)? updateStateLoaded,
@@ -318,7 +320,7 @@ class _$ResetSearchImpl implements _ResetSearch {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String query)? search,
+    TResult Function(String query)? searchEmployee,
     TResult Function()? resetSearch,
     TResult Function()? updateStateLoading,
     TResult Function(List<EmployeeModel> employees)? updateStateLoaded,
@@ -334,7 +336,7 @@ class _$ResetSearchImpl implements _ResetSearch {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Search value) search,
+    required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
     required TResult Function(_UpdateStateLoading value) updateStateLoading,
     required TResult Function(_UpdateStateLoaded value) updateStateLoaded,
@@ -346,7 +348,7 @@ class _$ResetSearchImpl implements _ResetSearch {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Search value)? search,
+    TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
     TResult? Function(_UpdateStateLoading value)? updateStateLoading,
     TResult? Function(_UpdateStateLoaded value)? updateStateLoaded,
@@ -358,7 +360,7 @@ class _$ResetSearchImpl implements _ResetSearch {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Search value)? search,
+    TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
     TResult Function(_UpdateStateLoading value)? updateStateLoading,
     TResult Function(_UpdateStateLoaded value)? updateStateLoaded,
@@ -417,7 +419,7 @@ class _$UpdateStateLoadingImpl implements _UpdateStateLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String query) search,
+    required TResult Function(String query) searchEmployee,
     required TResult Function() resetSearch,
     required TResult Function() updateStateLoading,
     required TResult Function(List<EmployeeModel> employees) updateStateLoaded,
@@ -429,7 +431,7 @@ class _$UpdateStateLoadingImpl implements _UpdateStateLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String query)? search,
+    TResult? Function(String query)? searchEmployee,
     TResult? Function()? resetSearch,
     TResult? Function()? updateStateLoading,
     TResult? Function(List<EmployeeModel> employees)? updateStateLoaded,
@@ -441,7 +443,7 @@ class _$UpdateStateLoadingImpl implements _UpdateStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String query)? search,
+    TResult Function(String query)? searchEmployee,
     TResult Function()? resetSearch,
     TResult Function()? updateStateLoading,
     TResult Function(List<EmployeeModel> employees)? updateStateLoaded,
@@ -457,7 +459,7 @@ class _$UpdateStateLoadingImpl implements _UpdateStateLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Search value) search,
+    required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
     required TResult Function(_UpdateStateLoading value) updateStateLoading,
     required TResult Function(_UpdateStateLoaded value) updateStateLoaded,
@@ -469,7 +471,7 @@ class _$UpdateStateLoadingImpl implements _UpdateStateLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Search value)? search,
+    TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
     TResult? Function(_UpdateStateLoading value)? updateStateLoading,
     TResult? Function(_UpdateStateLoaded value)? updateStateLoaded,
@@ -481,7 +483,7 @@ class _$UpdateStateLoadingImpl implements _UpdateStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Search value)? search,
+    TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
     TResult Function(_UpdateStateLoading value)? updateStateLoading,
     TResult Function(_UpdateStateLoaded value)? updateStateLoaded,
@@ -576,7 +578,7 @@ class _$UpdateStateLoadedImpl implements _UpdateStateLoaded {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String query) search,
+    required TResult Function(String query) searchEmployee,
     required TResult Function() resetSearch,
     required TResult Function() updateStateLoading,
     required TResult Function(List<EmployeeModel> employees) updateStateLoaded,
@@ -588,7 +590,7 @@ class _$UpdateStateLoadedImpl implements _UpdateStateLoaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String query)? search,
+    TResult? Function(String query)? searchEmployee,
     TResult? Function()? resetSearch,
     TResult? Function()? updateStateLoading,
     TResult? Function(List<EmployeeModel> employees)? updateStateLoaded,
@@ -600,7 +602,7 @@ class _$UpdateStateLoadedImpl implements _UpdateStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String query)? search,
+    TResult Function(String query)? searchEmployee,
     TResult Function()? resetSearch,
     TResult Function()? updateStateLoading,
     TResult Function(List<EmployeeModel> employees)? updateStateLoaded,
@@ -616,7 +618,7 @@ class _$UpdateStateLoadedImpl implements _UpdateStateLoaded {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Search value) search,
+    required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
     required TResult Function(_UpdateStateLoading value) updateStateLoading,
     required TResult Function(_UpdateStateLoaded value) updateStateLoaded,
@@ -628,7 +630,7 @@ class _$UpdateStateLoadedImpl implements _UpdateStateLoaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Search value)? search,
+    TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
     TResult? Function(_UpdateStateLoading value)? updateStateLoading,
     TResult? Function(_UpdateStateLoaded value)? updateStateLoaded,
@@ -640,7 +642,7 @@ class _$UpdateStateLoadedImpl implements _UpdateStateLoaded {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Search value)? search,
+    TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
     TResult Function(_UpdateStateLoading value)? updateStateLoading,
     TResult Function(_UpdateStateLoaded value)? updateStateLoaded,
@@ -736,7 +738,7 @@ class _$UpdateStateFailureImpl implements _UpdateStateFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String query) search,
+    required TResult Function(String query) searchEmployee,
     required TResult Function() resetSearch,
     required TResult Function() updateStateLoading,
     required TResult Function(List<EmployeeModel> employees) updateStateLoaded,
@@ -748,7 +750,7 @@ class _$UpdateStateFailureImpl implements _UpdateStateFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String query)? search,
+    TResult? Function(String query)? searchEmployee,
     TResult? Function()? resetSearch,
     TResult? Function()? updateStateLoading,
     TResult? Function(List<EmployeeModel> employees)? updateStateLoaded,
@@ -760,7 +762,7 @@ class _$UpdateStateFailureImpl implements _UpdateStateFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String query)? search,
+    TResult Function(String query)? searchEmployee,
     TResult Function()? resetSearch,
     TResult Function()? updateStateLoading,
     TResult Function(List<EmployeeModel> employees)? updateStateLoaded,
@@ -776,7 +778,7 @@ class _$UpdateStateFailureImpl implements _UpdateStateFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Search value) search,
+    required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
     required TResult Function(_UpdateStateLoading value) updateStateLoading,
     required TResult Function(_UpdateStateLoaded value) updateStateLoaded,
@@ -788,7 +790,7 @@ class _$UpdateStateFailureImpl implements _UpdateStateFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Search value)? search,
+    TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
     TResult? Function(_UpdateStateLoading value)? updateStateLoading,
     TResult? Function(_UpdateStateLoaded value)? updateStateLoaded,
@@ -800,7 +802,7 @@ class _$UpdateStateFailureImpl implements _UpdateStateFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Search value)? search,
+    TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
     TResult Function(_UpdateStateLoading value)? updateStateLoading,
     TResult Function(_UpdateStateLoaded value)? updateStateLoaded,

@@ -1,8 +1,8 @@
-import 'package:course_work/presentation/employee/blocs/employee_bloc/employee_bloc.dart';
-import 'package:course_work/presentation/employee/blocs/search_employee_bloc/search_employee_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/employee_bloc/employee_bloc.dart';
+import '../../../bloc/search_employee_bloc/search_employee_bloc.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
 
@@ -43,7 +43,7 @@ class _SearchEmployeesState extends State<SearchEmployees> {
                 if (text.isNotEmpty) {
                   context
                       .read<SearchEmployeeBloc>()
-                      .add(SearchEmployeeEvent.search(query: text));
+                      .add(SearchEmployeeEvent.searchEmployee(query: text));
                 }
                 context
                     .read<SearchEmployeeBloc>()

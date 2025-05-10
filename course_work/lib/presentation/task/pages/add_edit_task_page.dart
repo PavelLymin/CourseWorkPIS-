@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/widgets/custom_text_form_field.dart';
 import '../../../core/widgets/scroll_line.dart';
+import '../../../domain/enums/status_task.dart';
 import '../widgets/date_picker.dart';
 
 class AddEditTaskPage extends StatefulWidget {
@@ -69,7 +70,7 @@ class _AddTaskPageState extends State<AddEditTaskPage> {
                 height: 25.0,
               ),
               Text(
-                widget.isEdit ? AppStrings.update : AppStrings.addingTask,
+                widget.isEdit ? AppStrings.updatingTask : AppStrings.addingTask,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(
@@ -84,7 +85,7 @@ class _AddTaskPageState extends State<AddEditTaskPage> {
                   hintText: AppStrings.titleTask,
                   keyboardType: TextInputType.text,
                   validator: (value) {
-                    return Validator.titleTaskValidate(value!);
+                    return Validator.emptyValidate(value!);
                   }),
               const SizedBox(
                 height: 10.0,
@@ -98,7 +99,7 @@ class _AddTaskPageState extends State<AddEditTaskPage> {
                   hintText: AppStrings.descriptionTask,
                   keyboardType: TextInputType.text,
                   validator: (value) {
-                    return Validator.descriptionValidate(value!);
+                    return Validator.emptyValidate(value!);
                   }),
               const SizedBox(
                 height: 10.0,

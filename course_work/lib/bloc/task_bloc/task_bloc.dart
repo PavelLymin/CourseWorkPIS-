@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:course_work/domain/repositories/task_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../domain/models/task/task.dart';
+import '../../../../domain/models/task/task.dart';
 
 part 'task_bloc.freezed.dart';
 part 'task_event.dart';

@@ -3,10 +3,10 @@ import 'package:course_work/core/utils/validator.dart';
 import 'package:course_work/core/widgets/custom_text_form_field.dart';
 import 'package:course_work/core/widgets/rounded_elevated_button.dart';
 import 'package:course_work/domain/models/department/department.dart';
-import 'package:course_work/presentation/department/blocs/department_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/department_bloc/department_bloc.dart';
 import '../../../core/widgets/scroll_line.dart';
 
 class AddEditDepartment extends StatefulWidget {
@@ -69,7 +69,7 @@ class _AddDepartmentState extends State<AddEditDepartment> {
               controller: _titleController,
               hintText: AppStrings.nameDepartment,
               validator: (value) {
-                return Validator.titleDepartmentValidate(value!);
+                return Validator.emptyValidate(value!);
               },
             ),
             const SizedBox(

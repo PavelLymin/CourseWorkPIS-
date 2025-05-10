@@ -81,7 +81,11 @@ class ListTileDepartment extends StatelessWidget {
                 Row(
                   children: [
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        context.goNamed(RoutesNames.employee, pathParameters: {
+                          'departmentId': department.id!.toString()
+                        });
+                      },
                       child: Row(
                         children: [
                           const Icon(Icons.person),
@@ -89,7 +93,7 @@ class ListTileDepartment extends StatelessWidget {
                             width: 10.0,
                           ),
                           Text(
-                            AppStrings.employee,
+                            AppStrings.employees,
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ],

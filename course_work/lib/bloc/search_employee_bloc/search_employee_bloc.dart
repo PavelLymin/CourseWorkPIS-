@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
-import 'package:course_work/presentation/employee/blocs/employee_bloc/employee_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../employee_bloc/employee_bloc.dart';
 
 part 'search_employee_bloc.freezed.dart';
 part 'search_employee_event.dart';
@@ -29,7 +30,7 @@ class SearchEmployeeBloc
 
     on<SearchEmployeeEvent>((event, emit) async {
       event.map(
-          search: (event) async => await _search(emit, event),
+          searchEmployee: (event) async => await _search(emit, event),
           resetSearch: (_) => _resetSearch(emit),
           updateStateLoading: (_) => _updateStateLoading(emit),
           updateStateLoaded: (event) => _updateStateLoaded(emit, event),
@@ -37,7 +38,8 @@ class SearchEmployeeBloc
     });
   }
 
-  Future<void> _search(Emitter<SearchEmployeeState> emit, _Search event) async {
+  Future<void> _search(
+      Emitter<SearchEmployeeState> emit, _SearchEmployee event) async {
     emit(SearchEmployeeState.loading());
     final queryToLowerCase = event.query.toLowerCase();
 

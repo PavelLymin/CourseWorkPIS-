@@ -1,5 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../enums/status_task.dart';
+
 part 'task.freezed.dart';
 
 @freezed
@@ -15,14 +17,4 @@ class TaskModel with _$TaskModel {
     required DateTime finishTime,
     @Default(Priority.none) Priority priority,
   }) = _TaskModel;
-}
-
-enum Priority {
-  busy('Занят'),
-  free('Свободен'),
-  low('Низкий'),
-  none('Без приоритета');
-
-  const Priority(this.value);
-  final String value;
 }

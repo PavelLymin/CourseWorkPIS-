@@ -12,10 +12,10 @@ class AuthRepositoryImpl implements IAuthRepository {
 
   @override
   Future<Either<Failure, EmployeeModel>> loginWithEmailPassword(
-      {required String login, required String password}) async {
+      {required String email, required String password}) async {
     try {
       final result = await (database.select(database.employees)
-            ..where((employee) => employee.login.equals(login)))
+            ..where((employee) => employee.email.equals(email)))
           .getSingle();
 
       if (result.toString().isEmpty) {

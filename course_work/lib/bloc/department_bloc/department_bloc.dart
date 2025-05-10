@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:course_work/domain/repositories/department_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../domain/models/department/department.dart';
+import '../../../../domain/models/department/department.dart';
 
 part 'department_bloc.freezed.dart';
 part 'department_event.dart';

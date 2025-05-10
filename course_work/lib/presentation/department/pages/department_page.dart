@@ -2,13 +2,24 @@ import 'package:course_work/core/widgets/rounded_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/department_bloc/department_bloc.dart';
 import '../../../core/utils/app_strings.dart';
-import '../blocs/department_bloc.dart';
 import '../widgets/list_tile_department.dart';
 import 'add_edit_department.dart';
 
-class DepartmentPage extends StatelessWidget {
+class DepartmentPage extends StatefulWidget {
   const DepartmentPage({super.key});
+
+  @override
+  State<DepartmentPage> createState() => _DepartmentPageState();
+}
+
+class _DepartmentPageState extends State<DepartmentPage> {
+  @override
+  void initState() {
+    context.read<DepartmentBloc>().add(DepartmentEvent.loadDepartments());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

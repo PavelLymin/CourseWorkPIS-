@@ -880,15 +880,6 @@ class $EmployeesTable extends Employees
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $EmployeesTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _departmentIdMeta =
-      const VerificationMeta('departmentId');
-  @override
-  late final GeneratedColumn<int> departmentId = GeneratedColumn<int>(
-      'department_id', aliasedName, false,
-      type: DriftSqlType.int,
-      requiredDuringInsert: true,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('REFERENCES departments (id)'));
   static const VerificationMeta _idMeta = const VerificationMeta('id');
   @override
   late final GeneratedColumn<int> id = GeneratedColumn<int>(
@@ -898,6 +889,15 @@ class $EmployeesTable extends Employees
       requiredDuringInsert: false,
       defaultConstraints:
           GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _departmentIdMeta =
+      const VerificationMeta('departmentId');
+  @override
+  late final GeneratedColumn<int> departmentId = GeneratedColumn<int>(
+      'department_id', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: true,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('REFERENCES departments (id)'));
   static const VerificationMeta _firstNameMeta =
       const VerificationMeta('firstName');
   @override
@@ -921,11 +921,13 @@ class $EmployeesTable extends Employees
   late final GeneratedColumn<String> role = GeneratedColumn<String>(
       'role', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
-  static const VerificationMeta _loginMeta = const VerificationMeta('login');
+  static const VerificationMeta _emailMeta = const VerificationMeta('email');
   @override
-  late final GeneratedColumn<String> login = GeneratedColumn<String>(
-      'login', aliasedName, false,
-      type: DriftSqlType.string, requiredDuringInsert: true);
+  late final GeneratedColumn<String> email = GeneratedColumn<String>(
+      'email', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: true,
+      defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'));
   static const VerificationMeta _passwordMeta =
       const VerificationMeta('password');
   @override
@@ -934,7 +936,7 @@ class $EmployeesTable extends Employees
       type: DriftSqlType.string, requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns =>
-      [departmentId, id, firstName, lastName, position, role, login, password];
+      [id, departmentId, firstName, lastName, position, role, email, password];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -945,6 +947,9 @@ class $EmployeesTable extends Employees
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
     if (data.containsKey('department_id')) {
       context.handle(
           _departmentIdMeta,
@@ -952,9 +957,6 @@ class $EmployeesTable extends Employees
               data['department_id']!, _departmentIdMeta));
     } else if (isInserting) {
       context.missing(_departmentIdMeta);
-    }
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
     }
     if (data.containsKey('first_name')) {
       context.handle(_firstNameMeta,
@@ -980,11 +982,11 @@ class $EmployeesTable extends Employees
     } else if (isInserting) {
       context.missing(_roleMeta);
     }
-    if (data.containsKey('login')) {
+    if (data.containsKey('email')) {
       context.handle(
-          _loginMeta, login.isAcceptableOrUnknown(data['login']!, _loginMeta));
+          _emailMeta, email.isAcceptableOrUnknown(data['email']!, _emailMeta));
     } else if (isInserting) {
-      context.missing(_loginMeta);
+      context.missing(_emailMeta);
     }
     if (data.containsKey('password')) {
       context.handle(_passwordMeta,
@@ -1001,10 +1003,10 @@ class $EmployeesTable extends Employees
   Employee map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return Employee(
-      departmentId: attachedDatabase.typeMapping
-          .read(DriftSqlType.int, data['${effectivePrefix}department_id'])!,
       id: attachedDatabase.typeMapping
           .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      departmentId: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}department_id'])!,
       firstName: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}first_name'])!,
       lastName: attachedDatabase.typeMapping
@@ -1013,8 +1015,8 @@ class $EmployeesTable extends Employees
           .read(DriftSqlType.string, data['${effectivePrefix}position'])!,
       role: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}role'])!,
-      login: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}login'])!,
+      email: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}email'])!,
       password: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}password'])!,
     );
@@ -1027,46 +1029,46 @@ class $EmployeesTable extends Employees
 }
 
 class Employee extends DataClass implements Insertable<Employee> {
-  final int departmentId;
   final int id;
+  final int departmentId;
   final String firstName;
   final String lastName;
   final String position;
   final String role;
-  final String login;
+  final String email;
   final String password;
   const Employee(
-      {required this.departmentId,
-      required this.id,
+      {required this.id,
+      required this.departmentId,
       required this.firstName,
       required this.lastName,
       required this.position,
       required this.role,
-      required this.login,
+      required this.email,
       required this.password});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    map['department_id'] = Variable<int>(departmentId);
     map['id'] = Variable<int>(id);
+    map['department_id'] = Variable<int>(departmentId);
     map['first_name'] = Variable<String>(firstName);
     map['last_name'] = Variable<String>(lastName);
     map['position'] = Variable<String>(position);
     map['role'] = Variable<String>(role);
-    map['login'] = Variable<String>(login);
+    map['email'] = Variable<String>(email);
     map['password'] = Variable<String>(password);
     return map;
   }
 
   EmployeesCompanion toCompanion(bool nullToAbsent) {
     return EmployeesCompanion(
-      departmentId: Value(departmentId),
       id: Value(id),
+      departmentId: Value(departmentId),
       firstName: Value(firstName),
       lastName: Value(lastName),
       position: Value(position),
       role: Value(role),
-      login: Value(login),
+      email: Value(email),
       password: Value(password),
     );
   }
@@ -1075,13 +1077,13 @@ class Employee extends DataClass implements Insertable<Employee> {
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return Employee(
-      departmentId: serializer.fromJson<int>(json['departmentId']),
       id: serializer.fromJson<int>(json['id']),
+      departmentId: serializer.fromJson<int>(json['departmentId']),
       firstName: serializer.fromJson<String>(json['firstName']),
       lastName: serializer.fromJson<String>(json['lastName']),
       position: serializer.fromJson<String>(json['position']),
       role: serializer.fromJson<String>(json['role']),
-      login: serializer.fromJson<String>(json['login']),
+      email: serializer.fromJson<String>(json['email']),
       password: serializer.fromJson<String>(json['password']),
     );
   }
@@ -1089,47 +1091,47 @@ class Employee extends DataClass implements Insertable<Employee> {
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'departmentId': serializer.toJson<int>(departmentId),
       'id': serializer.toJson<int>(id),
+      'departmentId': serializer.toJson<int>(departmentId),
       'firstName': serializer.toJson<String>(firstName),
       'lastName': serializer.toJson<String>(lastName),
       'position': serializer.toJson<String>(position),
       'role': serializer.toJson<String>(role),
-      'login': serializer.toJson<String>(login),
+      'email': serializer.toJson<String>(email),
       'password': serializer.toJson<String>(password),
     };
   }
 
   Employee copyWith(
-          {int? departmentId,
-          int? id,
+          {int? id,
+          int? departmentId,
           String? firstName,
           String? lastName,
           String? position,
           String? role,
-          String? login,
+          String? email,
           String? password}) =>
       Employee(
-        departmentId: departmentId ?? this.departmentId,
         id: id ?? this.id,
+        departmentId: departmentId ?? this.departmentId,
         firstName: firstName ?? this.firstName,
         lastName: lastName ?? this.lastName,
         position: position ?? this.position,
         role: role ?? this.role,
-        login: login ?? this.login,
+        email: email ?? this.email,
         password: password ?? this.password,
       );
   Employee copyWithCompanion(EmployeesCompanion data) {
     return Employee(
+      id: data.id.present ? data.id.value : this.id,
       departmentId: data.departmentId.present
           ? data.departmentId.value
           : this.departmentId,
-      id: data.id.present ? data.id.value : this.id,
       firstName: data.firstName.present ? data.firstName.value : this.firstName,
       lastName: data.lastName.present ? data.lastName.value : this.lastName,
       position: data.position.present ? data.position.value : this.position,
       role: data.role.present ? data.role.value : this.role,
-      login: data.login.present ? data.login.value : this.login,
+      email: data.email.present ? data.email.value : this.email,
       password: data.password.present ? data.password.value : this.password,
     );
   }
@@ -1137,13 +1139,13 @@ class Employee extends DataClass implements Insertable<Employee> {
   @override
   String toString() {
     return (StringBuffer('Employee(')
-          ..write('departmentId: $departmentId, ')
           ..write('id: $id, ')
+          ..write('departmentId: $departmentId, ')
           ..write('firstName: $firstName, ')
           ..write('lastName: $lastName, ')
           ..write('position: $position, ')
           ..write('role: $role, ')
-          ..write('login: $login, ')
+          ..write('email: $email, ')
           ..write('password: $password')
           ..write(')'))
         .toString();
@@ -1151,95 +1153,95 @@ class Employee extends DataClass implements Insertable<Employee> {
 
   @override
   int get hashCode => Object.hash(
-      departmentId, id, firstName, lastName, position, role, login, password);
+      id, departmentId, firstName, lastName, position, role, email, password);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is Employee &&
-          other.departmentId == this.departmentId &&
           other.id == this.id &&
+          other.departmentId == this.departmentId &&
           other.firstName == this.firstName &&
           other.lastName == this.lastName &&
           other.position == this.position &&
           other.role == this.role &&
-          other.login == this.login &&
+          other.email == this.email &&
           other.password == this.password);
 }
 
 class EmployeesCompanion extends UpdateCompanion<Employee> {
-  final Value<int> departmentId;
   final Value<int> id;
+  final Value<int> departmentId;
   final Value<String> firstName;
   final Value<String> lastName;
   final Value<String> position;
   final Value<String> role;
-  final Value<String> login;
+  final Value<String> email;
   final Value<String> password;
   const EmployeesCompanion({
-    this.departmentId = const Value.absent(),
     this.id = const Value.absent(),
+    this.departmentId = const Value.absent(),
     this.firstName = const Value.absent(),
     this.lastName = const Value.absent(),
     this.position = const Value.absent(),
     this.role = const Value.absent(),
-    this.login = const Value.absent(),
+    this.email = const Value.absent(),
     this.password = const Value.absent(),
   });
   EmployeesCompanion.insert({
-    required int departmentId,
     this.id = const Value.absent(),
+    required int departmentId,
     required String firstName,
     required String lastName,
     required String position,
     required String role,
-    required String login,
+    required String email,
     required String password,
   })  : departmentId = Value(departmentId),
         firstName = Value(firstName),
         lastName = Value(lastName),
         position = Value(position),
         role = Value(role),
-        login = Value(login),
+        email = Value(email),
         password = Value(password);
   static Insertable<Employee> custom({
-    Expression<int>? departmentId,
     Expression<int>? id,
+    Expression<int>? departmentId,
     Expression<String>? firstName,
     Expression<String>? lastName,
     Expression<String>? position,
     Expression<String>? role,
-    Expression<String>? login,
+    Expression<String>? email,
     Expression<String>? password,
   }) {
     return RawValuesInsertable({
-      if (departmentId != null) 'department_id': departmentId,
       if (id != null) 'id': id,
+      if (departmentId != null) 'department_id': departmentId,
       if (firstName != null) 'first_name': firstName,
       if (lastName != null) 'last_name': lastName,
       if (position != null) 'position': position,
       if (role != null) 'role': role,
-      if (login != null) 'login': login,
+      if (email != null) 'email': email,
       if (password != null) 'password': password,
     });
   }
 
   EmployeesCompanion copyWith(
-      {Value<int>? departmentId,
-      Value<int>? id,
+      {Value<int>? id,
+      Value<int>? departmentId,
       Value<String>? firstName,
       Value<String>? lastName,
       Value<String>? position,
       Value<String>? role,
-      Value<String>? login,
+      Value<String>? email,
       Value<String>? password}) {
     return EmployeesCompanion(
-      departmentId: departmentId ?? this.departmentId,
       id: id ?? this.id,
+      departmentId: departmentId ?? this.departmentId,
       firstName: firstName ?? this.firstName,
       lastName: lastName ?? this.lastName,
       position: position ?? this.position,
       role: role ?? this.role,
-      login: login ?? this.login,
+      email: email ?? this.email,
       password: password ?? this.password,
     );
   }
@@ -1247,11 +1249,11 @@ class EmployeesCompanion extends UpdateCompanion<Employee> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (departmentId.present) {
-      map['department_id'] = Variable<int>(departmentId.value);
-    }
     if (id.present) {
       map['id'] = Variable<int>(id.value);
+    }
+    if (departmentId.present) {
+      map['department_id'] = Variable<int>(departmentId.value);
     }
     if (firstName.present) {
       map['first_name'] = Variable<String>(firstName.value);
@@ -1265,8 +1267,8 @@ class EmployeesCompanion extends UpdateCompanion<Employee> {
     if (role.present) {
       map['role'] = Variable<String>(role.value);
     }
-    if (login.present) {
-      map['login'] = Variable<String>(login.value);
+    if (email.present) {
+      map['email'] = Variable<String>(email.value);
     }
     if (password.present) {
       map['password'] = Variable<String>(password.value);
@@ -1277,13 +1279,13 @@ class EmployeesCompanion extends UpdateCompanion<Employee> {
   @override
   String toString() {
     return (StringBuffer('EmployeesCompanion(')
-          ..write('departmentId: $departmentId, ')
           ..write('id: $id, ')
+          ..write('departmentId: $departmentId, ')
           ..write('firstName: $firstName, ')
           ..write('lastName: $lastName, ')
           ..write('position: $position, ')
           ..write('role: $role, ')
-          ..write('login: $login, ')
+          ..write('email: $email, ')
           ..write('password: $password')
           ..write(')'))
         .toString();
@@ -2213,23 +2215,23 @@ typedef $$DepartmentTasksTableProcessedTableManager = ProcessedTableManager<
     DepartmentTask,
     PrefetchHooks Function({bool taskId, bool departmentId})>;
 typedef $$EmployeesTableCreateCompanionBuilder = EmployeesCompanion Function({
-  required int departmentId,
   Value<int> id,
+  required int departmentId,
   required String firstName,
   required String lastName,
   required String position,
   required String role,
-  required String login,
+  required String email,
   required String password,
 });
 typedef $$EmployeesTableUpdateCompanionBuilder = EmployeesCompanion Function({
-  Value<int> departmentId,
   Value<int> id,
+  Value<int> departmentId,
   Value<String> firstName,
   Value<String> lastName,
   Value<String> position,
   Value<String> role,
-  Value<String> login,
+  Value<String> email,
   Value<String> password,
 });
 
@@ -2277,8 +2279,8 @@ class $$EmployeesTableFilterComposer
   ColumnFilters<String> get role => $composableBuilder(
       column: $table.role, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get login => $composableBuilder(
-      column: $table.login, builder: (column) => ColumnFilters(column));
+  ColumnFilters<String> get email => $composableBuilder(
+      column: $table.email, builder: (column) => ColumnFilters(column));
 
   ColumnFilters<String> get password => $composableBuilder(
       column: $table.password, builder: (column) => ColumnFilters(column));
@@ -2328,8 +2330,8 @@ class $$EmployeesTableOrderingComposer
   ColumnOrderings<String> get role => $composableBuilder(
       column: $table.role, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get login => $composableBuilder(
-      column: $table.login, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<String> get email => $composableBuilder(
+      column: $table.email, builder: (column) => ColumnOrderings(column));
 
   ColumnOrderings<String> get password => $composableBuilder(
       column: $table.password, builder: (column) => ColumnOrderings(column));
@@ -2379,8 +2381,8 @@ class $$EmployeesTableAnnotationComposer
   GeneratedColumn<String> get role =>
       $composableBuilder(column: $table.role, builder: (column) => column);
 
-  GeneratedColumn<String> get login =>
-      $composableBuilder(column: $table.login, builder: (column) => column);
+  GeneratedColumn<String> get email =>
+      $composableBuilder(column: $table.email, builder: (column) => column);
 
   GeneratedColumn<String> get password =>
       $composableBuilder(column: $table.password, builder: (column) => column);
@@ -2429,43 +2431,43 @@ class $$EmployeesTableTableManager extends RootTableManager<
           createComputedFieldComposer: () =>
               $$EmployeesTableAnnotationComposer($db: db, $table: table),
           updateCompanionCallback: ({
-            Value<int> departmentId = const Value.absent(),
             Value<int> id = const Value.absent(),
+            Value<int> departmentId = const Value.absent(),
             Value<String> firstName = const Value.absent(),
             Value<String> lastName = const Value.absent(),
             Value<String> position = const Value.absent(),
             Value<String> role = const Value.absent(),
-            Value<String> login = const Value.absent(),
+            Value<String> email = const Value.absent(),
             Value<String> password = const Value.absent(),
           }) =>
               EmployeesCompanion(
-            departmentId: departmentId,
             id: id,
+            departmentId: departmentId,
             firstName: firstName,
             lastName: lastName,
             position: position,
             role: role,
-            login: login,
+            email: email,
             password: password,
           ),
           createCompanionCallback: ({
-            required int departmentId,
             Value<int> id = const Value.absent(),
+            required int departmentId,
             required String firstName,
             required String lastName,
             required String position,
             required String role,
-            required String login,
+            required String email,
             required String password,
           }) =>
               EmployeesCompanion.insert(
-            departmentId: departmentId,
             id: id,
+            departmentId: departmentId,
             firstName: firstName,
             lastName: lastName,
             position: position,
             role: role,
-            login: login,
+            email: email,
             password: password,
           ),
           withReferenceMapper: (p0) => p0

@@ -1,7 +1,7 @@
-import 'package:course_work/presentation/task/blocs/task_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/task_bloc/task_bloc.dart';
 import '../../../core/utils/app_colors.dart';
 import '../../../core/utils/date_time_format.dart';
 import '../../../domain/models/task/task.dart';

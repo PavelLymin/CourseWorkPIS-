@@ -2,10 +2,10 @@ import 'package:course_work/core/utils/date_time_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/task_bloc/task_bloc.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
 import '../../../domain/models/task/task.dart';
-import '../blocs/task_bloc.dart';
 
 class AddEditButton extends StatelessWidget {
   const AddEditButton({

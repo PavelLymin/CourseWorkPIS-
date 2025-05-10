@@ -39,7 +39,7 @@ class Employees extends Table {
   TextColumn get lastName => text()();
   TextColumn get position => text()();
   TextColumn get role => text()();
-  TextColumn get login => text().unique()();
+  TextColumn get email => text().unique()();
   TextColumn get password => text()();
 }
 

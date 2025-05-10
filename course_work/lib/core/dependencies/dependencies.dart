@@ -4,12 +4,12 @@ import 'package:course_work/data/repositories/task_repository_impl.dart';
 import 'package:course_work/domain/repositories/department_repository.dart';
 import 'package:course_work/domain/repositories/employee_repository.dart';
 import 'package:course_work/domain/repositories/task_repository.dart';
-import 'package:course_work/presentation/department/blocs/department_bloc.dart';
-import 'package:course_work/presentation/employee/blocs/employee_bloc/employee_bloc.dart';
-import 'package:course_work/presentation/employee/blocs/search_employee_bloc/search_employee_bloc.dart';
-import 'package:course_work/presentation/task/blocs/task_bloc.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../bloc/department_bloc/department_bloc.dart';
+import '../../bloc/employee_bloc/employee_bloc.dart';
+import '../../bloc/search_employee_bloc/search_employee_bloc.dart';
+import '../../bloc/task_bloc/task_bloc.dart';
 import '../../data/data_base/data_base.dart';
 
 final getIt = GetIt.instance;

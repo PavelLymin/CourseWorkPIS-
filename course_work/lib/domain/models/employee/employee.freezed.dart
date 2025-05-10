@@ -17,12 +17,13 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$EmployeeModel {
   int? get id => throw _privateConstructorUsedError;
-  int? get departmentId => throw _privateConstructorUsedError;
+  int get departmentId => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
-  String get position => throw _privateConstructorUsedError;
-  String get role => throw _privateConstructorUsedError;
-  String get login => throw _privateConstructorUsedError;
+  Position get position => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  Role get role => throw _privateConstructorUsedError;
 
   /// Create a copy of EmployeeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -39,12 +40,13 @@ abstract class $EmployeeModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int? id,
-      int? departmentId,
+      int departmentId,
+      String password,
       String firstName,
       String lastName,
-      String position,
-      String role,
-      String login});
+      Position position,
+      String email,
+      Role role});
 }
 
 /// @nodoc
@@ -63,22 +65,27 @@ class _$EmployeeModelCopyWithImpl<$Res, $Val extends EmployeeModel>
   @override
   $Res call({
     Object? id = freezed,
-    Object? departmentId = freezed,
+    Object? departmentId = null,
+    Object? password = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? position = null,
+    Object? email = null,
     Object? role = null,
-    Object? login = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      departmentId: freezed == departmentId
+      departmentId: null == departmentId
           ? _value.departmentId
           : departmentId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -90,15 +97,15 @@ class _$EmployeeModelCopyWithImpl<$Res, $Val extends EmployeeModel>
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
+              as Position,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String,
-      login: null == login
-          ? _value.login
-          : login // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Role,
     ) as $Val);
   }
 }
@@ -113,12 +120,13 @@ abstract class _$$EmployeeModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int? id,
-      int? departmentId,
+      int departmentId,
+      String password,
       String firstName,
       String lastName,
-      String position,
-      String role,
-      String login});
+      Position position,
+      String email,
+      Role role});
 }
 
 /// @nodoc
@@ -135,22 +143,27 @@ class __$$EmployeeModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? departmentId = freezed,
+    Object? departmentId = null,
+    Object? password = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? position = null,
+    Object? email = null,
     Object? role = null,
-    Object? login = null,
   }) {
     return _then(_$EmployeeModelImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      departmentId: freezed == departmentId
+      departmentId: null == departmentId
           ? _value.departmentId
           : departmentId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -162,15 +175,15 @@ class __$$EmployeeModelImplCopyWithImpl<$Res>
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
+              as Position,
+      email: null == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
               as String,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String,
-      login: null == login
-          ? _value.login
-          : login // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Role,
     ));
   }
 }
@@ -180,31 +193,34 @@ class __$$EmployeeModelImplCopyWithImpl<$Res>
 class _$EmployeeModelImpl implements _EmployeeModel {
   const _$EmployeeModelImpl(
       {this.id,
-      this.departmentId,
+      required this.departmentId,
+      required this.password,
       required this.firstName,
       required this.lastName,
       required this.position,
-      required this.role,
-      required this.login});
+      required this.email,
+      required this.role});
 
   @override
   final int? id;
   @override
-  final int? departmentId;
+  final int departmentId;
+  @override
+  final String password;
   @override
   final String firstName;
   @override
   final String lastName;
   @override
-  final String position;
+  final Position position;
   @override
-  final String role;
+  final String email;
   @override
-  final String login;
+  final Role role;
 
   @override
   String toString() {
-    return 'EmployeeModel(id: $id, departmentId: $departmentId, firstName: $firstName, lastName: $lastName, position: $position, role: $role, login: $login)';
+    return 'EmployeeModel(id: $id, departmentId: $departmentId, password: $password, firstName: $firstName, lastName: $lastName, position: $position, email: $email, role: $role)';
   }
 
   @override
@@ -215,19 +231,21 @@ class _$EmployeeModelImpl implements _EmployeeModel {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.departmentId, departmentId) ||
                 other.departmentId == departmentId) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
                 other.lastName == lastName) &&
             (identical(other.position, position) ||
                 other.position == position) &&
-            (identical(other.role, role) || other.role == role) &&
-            (identical(other.login, login) || other.login == login));
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.role, role) || other.role == role));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, departmentId, firstName,
-      lastName, position, role, login);
+  int get hashCode => Object.hash(runtimeType, id, departmentId, password,
+      firstName, lastName, position, email, role);
 
   /// Create a copy of EmployeeModel
   /// with the given fields replaced by the non-null parameter values.
@@ -241,27 +259,30 @@ class _$EmployeeModelImpl implements _EmployeeModel {
 abstract class _EmployeeModel implements EmployeeModel {
   const factory _EmployeeModel(
       {final int? id,
-      final int? departmentId,
+      required final int departmentId,
+      required final String password,
       required final String firstName,
       required final String lastName,
-      required final String position,
-      required final String role,
-      required final String login}) = _$EmployeeModelImpl;
+      required final Position position,
+      required final String email,
+      required final Role role}) = _$EmployeeModelImpl;
 
   @override
   int? get id;
   @override
-  int? get departmentId;
+  int get departmentId;
+  @override
+  String get password;
   @override
   String get firstName;
   @override
   String get lastName;
   @override
-  String get position;
+  Position get position;
   @override
-  String get role;
+  String get email;
   @override
-  String get login;
+  Role get role;
 
   /// Create a copy of EmployeeModel
   /// with the given fields replaced by the non-null parameter values.
