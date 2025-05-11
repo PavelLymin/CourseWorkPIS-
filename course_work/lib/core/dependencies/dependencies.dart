@@ -6,11 +6,13 @@ import 'package:course_work/data/repositories/auth_repository_impl.dart';
 import 'package:course_work/data/repositories/department_repository_impl.dart';
 import 'package:course_work/data/repositories/employee_repository_impl.dart';
 import 'package:course_work/data/repositories/generate_password_repository_impl.dart';
+import 'package:course_work/data/repositories/search_repository_impl.dart';
 import 'package:course_work/data/repositories/task_repository_impl.dart';
 import 'package:course_work/domain/repositories/auth_repository.dart';
 import 'package:course_work/domain/repositories/department_repository.dart';
 import 'package:course_work/domain/repositories/employee_repository.dart';
 import 'package:course_work/domain/repositories/generate_password_repository.dart';
+import 'package:course_work/domain/repositories/search_employee_repository.dart';
 import 'package:course_work/domain/repositories/task_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -52,7 +54,7 @@ void _initLogin() {
 
 void _initAuth() {
   getIt.registerLazySingleton<AuthBloc>(
-      () => AuthBloc(preferences: getIt<SharedPreferences>()));
+      () => AuthBloc(repository: getIt<IAuthRepository>()));
 }
 
 void _initDepartment() {
@@ -87,14 +89,17 @@ void _initCurrentEmployee() {
 }
 
 void _initSearchEmployee() {
+  getIt.registerLazySingleton<ISearchEmployeeRepository>(
+      () => SearchRepositoryImpl(database: getIt<AppDatabase>()));
+
   getIt.registerLazySingleton<SearchEmployeeBloc>(
-      () => SearchEmployeeBloc(stream: getIt<EmployeesBloc>().stream));
+      () => SearchEmployeeBloc(repository: getIt<ISearchEmployeeRepository>()));
 }
 
 void _initGeneratePassword() {
   getIt.registerLazySingleton<IGeneratePasswordRepository>(
       () => GeneratePasswordRepositoryImpl(database: getIt<AppDatabase>()));
 
-  getIt.registerLazySingleton<GeneratePasswordCubit>(() =>
+  getIt.registerFactory<GeneratePasswordCubit>(() =>
       GeneratePasswordCubit(repository: getIt<IGeneratePasswordRepository>()));
 }

@@ -53,10 +53,10 @@ class _LoginPageState extends State<LoginPage> {
                 initial: (_) {},
                 loading: (_) {},
                 success: (state) {
-                  if (state.employee.role == Role.employee) {
+                  if (state.employee.role == Role.administrator) {
                     context.goNamed(RoutesNames.department);
                   } else if (state.employee.role == Role.headOfDepartment) {
-                    context.goNamed(RoutesNames.department);
+                    context.goNamed(RoutesNames.taskForHeadOfDepartment);
                   }
                 },
                 failure: (state) {

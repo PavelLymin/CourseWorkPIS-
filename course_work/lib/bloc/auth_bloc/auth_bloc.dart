@@ -1,15 +1,15 @@
 import 'package:bloc/bloc.dart';
+import 'package:course_work/domain/repositories/auth_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final SharedPreferences _preferences;
-  AuthBloc({required SharedPreferences preferences})
-      : _preferences = preferences,
+  final IAuthRepository _repository;
+  AuthBloc({required IAuthRepository repository})
+      : _repository = repository,
         super(const AuthState.notAuthorized()) {
     on<AuthEvent>((event, emit) {
       event.map(
@@ -23,8 +23,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _userLogOut(Emitter<AuthState> emit) {
-    _preferences.remove('id');
-    _preferences.remove('role');
+    _repository.logOut();
     emit(AuthState.notAuthorized());
   }
 }

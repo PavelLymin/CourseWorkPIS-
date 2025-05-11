@@ -1,5 +1,5 @@
 import 'package:course_work/core/errors/failure.dart';
-import 'package:course_work/data/dtos/task_dto/task_dto.dart';
+import 'package:course_work/data/dtos/task_dto.dart';
 import 'package:course_work/domain/models/task/task.dart';
 import 'package:course_work/domain/repositories/task_repository.dart';
 import 'package:drift/drift.dart';

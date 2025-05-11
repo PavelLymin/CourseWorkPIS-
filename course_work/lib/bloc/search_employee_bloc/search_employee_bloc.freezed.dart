@@ -19,28 +19,31 @@ mixin _$SearchEmployeeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query) searchEmployee,
-    required TResult Function() resetSearch,
-    required TResult Function() updateStateLoading,
-    required TResult Function(List<EmployeeModel> employees) updateStateLoaded,
-    required TResult Function(String message) updateStateFailure,
+    required TResult Function(int taskId, int departmentId) resetSearch,
+    required TResult Function(int taskId, int departmentId) loadEmployee,
+    required TResult Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)
+        addSearchEmployees,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? searchEmployee,
-    TResult? Function()? resetSearch,
-    TResult? Function()? updateStateLoading,
-    TResult? Function(List<EmployeeModel> employees)? updateStateLoaded,
-    TResult? Function(String message)? updateStateFailure,
+    TResult? Function(int taskId, int departmentId)? resetSearch,
+    TResult? Function(int taskId, int departmentId)? loadEmployee,
+    TResult? Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)?
+        addSearchEmployees,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? searchEmployee,
-    TResult Function()? resetSearch,
-    TResult Function()? updateStateLoading,
-    TResult Function(List<EmployeeModel> employees)? updateStateLoaded,
-    TResult Function(String message)? updateStateFailure,
+    TResult Function(int taskId, int departmentId)? resetSearch,
+    TResult Function(int taskId, int departmentId)? loadEmployee,
+    TResult Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)?
+        addSearchEmployees,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,27 +51,24 @@ mixin _$SearchEmployeeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
-    required TResult Function(_UpdateStateLoading value) updateStateLoading,
-    required TResult Function(_UpdateStateLoaded value) updateStateLoaded,
-    required TResult Function(_UpdateStateFailure value) updateStateFailure,
+    required TResult Function(_LoadEmployee value) loadEmployee,
+    required TResult Function(_AddSearchEmployees value) addSearchEmployees,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
-    TResult? Function(_UpdateStateLoading value)? updateStateLoading,
-    TResult? Function(_UpdateStateLoaded value)? updateStateLoaded,
-    TResult? Function(_UpdateStateFailure value)? updateStateFailure,
+    TResult? Function(_LoadEmployee value)? loadEmployee,
+    TResult? Function(_AddSearchEmployees value)? addSearchEmployees,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
-    TResult Function(_UpdateStateLoading value)? updateStateLoading,
-    TResult Function(_UpdateStateLoaded value)? updateStateLoaded,
-    TResult Function(_UpdateStateFailure value)? updateStateFailure,
+    TResult Function(_LoadEmployee value)? loadEmployee,
+    TResult Function(_AddSearchEmployees value)? addSearchEmployees,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -165,10 +165,11 @@ class _$SearchEmployeeImpl implements _SearchEmployee {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query) searchEmployee,
-    required TResult Function() resetSearch,
-    required TResult Function() updateStateLoading,
-    required TResult Function(List<EmployeeModel> employees) updateStateLoaded,
-    required TResult Function(String message) updateStateFailure,
+    required TResult Function(int taskId, int departmentId) resetSearch,
+    required TResult Function(int taskId, int departmentId) loadEmployee,
+    required TResult Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)
+        addSearchEmployees,
   }) {
     return searchEmployee(query);
   }
@@ -177,10 +178,11 @@ class _$SearchEmployeeImpl implements _SearchEmployee {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? searchEmployee,
-    TResult? Function()? resetSearch,
-    TResult? Function()? updateStateLoading,
-    TResult? Function(List<EmployeeModel> employees)? updateStateLoaded,
-    TResult? Function(String message)? updateStateFailure,
+    TResult? Function(int taskId, int departmentId)? resetSearch,
+    TResult? Function(int taskId, int departmentId)? loadEmployee,
+    TResult? Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)?
+        addSearchEmployees,
   }) {
     return searchEmployee?.call(query);
   }
@@ -189,10 +191,11 @@ class _$SearchEmployeeImpl implements _SearchEmployee {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? searchEmployee,
-    TResult Function()? resetSearch,
-    TResult Function()? updateStateLoading,
-    TResult Function(List<EmployeeModel> employees)? updateStateLoaded,
-    TResult Function(String message)? updateStateFailure,
+    TResult Function(int taskId, int departmentId)? resetSearch,
+    TResult Function(int taskId, int departmentId)? loadEmployee,
+    TResult Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)?
+        addSearchEmployees,
     required TResult orElse(),
   }) {
     if (searchEmployee != null) {
@@ -206,9 +209,8 @@ class _$SearchEmployeeImpl implements _SearchEmployee {
   TResult map<TResult extends Object?>({
     required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
-    required TResult Function(_UpdateStateLoading value) updateStateLoading,
-    required TResult Function(_UpdateStateLoaded value) updateStateLoaded,
-    required TResult Function(_UpdateStateFailure value) updateStateFailure,
+    required TResult Function(_LoadEmployee value) loadEmployee,
+    required TResult Function(_AddSearchEmployees value) addSearchEmployees,
   }) {
     return searchEmployee(this);
   }
@@ -218,9 +220,8 @@ class _$SearchEmployeeImpl implements _SearchEmployee {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
-    TResult? Function(_UpdateStateLoading value)? updateStateLoading,
-    TResult? Function(_UpdateStateLoaded value)? updateStateLoaded,
-    TResult? Function(_UpdateStateFailure value)? updateStateFailure,
+    TResult? Function(_LoadEmployee value)? loadEmployee,
+    TResult? Function(_AddSearchEmployees value)? addSearchEmployees,
   }) {
     return searchEmployee?.call(this);
   }
@@ -230,9 +231,8 @@ class _$SearchEmployeeImpl implements _SearchEmployee {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
-    TResult Function(_UpdateStateLoading value)? updateStateLoading,
-    TResult Function(_UpdateStateLoaded value)? updateStateLoaded,
-    TResult Function(_UpdateStateFailure value)? updateStateFailure,
+    TResult Function(_LoadEmployee value)? loadEmployee,
+    TResult Function(_AddSearchEmployees value)? addSearchEmployees,
     required TResult orElse(),
   }) {
     if (searchEmployee != null) {
@@ -260,6 +260,8 @@ abstract class _$$ResetSearchImplCopyWith<$Res> {
   factory _$$ResetSearchImplCopyWith(
           _$ResetSearchImpl value, $Res Function(_$ResetSearchImpl) then) =
       __$$ResetSearchImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int taskId, int departmentId});
 }
 
 /// @nodoc
@@ -272,63 +274,100 @@ class __$$ResetSearchImplCopyWithImpl<$Res>
 
   /// Create a copy of SearchEmployeeEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? taskId = null,
+    Object? departmentId = null,
+  }) {
+    return _then(_$ResetSearchImpl(
+      taskId: null == taskId
+          ? _value.taskId
+          : taskId // ignore: cast_nullable_to_non_nullable
+              as int,
+      departmentId: null == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ResetSearchImpl implements _ResetSearch {
-  const _$ResetSearchImpl();
+  const _$ResetSearchImpl({required this.taskId, required this.departmentId});
+
+  @override
+  final int taskId;
+  @override
+  final int departmentId;
 
   @override
   String toString() {
-    return 'SearchEmployeeEvent.resetSearch()';
+    return 'SearchEmployeeEvent.resetSearch(taskId: $taskId, departmentId: $departmentId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ResetSearchImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ResetSearchImpl &&
+            (identical(other.taskId, taskId) || other.taskId == taskId) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, taskId, departmentId);
+
+  /// Create a copy of SearchEmployeeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ResetSearchImplCopyWith<_$ResetSearchImpl> get copyWith =>
+      __$$ResetSearchImplCopyWithImpl<_$ResetSearchImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query) searchEmployee,
-    required TResult Function() resetSearch,
-    required TResult Function() updateStateLoading,
-    required TResult Function(List<EmployeeModel> employees) updateStateLoaded,
-    required TResult Function(String message) updateStateFailure,
+    required TResult Function(int taskId, int departmentId) resetSearch,
+    required TResult Function(int taskId, int departmentId) loadEmployee,
+    required TResult Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)
+        addSearchEmployees,
   }) {
-    return resetSearch();
+    return resetSearch(taskId, departmentId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? searchEmployee,
-    TResult? Function()? resetSearch,
-    TResult? Function()? updateStateLoading,
-    TResult? Function(List<EmployeeModel> employees)? updateStateLoaded,
-    TResult? Function(String message)? updateStateFailure,
+    TResult? Function(int taskId, int departmentId)? resetSearch,
+    TResult? Function(int taskId, int departmentId)? loadEmployee,
+    TResult? Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)?
+        addSearchEmployees,
   }) {
-    return resetSearch?.call();
+    return resetSearch?.call(taskId, departmentId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? searchEmployee,
-    TResult Function()? resetSearch,
-    TResult Function()? updateStateLoading,
-    TResult Function(List<EmployeeModel> employees)? updateStateLoaded,
-    TResult Function(String message)? updateStateFailure,
+    TResult Function(int taskId, int departmentId)? resetSearch,
+    TResult Function(int taskId, int departmentId)? loadEmployee,
+    TResult Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)?
+        addSearchEmployees,
     required TResult orElse(),
   }) {
     if (resetSearch != null) {
-      return resetSearch();
+      return resetSearch(taskId, departmentId);
     }
     return orElse();
   }
@@ -338,9 +377,8 @@ class _$ResetSearchImpl implements _ResetSearch {
   TResult map<TResult extends Object?>({
     required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
-    required TResult Function(_UpdateStateLoading value) updateStateLoading,
-    required TResult Function(_UpdateStateLoaded value) updateStateLoaded,
-    required TResult Function(_UpdateStateFailure value) updateStateFailure,
+    required TResult Function(_LoadEmployee value) loadEmployee,
+    required TResult Function(_AddSearchEmployees value) addSearchEmployees,
   }) {
     return resetSearch(this);
   }
@@ -350,9 +388,8 @@ class _$ResetSearchImpl implements _ResetSearch {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
-    TResult? Function(_UpdateStateLoading value)? updateStateLoading,
-    TResult? Function(_UpdateStateLoaded value)? updateStateLoaded,
-    TResult? Function(_UpdateStateFailure value)? updateStateFailure,
+    TResult? Function(_LoadEmployee value)? loadEmployee,
+    TResult? Function(_AddSearchEmployees value)? addSearchEmployees,
   }) {
     return resetSearch?.call(this);
   }
@@ -362,9 +399,8 @@ class _$ResetSearchImpl implements _ResetSearch {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
-    TResult Function(_UpdateStateLoading value)? updateStateLoading,
-    TResult Function(_UpdateStateLoaded value)? updateStateLoaded,
-    TResult Function(_UpdateStateFailure value)? updateStateFailure,
+    TResult Function(_LoadEmployee value)? loadEmployee,
+    TResult Function(_AddSearchEmployees value)? addSearchEmployees,
     required TResult orElse(),
   }) {
     if (resetSearch != null) {
@@ -375,83 +411,133 @@ class _$ResetSearchImpl implements _ResetSearch {
 }
 
 abstract class _ResetSearch implements SearchEmployeeEvent {
-  const factory _ResetSearch() = _$ResetSearchImpl;
+  const factory _ResetSearch(
+      {required final int taskId,
+      required final int departmentId}) = _$ResetSearchImpl;
+
+  int get taskId;
+  int get departmentId;
+
+  /// Create a copy of SearchEmployeeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ResetSearchImplCopyWith<_$ResetSearchImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdateStateLoadingImplCopyWith<$Res> {
-  factory _$$UpdateStateLoadingImplCopyWith(_$UpdateStateLoadingImpl value,
-          $Res Function(_$UpdateStateLoadingImpl) then) =
-      __$$UpdateStateLoadingImplCopyWithImpl<$Res>;
+abstract class _$$LoadEmployeeImplCopyWith<$Res> {
+  factory _$$LoadEmployeeImplCopyWith(
+          _$LoadEmployeeImpl value, $Res Function(_$LoadEmployeeImpl) then) =
+      __$$LoadEmployeeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int taskId, int departmentId});
 }
 
 /// @nodoc
-class __$$UpdateStateLoadingImplCopyWithImpl<$Res>
-    extends _$SearchEmployeeEventCopyWithImpl<$Res, _$UpdateStateLoadingImpl>
-    implements _$$UpdateStateLoadingImplCopyWith<$Res> {
-  __$$UpdateStateLoadingImplCopyWithImpl(_$UpdateStateLoadingImpl _value,
-      $Res Function(_$UpdateStateLoadingImpl) _then)
+class __$$LoadEmployeeImplCopyWithImpl<$Res>
+    extends _$SearchEmployeeEventCopyWithImpl<$Res, _$LoadEmployeeImpl>
+    implements _$$LoadEmployeeImplCopyWith<$Res> {
+  __$$LoadEmployeeImplCopyWithImpl(
+      _$LoadEmployeeImpl _value, $Res Function(_$LoadEmployeeImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SearchEmployeeEvent
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? taskId = null,
+    Object? departmentId = null,
+  }) {
+    return _then(_$LoadEmployeeImpl(
+      taskId: null == taskId
+          ? _value.taskId
+          : taskId // ignore: cast_nullable_to_non_nullable
+              as int,
+      departmentId: null == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$UpdateStateLoadingImpl implements _UpdateStateLoading {
-  const _$UpdateStateLoadingImpl();
+class _$LoadEmployeeImpl implements _LoadEmployee {
+  const _$LoadEmployeeImpl({required this.taskId, required this.departmentId});
+
+  @override
+  final int taskId;
+  @override
+  final int departmentId;
 
   @override
   String toString() {
-    return 'SearchEmployeeEvent.updateStateLoading()';
+    return 'SearchEmployeeEvent.loadEmployee(taskId: $taskId, departmentId: $departmentId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$UpdateStateLoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoadEmployeeImpl &&
+            (identical(other.taskId, taskId) || other.taskId == taskId) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, taskId, departmentId);
+
+  /// Create a copy of SearchEmployeeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadEmployeeImplCopyWith<_$LoadEmployeeImpl> get copyWith =>
+      __$$LoadEmployeeImplCopyWithImpl<_$LoadEmployeeImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query) searchEmployee,
-    required TResult Function() resetSearch,
-    required TResult Function() updateStateLoading,
-    required TResult Function(List<EmployeeModel> employees) updateStateLoaded,
-    required TResult Function(String message) updateStateFailure,
+    required TResult Function(int taskId, int departmentId) resetSearch,
+    required TResult Function(int taskId, int departmentId) loadEmployee,
+    required TResult Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)
+        addSearchEmployees,
   }) {
-    return updateStateLoading();
+    return loadEmployee(taskId, departmentId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? searchEmployee,
-    TResult? Function()? resetSearch,
-    TResult? Function()? updateStateLoading,
-    TResult? Function(List<EmployeeModel> employees)? updateStateLoaded,
-    TResult? Function(String message)? updateStateFailure,
+    TResult? Function(int taskId, int departmentId)? resetSearch,
+    TResult? Function(int taskId, int departmentId)? loadEmployee,
+    TResult? Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)?
+        addSearchEmployees,
   }) {
-    return updateStateLoading?.call();
+    return loadEmployee?.call(taskId, departmentId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? searchEmployee,
-    TResult Function()? resetSearch,
-    TResult Function()? updateStateLoading,
-    TResult Function(List<EmployeeModel> employees)? updateStateLoaded,
-    TResult Function(String message)? updateStateFailure,
+    TResult Function(int taskId, int departmentId)? resetSearch,
+    TResult Function(int taskId, int departmentId)? loadEmployee,
+    TResult Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)?
+        addSearchEmployees,
     required TResult orElse(),
   }) {
-    if (updateStateLoading != null) {
-      return updateStateLoading();
+    if (loadEmployee != null) {
+      return loadEmployee(taskId, departmentId);
     }
     return orElse();
   }
@@ -461,11 +547,10 @@ class _$UpdateStateLoadingImpl implements _UpdateStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
-    required TResult Function(_UpdateStateLoading value) updateStateLoading,
-    required TResult Function(_UpdateStateLoaded value) updateStateLoaded,
-    required TResult Function(_UpdateStateFailure value) updateStateFailure,
+    required TResult Function(_LoadEmployee value) loadEmployee,
+    required TResult Function(_AddSearchEmployees value) addSearchEmployees,
   }) {
-    return updateStateLoading(this);
+    return loadEmployee(this);
   }
 
   @override
@@ -473,11 +558,10 @@ class _$UpdateStateLoadingImpl implements _UpdateStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
-    TResult? Function(_UpdateStateLoading value)? updateStateLoading,
-    TResult? Function(_UpdateStateLoaded value)? updateStateLoaded,
-    TResult? Function(_UpdateStateFailure value)? updateStateFailure,
+    TResult? Function(_LoadEmployee value)? loadEmployee,
+    TResult? Function(_AddSearchEmployees value)? addSearchEmployees,
   }) {
-    return updateStateLoading?.call(this);
+    return loadEmployee?.call(this);
   }
 
   @override
@@ -485,37 +569,47 @@ class _$UpdateStateLoadingImpl implements _UpdateStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
-    TResult Function(_UpdateStateLoading value)? updateStateLoading,
-    TResult Function(_UpdateStateLoaded value)? updateStateLoaded,
-    TResult Function(_UpdateStateFailure value)? updateStateFailure,
+    TResult Function(_LoadEmployee value)? loadEmployee,
+    TResult Function(_AddSearchEmployees value)? addSearchEmployees,
     required TResult orElse(),
   }) {
-    if (updateStateLoading != null) {
-      return updateStateLoading(this);
+    if (loadEmployee != null) {
+      return loadEmployee(this);
     }
     return orElse();
   }
 }
 
-abstract class _UpdateStateLoading implements SearchEmployeeEvent {
-  const factory _UpdateStateLoading() = _$UpdateStateLoadingImpl;
+abstract class _LoadEmployee implements SearchEmployeeEvent {
+  const factory _LoadEmployee(
+      {required final int taskId,
+      required final int departmentId}) = _$LoadEmployeeImpl;
+
+  int get taskId;
+  int get departmentId;
+
+  /// Create a copy of SearchEmployeeEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadEmployeeImplCopyWith<_$LoadEmployeeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdateStateLoadedImplCopyWith<$Res> {
-  factory _$$UpdateStateLoadedImplCopyWith(_$UpdateStateLoadedImpl value,
-          $Res Function(_$UpdateStateLoadedImpl) then) =
-      __$$UpdateStateLoadedImplCopyWithImpl<$Res>;
+abstract class _$$AddSearchEmployeesImplCopyWith<$Res> {
+  factory _$$AddSearchEmployeesImplCopyWith(_$AddSearchEmployeesImpl value,
+          $Res Function(_$AddSearchEmployeesImpl) then) =
+      __$$AddSearchEmployeesImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<EmployeeModel> employees});
+  $Res call({List<EmployeeModel> employees, int taskId, int departmentId});
 }
 
 /// @nodoc
-class __$$UpdateStateLoadedImplCopyWithImpl<$Res>
-    extends _$SearchEmployeeEventCopyWithImpl<$Res, _$UpdateStateLoadedImpl>
-    implements _$$UpdateStateLoadedImplCopyWith<$Res> {
-  __$$UpdateStateLoadedImplCopyWithImpl(_$UpdateStateLoadedImpl _value,
-      $Res Function(_$UpdateStateLoadedImpl) _then)
+class __$$AddSearchEmployeesImplCopyWithImpl<$Res>
+    extends _$SearchEmployeeEventCopyWithImpl<$Res, _$AddSearchEmployeesImpl>
+    implements _$$AddSearchEmployeesImplCopyWith<$Res> {
+  __$$AddSearchEmployeesImplCopyWithImpl(_$AddSearchEmployeesImpl _value,
+      $Res Function(_$AddSearchEmployeesImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of SearchEmployeeEvent
@@ -524,20 +618,33 @@ class __$$UpdateStateLoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? employees = null,
+    Object? taskId = null,
+    Object? departmentId = null,
   }) {
-    return _then(_$UpdateStateLoadedImpl(
+    return _then(_$AddSearchEmployeesImpl(
       employees: null == employees
           ? _value._employees
           : employees // ignore: cast_nullable_to_non_nullable
               as List<EmployeeModel>,
+      taskId: null == taskId
+          ? _value.taskId
+          : taskId // ignore: cast_nullable_to_non_nullable
+              as int,
+      departmentId: null == departmentId
+          ? _value.departmentId
+          : departmentId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
 
-class _$UpdateStateLoadedImpl implements _UpdateStateLoaded {
-  const _$UpdateStateLoadedImpl({required final List<EmployeeModel> employees})
+class _$AddSearchEmployeesImpl implements _AddSearchEmployees {
+  const _$AddSearchEmployeesImpl(
+      {required final List<EmployeeModel> employees,
+      required this.taskId,
+      required this.departmentId})
       : _employees = employees;
 
   final List<EmployeeModel> _employees;
@@ -549,68 +656,79 @@ class _$UpdateStateLoadedImpl implements _UpdateStateLoaded {
   }
 
   @override
+  final int taskId;
+  @override
+  final int departmentId;
+
+  @override
   String toString() {
-    return 'SearchEmployeeEvent.updateStateLoaded(employees: $employees)';
+    return 'SearchEmployeeEvent.addSearchEmployees(employees: $employees, taskId: $taskId, departmentId: $departmentId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateStateLoadedImpl &&
+            other is _$AddSearchEmployeesImpl &&
             const DeepCollectionEquality()
-                .equals(other._employees, _employees));
+                .equals(other._employees, _employees) &&
+            (identical(other.taskId, taskId) || other.taskId == taskId) &&
+            (identical(other.departmentId, departmentId) ||
+                other.departmentId == departmentId));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_employees));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_employees), taskId, departmentId);
 
   /// Create a copy of SearchEmployeeEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateStateLoadedImplCopyWith<_$UpdateStateLoadedImpl> get copyWith =>
-      __$$UpdateStateLoadedImplCopyWithImpl<_$UpdateStateLoadedImpl>(
+  _$$AddSearchEmployeesImplCopyWith<_$AddSearchEmployeesImpl> get copyWith =>
+      __$$AddSearchEmployeesImplCopyWithImpl<_$AddSearchEmployeesImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String query) searchEmployee,
-    required TResult Function() resetSearch,
-    required TResult Function() updateStateLoading,
-    required TResult Function(List<EmployeeModel> employees) updateStateLoaded,
-    required TResult Function(String message) updateStateFailure,
+    required TResult Function(int taskId, int departmentId) resetSearch,
+    required TResult Function(int taskId, int departmentId) loadEmployee,
+    required TResult Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)
+        addSearchEmployees,
   }) {
-    return updateStateLoaded(employees);
+    return addSearchEmployees(employees, taskId, departmentId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String query)? searchEmployee,
-    TResult? Function()? resetSearch,
-    TResult? Function()? updateStateLoading,
-    TResult? Function(List<EmployeeModel> employees)? updateStateLoaded,
-    TResult? Function(String message)? updateStateFailure,
+    TResult? Function(int taskId, int departmentId)? resetSearch,
+    TResult? Function(int taskId, int departmentId)? loadEmployee,
+    TResult? Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)?
+        addSearchEmployees,
   }) {
-    return updateStateLoaded?.call(employees);
+    return addSearchEmployees?.call(employees, taskId, departmentId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String query)? searchEmployee,
-    TResult Function()? resetSearch,
-    TResult Function()? updateStateLoading,
-    TResult Function(List<EmployeeModel> employees)? updateStateLoaded,
-    TResult Function(String message)? updateStateFailure,
+    TResult Function(int taskId, int departmentId)? resetSearch,
+    TResult Function(int taskId, int departmentId)? loadEmployee,
+    TResult Function(
+            List<EmployeeModel> employees, int taskId, int departmentId)?
+        addSearchEmployees,
     required TResult orElse(),
   }) {
-    if (updateStateLoaded != null) {
-      return updateStateLoaded(employees);
+    if (addSearchEmployees != null) {
+      return addSearchEmployees(employees, taskId, departmentId);
     }
     return orElse();
   }
@@ -620,11 +738,10 @@ class _$UpdateStateLoadedImpl implements _UpdateStateLoaded {
   TResult map<TResult extends Object?>({
     required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
-    required TResult Function(_UpdateStateLoading value) updateStateLoading,
-    required TResult Function(_UpdateStateLoaded value) updateStateLoaded,
-    required TResult Function(_UpdateStateFailure value) updateStateFailure,
+    required TResult Function(_LoadEmployee value) loadEmployee,
+    required TResult Function(_AddSearchEmployees value) addSearchEmployees,
   }) {
-    return updateStateLoaded(this);
+    return addSearchEmployees(this);
   }
 
   @override
@@ -632,11 +749,10 @@ class _$UpdateStateLoadedImpl implements _UpdateStateLoaded {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
-    TResult? Function(_UpdateStateLoading value)? updateStateLoading,
-    TResult? Function(_UpdateStateLoaded value)? updateStateLoaded,
-    TResult? Function(_UpdateStateFailure value)? updateStateFailure,
+    TResult? Function(_LoadEmployee value)? loadEmployee,
+    TResult? Function(_AddSearchEmployees value)? addSearchEmployees,
   }) {
-    return updateStateLoaded?.call(this);
+    return addSearchEmployees?.call(this);
   }
 
   @override
@@ -644,188 +760,31 @@ class _$UpdateStateLoadedImpl implements _UpdateStateLoaded {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
-    TResult Function(_UpdateStateLoading value)? updateStateLoading,
-    TResult Function(_UpdateStateLoaded value)? updateStateLoaded,
-    TResult Function(_UpdateStateFailure value)? updateStateFailure,
+    TResult Function(_LoadEmployee value)? loadEmployee,
+    TResult Function(_AddSearchEmployees value)? addSearchEmployees,
     required TResult orElse(),
   }) {
-    if (updateStateLoaded != null) {
-      return updateStateLoaded(this);
+    if (addSearchEmployees != null) {
+      return addSearchEmployees(this);
     }
     return orElse();
   }
 }
 
-abstract class _UpdateStateLoaded implements SearchEmployeeEvent {
-  const factory _UpdateStateLoaded(
-      {required final List<EmployeeModel> employees}) = _$UpdateStateLoadedImpl;
+abstract class _AddSearchEmployees implements SearchEmployeeEvent {
+  const factory _AddSearchEmployees(
+      {required final List<EmployeeModel> employees,
+      required final int taskId,
+      required final int departmentId}) = _$AddSearchEmployeesImpl;
 
   List<EmployeeModel> get employees;
+  int get taskId;
+  int get departmentId;
 
   /// Create a copy of SearchEmployeeEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateStateLoadedImplCopyWith<_$UpdateStateLoadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UpdateStateFailureImplCopyWith<$Res> {
-  factory _$$UpdateStateFailureImplCopyWith(_$UpdateStateFailureImpl value,
-          $Res Function(_$UpdateStateFailureImpl) then) =
-      __$$UpdateStateFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
-}
-
-/// @nodoc
-class __$$UpdateStateFailureImplCopyWithImpl<$Res>
-    extends _$SearchEmployeeEventCopyWithImpl<$Res, _$UpdateStateFailureImpl>
-    implements _$$UpdateStateFailureImplCopyWith<$Res> {
-  __$$UpdateStateFailureImplCopyWithImpl(_$UpdateStateFailureImpl _value,
-      $Res Function(_$UpdateStateFailureImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SearchEmployeeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$UpdateStateFailureImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UpdateStateFailureImpl implements _UpdateStateFailure {
-  const _$UpdateStateFailureImpl({required this.message});
-
-  @override
-  final String message;
-
-  @override
-  String toString() {
-    return 'SearchEmployeeEvent.updateStateFailure(message: $message)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdateStateFailureImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  /// Create a copy of SearchEmployeeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UpdateStateFailureImplCopyWith<_$UpdateStateFailureImpl> get copyWith =>
-      __$$UpdateStateFailureImplCopyWithImpl<_$UpdateStateFailureImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String query) searchEmployee,
-    required TResult Function() resetSearch,
-    required TResult Function() updateStateLoading,
-    required TResult Function(List<EmployeeModel> employees) updateStateLoaded,
-    required TResult Function(String message) updateStateFailure,
-  }) {
-    return updateStateFailure(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String query)? searchEmployee,
-    TResult? Function()? resetSearch,
-    TResult? Function()? updateStateLoading,
-    TResult? Function(List<EmployeeModel> employees)? updateStateLoaded,
-    TResult? Function(String message)? updateStateFailure,
-  }) {
-    return updateStateFailure?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String query)? searchEmployee,
-    TResult Function()? resetSearch,
-    TResult Function()? updateStateLoading,
-    TResult Function(List<EmployeeModel> employees)? updateStateLoaded,
-    TResult Function(String message)? updateStateFailure,
-    required TResult orElse(),
-  }) {
-    if (updateStateFailure != null) {
-      return updateStateFailure(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SearchEmployee value) searchEmployee,
-    required TResult Function(_ResetSearch value) resetSearch,
-    required TResult Function(_UpdateStateLoading value) updateStateLoading,
-    required TResult Function(_UpdateStateLoaded value) updateStateLoaded,
-    required TResult Function(_UpdateStateFailure value) updateStateFailure,
-  }) {
-    return updateStateFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SearchEmployee value)? searchEmployee,
-    TResult? Function(_ResetSearch value)? resetSearch,
-    TResult? Function(_UpdateStateLoading value)? updateStateLoading,
-    TResult? Function(_UpdateStateLoaded value)? updateStateLoaded,
-    TResult? Function(_UpdateStateFailure value)? updateStateFailure,
-  }) {
-    return updateStateFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SearchEmployee value)? searchEmployee,
-    TResult Function(_ResetSearch value)? resetSearch,
-    TResult Function(_UpdateStateLoading value)? updateStateLoading,
-    TResult Function(_UpdateStateLoaded value)? updateStateLoaded,
-    TResult Function(_UpdateStateFailure value)? updateStateFailure,
-    required TResult orElse(),
-  }) {
-    if (updateStateFailure != null) {
-      return updateStateFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UpdateStateFailure implements SearchEmployeeEvent {
-  const factory _UpdateStateFailure({required final String message}) =
-      _$UpdateStateFailureImpl;
-
-  String get message;
-
-  /// Create a copy of SearchEmployeeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateStateFailureImplCopyWith<_$UpdateStateFailureImpl> get copyWith =>
+  _$$AddSearchEmployeesImplCopyWith<_$AddSearchEmployeesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

@@ -1,6 +1,6 @@
 import 'package:course_work/core/errors/failure.dart';
 import 'package:course_work/data/data_base/data_base.dart';
-import 'package:course_work/data/dtos/department_dto/department_dto.dart';
+import 'package:course_work/data/dtos/department_dto.dart';
 import 'package:course_work/domain/repositories/department_repository.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:fpdart/src/unit.dart';

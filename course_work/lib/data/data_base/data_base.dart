@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:course_work/domain/enums/position.dart';
+import 'package:course_work/domain/enums/role.dart';
 import 'package:drift/drift.dart';
 import 'package:drift_postgres/drift_postgres.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -43,7 +45,14 @@ class Employees extends Table {
   TextColumn get password => text()();
 }
 
-@DriftDatabase(tables: [DepartmentTasks, Departments, Tasks, Employees])
+class Participation extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  IntColumn get taskId => integer().references(Tasks, #id)();
+  IntColumn get employeeId => integer().references(Employees, #id)();
+}
+
+@DriftDatabase(
+    tables: [DepartmentTasks, Departments, Tasks, Employees, Participation])
 class AppDatabase extends _$AppDatabase implements Disposable {
   AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
 
@@ -91,6 +100,16 @@ class AppDatabase extends _$AppDatabase implements Disposable {
         DepartmentsCompanion(title: Value('Информационная безопасность')),
         DepartmentsCompanion(title: Value('Информационные системы')),
       ]);
+      batch.insert(
+          employees,
+          EmployeesCompanion(
+              departmentId: Value(1),
+              firstName: Value('Admin'),
+              lastName: Value('Admin'),
+              position: Value(Position.teacher.value),
+              role: Value(Role.administrator.value),
+              email: Value('admin@mail.ru'),
+              password: Value('admin')));
     });
   }
 }

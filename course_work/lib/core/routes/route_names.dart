@@ -4,4 +4,5 @@ class RoutesNames {
   static const task = 'task';
   static const employee = 'employee';
   static const profile = 'profile';
+  static const taskForHeadOfDepartment = 'taskForHeadOfDepartment';
 }

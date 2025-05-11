@@ -1,26 +1,34 @@
 import 'package:course_work/core/pages/profile_page.dart';
 import 'package:course_work/core/routes/route_names.dart';
 import 'package:course_work/presentation/auth/pages/login_page.dart';
-import 'package:course_work/presentation/department/pages/department_page.dart';
-import 'package:course_work/presentation/employee/pages/employee_page.dart';
-import 'package:course_work/presentation/task/pages/task_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../bloc/current_emploee_bloc/current_employee_bloc.dart';
+import '../../presentation/administrator/department/pages/department_page.dart';
+import '../../presentation/administrator/employee/pages/employee_page.dart';
+import '../../presentation/administrator/task/pages/task_page.dart';
+import '../../presentation/head_of_department/task/pages/task_department_page.dart';
 import '../../presentation/navigation_bar/administrator.dart';
 import '../dependencies/dependencies.dart';
 
 final GoRouter router = GoRouter(
-    initialLocation: getIt<SharedPreferences>().getInt('id') != null
-        ? '/department'
-        : '/login',
+    // initialLocation: getIt<SharedPreferences>().getInt('id') != null
+    //     ? '/department'
+    //     : '/login',
     routes: [
       GoRoute(
           name: RoutesNames.login,
           path: '/login',
           builder: (context, state) => const LoginPage()),
+      GoRoute(
+        name: RoutesNames.taskForHeadOfDepartment,
+        path: '/',
+        builder: (context, state) => TaskDepartmentPage(
+          departmentId: getIt<SharedPreferences>().getInt('departmentId')!,
+        ),
+      ),
       GoRoute(
         name: RoutesNames.task,
         path: '/task/:departmentId',

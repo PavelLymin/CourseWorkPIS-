@@ -1,12 +1,13 @@
 import 'package:course_work/core/errors/failure.dart';
-import 'package:course_work/core/utils/app_strings.dart';
 import 'package:course_work/data/data_base/data_base.dart';
-import 'package:course_work/data/dtos/employee_dto/employee_dto.dart';
+import 'package:course_work/data/dtos/employee_dto.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
 import 'package:course_work/domain/repositories/employee_repository.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:fpdart/src/unit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../core/utils/app_strings.dart';
 
 class EmployeeRepositoryImpl implements IEmployeeRepository {
   EmployeeRepositoryImpl({required this.database, required this.preferences});

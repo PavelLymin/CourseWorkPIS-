@@ -29,7 +29,8 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
     final result = await repository.addEmployee(employee: event.employee);
     result.fold(
         (failure) => emit(EmployeesState.failure(message: failure.message)),
-        (_) => _loadEmployees(departmentId: event.departmentId));
+        (_) => add(
+            _LoadEmployeesByDepartmentId(departmentId: event.departmentId)));
   }
 
   Future<void> _deleteEmployee(
@@ -39,7 +40,8 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
         await repository.deleteEmployee(employeeId: event.employeeId);
     result.fold(
         (failure) => emit(EmployeesState.failure(message: failure.message)),
-        (_) => _loadEmployees(departmentId: event.departmentId));
+        (_) => add(
+            _LoadEmployeesByDepartmentId(departmentId: event.departmentId)));
   }
 
   Future<void> _updateEmployee(
@@ -50,7 +52,8 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
         changedEmployee: event.changedEmployee);
     result.fold(
         (failure) => emit(EmployeesState.failure(message: failure.message)),
-        (_) => _loadEmployees(departmentId: event.departmentId));
+        (_) => add(
+            _LoadEmployeesByDepartmentId(departmentId: event.departmentId)));
   }
 
   Future<void> _loadAllEmployees(Emitter<EmployeesState> emit) async {
@@ -70,12 +73,5 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
         (failure) => emit(EmployeesState.failure(message: failure.message)),
         (employees) =>
             emit(EmployeesState.loadedEmployees(employees: employees)));
-  }
-
-  void _loadEmployees({required int? departmentId}) {
-    if (departmentId != null) {
-      add(_LoadEmployeesByDepartmentId(departmentId: departmentId));
-    }
-    add(_LoadAllEmployees());
   }
 }

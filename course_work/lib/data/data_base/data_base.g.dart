@@ -1292,6 +1292,232 @@ class EmployeesCompanion extends UpdateCompanion<Employee> {
   }
 }
 
+class $ParticipationTable extends Participation
+    with TableInfo<$ParticipationTable, ParticipationData> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ParticipationTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _taskIdMeta = const VerificationMeta('taskId');
+  @override
+  late final GeneratedColumn<int> taskId = GeneratedColumn<int>(
+      'task_id', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: true,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('REFERENCES tasks (id)'));
+  static const VerificationMeta _employeeIdMeta =
+      const VerificationMeta('employeeId');
+  @override
+  late final GeneratedColumn<int> employeeId = GeneratedColumn<int>(
+      'employee_id', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: true,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('REFERENCES employees (id)'));
+  @override
+  List<GeneratedColumn> get $columns => [id, taskId, employeeId];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'participation';
+  @override
+  VerificationContext validateIntegrity(Insertable<ParticipationData> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('task_id')) {
+      context.handle(_taskIdMeta,
+          taskId.isAcceptableOrUnknown(data['task_id']!, _taskIdMeta));
+    } else if (isInserting) {
+      context.missing(_taskIdMeta);
+    }
+    if (data.containsKey('employee_id')) {
+      context.handle(
+          _employeeIdMeta,
+          employeeId.isAcceptableOrUnknown(
+              data['employee_id']!, _employeeIdMeta));
+    } else if (isInserting) {
+      context.missing(_employeeIdMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ParticipationData map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ParticipationData(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      taskId: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}task_id'])!,
+      employeeId: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}employee_id'])!,
+    );
+  }
+
+  @override
+  $ParticipationTable createAlias(String alias) {
+    return $ParticipationTable(attachedDatabase, alias);
+  }
+}
+
+class ParticipationData extends DataClass
+    implements Insertable<ParticipationData> {
+  final int id;
+  final int taskId;
+  final int employeeId;
+  const ParticipationData(
+      {required this.id, required this.taskId, required this.employeeId});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['task_id'] = Variable<int>(taskId);
+    map['employee_id'] = Variable<int>(employeeId);
+    return map;
+  }
+
+  ParticipationCompanion toCompanion(bool nullToAbsent) {
+    return ParticipationCompanion(
+      id: Value(id),
+      taskId: Value(taskId),
+      employeeId: Value(employeeId),
+    );
+  }
+
+  factory ParticipationData.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ParticipationData(
+      id: serializer.fromJson<int>(json['id']),
+      taskId: serializer.fromJson<int>(json['taskId']),
+      employeeId: serializer.fromJson<int>(json['employeeId']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'taskId': serializer.toJson<int>(taskId),
+      'employeeId': serializer.toJson<int>(employeeId),
+    };
+  }
+
+  ParticipationData copyWith({int? id, int? taskId, int? employeeId}) =>
+      ParticipationData(
+        id: id ?? this.id,
+        taskId: taskId ?? this.taskId,
+        employeeId: employeeId ?? this.employeeId,
+      );
+  ParticipationData copyWithCompanion(ParticipationCompanion data) {
+    return ParticipationData(
+      id: data.id.present ? data.id.value : this.id,
+      taskId: data.taskId.present ? data.taskId.value : this.taskId,
+      employeeId:
+          data.employeeId.present ? data.employeeId.value : this.employeeId,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ParticipationData(')
+          ..write('id: $id, ')
+          ..write('taskId: $taskId, ')
+          ..write('employeeId: $employeeId')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, taskId, employeeId);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ParticipationData &&
+          other.id == this.id &&
+          other.taskId == this.taskId &&
+          other.employeeId == this.employeeId);
+}
+
+class ParticipationCompanion extends UpdateCompanion<ParticipationData> {
+  final Value<int> id;
+  final Value<int> taskId;
+  final Value<int> employeeId;
+  const ParticipationCompanion({
+    this.id = const Value.absent(),
+    this.taskId = const Value.absent(),
+    this.employeeId = const Value.absent(),
+  });
+  ParticipationCompanion.insert({
+    this.id = const Value.absent(),
+    required int taskId,
+    required int employeeId,
+  })  : taskId = Value(taskId),
+        employeeId = Value(employeeId);
+  static Insertable<ParticipationData> custom({
+    Expression<int>? id,
+    Expression<int>? taskId,
+    Expression<int>? employeeId,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (taskId != null) 'task_id': taskId,
+      if (employeeId != null) 'employee_id': employeeId,
+    });
+  }
+
+  ParticipationCompanion copyWith(
+      {Value<int>? id, Value<int>? taskId, Value<int>? employeeId}) {
+    return ParticipationCompanion(
+      id: id ?? this.id,
+      taskId: taskId ?? this.taskId,
+      employeeId: employeeId ?? this.employeeId,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (taskId.present) {
+      map['task_id'] = Variable<int>(taskId.value);
+    }
+    if (employeeId.present) {
+      map['employee_id'] = Variable<int>(employeeId.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ParticipationCompanion(')
+          ..write('id: $id, ')
+          ..write('taskId: $taskId, ')
+          ..write('employeeId: $employeeId')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -1300,12 +1526,13 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $DepartmentTasksTable departmentTasks =
       $DepartmentTasksTable(this);
   late final $EmployeesTable employees = $EmployeesTable(this);
+  late final $ParticipationTable participation = $ParticipationTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities =>
-      [tasks, departments, departmentTasks, employees];
+      [tasks, departments, departmentTasks, employees, participation];
 }
 
 typedef $$TasksTableCreateCompanionBuilder = TasksCompanion Function({
@@ -1348,6 +1575,21 @@ final class $$TasksTableReferences
 
     final cache =
         $_typedResult.readTableOrNull(_departmentTasksRefsTable($_db));
+    return ProcessedTableManager(
+        manager.$state.copyWith(prefetchedData: cache));
+  }
+
+  static MultiTypedResultKey<$ParticipationTable, List<ParticipationData>>
+      _participationRefsTable(_$AppDatabase db) =>
+          MultiTypedResultKey.fromTable(db.participation,
+              aliasName:
+                  $_aliasNameGenerator(db.tasks.id, db.participation.taskId));
+
+  $$ParticipationTableProcessedTableManager get participationRefs {
+    final manager = $$ParticipationTableTableManager($_db, $_db.participation)
+        .filter((f) => f.taskId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_participationRefsTable($_db));
     return ProcessedTableManager(
         manager.$state.copyWith(prefetchedData: cache));
   }
@@ -1401,6 +1643,27 @@ class $$TasksTableFilterComposer extends Composer<_$AppDatabase, $TasksTable> {
             $$DepartmentTasksTableFilterComposer(
               $db: $db,
               $table: $db.departmentTasks,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return f(composer);
+  }
+
+  Expression<bool> participationRefs(
+      Expression<bool> Function($$ParticipationTableFilterComposer f) f) {
+    final $$ParticipationTableFilterComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.id,
+        referencedTable: $db.participation,
+        getReferencedColumn: (t) => t.taskId,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$ParticipationTableFilterComposer(
+              $db: $db,
+              $table: $db.participation,
               $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
               joinBuilder: joinBuilder,
               $removeJoinBuilderFromRootComposer:
@@ -1504,6 +1767,27 @@ class $$TasksTableAnnotationComposer
             ));
     return f(composer);
   }
+
+  Expression<T> participationRefs<T extends Object>(
+      Expression<T> Function($$ParticipationTableAnnotationComposer a) f) {
+    final $$ParticipationTableAnnotationComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.id,
+        referencedTable: $db.participation,
+        getReferencedColumn: (t) => t.taskId,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$ParticipationTableAnnotationComposer(
+              $db: $db,
+              $table: $db.participation,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return f(composer);
+  }
 }
 
 class $$TasksTableTableManager extends RootTableManager<
@@ -1517,7 +1801,8 @@ class $$TasksTableTableManager extends RootTableManager<
     $$TasksTableUpdateCompanionBuilder,
     (Task, $$TasksTableReferences),
     Task,
-    PrefetchHooks Function({bool departmentTasksRefs})> {
+    PrefetchHooks Function(
+        {bool departmentTasksRefs, bool participationRefs})> {
   $$TasksTableTableManager(_$AppDatabase db, $TasksTable table)
       : super(TableManagerState(
           db: db,
@@ -1576,11 +1861,13 @@ class $$TasksTableTableManager extends RootTableManager<
               .map((e) =>
                   (e.readTable(table), $$TasksTableReferences(db, table, e)))
               .toList(),
-          prefetchHooksCallback: ({departmentTasksRefs = false}) {
+          prefetchHooksCallback: (
+              {departmentTasksRefs = false, participationRefs = false}) {
             return PrefetchHooks(
               db: db,
               explicitlyWatchedTables: [
-                if (departmentTasksRefs) db.departmentTasks
+                if (departmentTasksRefs) db.departmentTasks,
+                if (participationRefs) db.participation
               ],
               addJoins: null,
               getPrefetchedDataCallback: (items) async {
@@ -1594,6 +1881,19 @@ class $$TasksTableTableManager extends RootTableManager<
                         managerFromTypedResult: (p0) =>
                             $$TasksTableReferences(db, table, p0)
                                 .departmentTasksRefs,
+                        referencedItemsForCurrentItem: (item,
+                                referencedItems) =>
+                            referencedItems.where((e) => e.taskId == item.id),
+                        typedResults: items),
+                  if (participationRefs)
+                    await $_getPrefetchedData<Task, $TasksTable,
+                            ParticipationData>(
+                        currentTable: table,
+                        referencedTable:
+                            $$TasksTableReferences._participationRefsTable(db),
+                        managerFromTypedResult: (p0) =>
+                            $$TasksTableReferences(db, table, p0)
+                                .participationRefs,
                         referencedItemsForCurrentItem: (item,
                                 referencedItems) =>
                             referencedItems.where((e) => e.taskId == item.id),
@@ -1616,7 +1916,7 @@ typedef $$TasksTableProcessedTableManager = ProcessedTableManager<
     $$TasksTableUpdateCompanionBuilder,
     (Task, $$TasksTableReferences),
     Task,
-    PrefetchHooks Function({bool departmentTasksRefs})>;
+    PrefetchHooks Function({bool departmentTasksRefs, bool participationRefs})>;
 typedef $$DepartmentsTableCreateCompanionBuilder = DepartmentsCompanion
     Function({
   Value<int> id,
@@ -2253,6 +2553,21 @@ final class $$EmployeesTableReferences
     return ProcessedTableManager(
         manager.$state.copyWith(prefetchedData: [item]));
   }
+
+  static MultiTypedResultKey<$ParticipationTable, List<ParticipationData>>
+      _participationRefsTable(_$AppDatabase db) =>
+          MultiTypedResultKey.fromTable(db.participation,
+              aliasName: $_aliasNameGenerator(
+                  db.employees.id, db.participation.employeeId));
+
+  $$ParticipationTableProcessedTableManager get participationRefs {
+    final manager = $$ParticipationTableTableManager($_db, $_db.participation)
+        .filter((f) => f.employeeId.id.sqlEquals($_itemColumn<int>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_participationRefsTable($_db));
+    return ProcessedTableManager(
+        manager.$state.copyWith(prefetchedData: cache));
+  }
 }
 
 class $$EmployeesTableFilterComposer
@@ -2303,6 +2618,27 @@ class $$EmployeesTableFilterComposer
                   $removeJoinBuilderFromRootComposer,
             ));
     return composer;
+  }
+
+  Expression<bool> participationRefs(
+      Expression<bool> Function($$ParticipationTableFilterComposer f) f) {
+    final $$ParticipationTableFilterComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.id,
+        referencedTable: $db.participation,
+        getReferencedColumn: (t) => t.employeeId,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$ParticipationTableFilterComposer(
+              $db: $db,
+              $table: $db.participation,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return f(composer);
   }
 }
 
@@ -2406,6 +2742,27 @@ class $$EmployeesTableAnnotationComposer
             ));
     return composer;
   }
+
+  Expression<T> participationRefs<T extends Object>(
+      Expression<T> Function($$ParticipationTableAnnotationComposer a) f) {
+    final $$ParticipationTableAnnotationComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.id,
+        referencedTable: $db.participation,
+        getReferencedColumn: (t) => t.employeeId,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$ParticipationTableAnnotationComposer(
+              $db: $db,
+              $table: $db.participation,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return f(composer);
+  }
 }
 
 class $$EmployeesTableTableManager extends RootTableManager<
@@ -2419,7 +2776,7 @@ class $$EmployeesTableTableManager extends RootTableManager<
     $$EmployeesTableUpdateCompanionBuilder,
     (Employee, $$EmployeesTableReferences),
     Employee,
-    PrefetchHooks Function({bool departmentId})> {
+    PrefetchHooks Function({bool departmentId, bool participationRefs})> {
   $$EmployeesTableTableManager(_$AppDatabase db, $EmployeesTable table)
       : super(TableManagerState(
           db: db,
@@ -2476,10 +2833,13 @@ class $$EmployeesTableTableManager extends RootTableManager<
                     $$EmployeesTableReferences(db, table, e)
                   ))
               .toList(),
-          prefetchHooksCallback: ({departmentId = false}) {
+          prefetchHooksCallback: (
+              {departmentId = false, participationRefs = false}) {
             return PrefetchHooks(
               db: db,
-              explicitlyWatchedTables: [],
+              explicitlyWatchedTables: [
+                if (participationRefs) db.participation
+              ],
               addJoins: <
                   T extends TableManagerState<
                       dynamic,
@@ -2507,7 +2867,21 @@ class $$EmployeesTableTableManager extends RootTableManager<
                 return state;
               },
               getPrefetchedDataCallback: (items) async {
-                return [];
+                return [
+                  if (participationRefs)
+                    await $_getPrefetchedData<Employee, $EmployeesTable,
+                            ParticipationData>(
+                        currentTable: table,
+                        referencedTable: $$EmployeesTableReferences
+                            ._participationRefsTable(db),
+                        managerFromTypedResult: (p0) =>
+                            $$EmployeesTableReferences(db, table, p0)
+                                .participationRefs,
+                        referencedItemsForCurrentItem:
+                            (item, referencedItems) => referencedItems
+                                .where((e) => e.employeeId == item.id),
+                        typedResults: items)
+                ];
               },
             );
           },
@@ -2525,7 +2899,322 @@ typedef $$EmployeesTableProcessedTableManager = ProcessedTableManager<
     $$EmployeesTableUpdateCompanionBuilder,
     (Employee, $$EmployeesTableReferences),
     Employee,
-    PrefetchHooks Function({bool departmentId})>;
+    PrefetchHooks Function({bool departmentId, bool participationRefs})>;
+typedef $$ParticipationTableCreateCompanionBuilder = ParticipationCompanion
+    Function({
+  Value<int> id,
+  required int taskId,
+  required int employeeId,
+});
+typedef $$ParticipationTableUpdateCompanionBuilder = ParticipationCompanion
+    Function({
+  Value<int> id,
+  Value<int> taskId,
+  Value<int> employeeId,
+});
+
+final class $$ParticipationTableReferences extends BaseReferences<_$AppDatabase,
+    $ParticipationTable, ParticipationData> {
+  $$ParticipationTableReferences(
+      super.$_db, super.$_table, super.$_typedResult);
+
+  static $TasksTable _taskIdTable(_$AppDatabase db) => db.tasks
+      .createAlias($_aliasNameGenerator(db.participation.taskId, db.tasks.id));
+
+  $$TasksTableProcessedTableManager get taskId {
+    final $_column = $_itemColumn<int>('task_id')!;
+
+    final manager = $$TasksTableTableManager($_db, $_db.tasks)
+        .filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_taskIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+        manager.$state.copyWith(prefetchedData: [item]));
+  }
+
+  static $EmployeesTable _employeeIdTable(_$AppDatabase db) =>
+      db.employees.createAlias(
+          $_aliasNameGenerator(db.participation.employeeId, db.employees.id));
+
+  $$EmployeesTableProcessedTableManager get employeeId {
+    final $_column = $_itemColumn<int>('employee_id')!;
+
+    final manager = $$EmployeesTableTableManager($_db, $_db.employees)
+        .filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_employeeIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+        manager.$state.copyWith(prefetchedData: [item]));
+  }
+}
+
+class $$ParticipationTableFilterComposer
+    extends Composer<_$AppDatabase, $ParticipationTable> {
+  $$ParticipationTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  $$TasksTableFilterComposer get taskId {
+    final $$TasksTableFilterComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.taskId,
+        referencedTable: $db.tasks,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$TasksTableFilterComposer(
+              $db: $db,
+              $table: $db.tasks,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return composer;
+  }
+
+  $$EmployeesTableFilterComposer get employeeId {
+    final $$EmployeesTableFilterComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.employeeId,
+        referencedTable: $db.employees,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$EmployeesTableFilterComposer(
+              $db: $db,
+              $table: $db.employees,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return composer;
+  }
+}
+
+class $$ParticipationTableOrderingComposer
+    extends Composer<_$AppDatabase, $ParticipationTable> {
+  $$ParticipationTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  $$TasksTableOrderingComposer get taskId {
+    final $$TasksTableOrderingComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.taskId,
+        referencedTable: $db.tasks,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$TasksTableOrderingComposer(
+              $db: $db,
+              $table: $db.tasks,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return composer;
+  }
+
+  $$EmployeesTableOrderingComposer get employeeId {
+    final $$EmployeesTableOrderingComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.employeeId,
+        referencedTable: $db.employees,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$EmployeesTableOrderingComposer(
+              $db: $db,
+              $table: $db.employees,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return composer;
+  }
+}
+
+class $$ParticipationTableAnnotationComposer
+    extends Composer<_$AppDatabase, $ParticipationTable> {
+  $$ParticipationTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  $$TasksTableAnnotationComposer get taskId {
+    final $$TasksTableAnnotationComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.taskId,
+        referencedTable: $db.tasks,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$TasksTableAnnotationComposer(
+              $db: $db,
+              $table: $db.tasks,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return composer;
+  }
+
+  $$EmployeesTableAnnotationComposer get employeeId {
+    final $$EmployeesTableAnnotationComposer composer = $composerBuilder(
+        composer: this,
+        getCurrentColumn: (t) => t.employeeId,
+        referencedTable: $db.employees,
+        getReferencedColumn: (t) => t.id,
+        builder: (joinBuilder,
+                {$addJoinBuilderToRootComposer,
+                $removeJoinBuilderFromRootComposer}) =>
+            $$EmployeesTableAnnotationComposer(
+              $db: $db,
+              $table: $db.employees,
+              $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+              joinBuilder: joinBuilder,
+              $removeJoinBuilderFromRootComposer:
+                  $removeJoinBuilderFromRootComposer,
+            ));
+    return composer;
+  }
+}
+
+class $$ParticipationTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $ParticipationTable,
+    ParticipationData,
+    $$ParticipationTableFilterComposer,
+    $$ParticipationTableOrderingComposer,
+    $$ParticipationTableAnnotationComposer,
+    $$ParticipationTableCreateCompanionBuilder,
+    $$ParticipationTableUpdateCompanionBuilder,
+    (ParticipationData, $$ParticipationTableReferences),
+    ParticipationData,
+    PrefetchHooks Function({bool taskId, bool employeeId})> {
+  $$ParticipationTableTableManager(_$AppDatabase db, $ParticipationTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$ParticipationTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$ParticipationTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$ParticipationTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<int> taskId = const Value.absent(),
+            Value<int> employeeId = const Value.absent(),
+          }) =>
+              ParticipationCompanion(
+            id: id,
+            taskId: taskId,
+            employeeId: employeeId,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            required int taskId,
+            required int employeeId,
+          }) =>
+              ParticipationCompanion.insert(
+            id: id,
+            taskId: taskId,
+            employeeId: employeeId,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (
+                    e.readTable(table),
+                    $$ParticipationTableReferences(db, table, e)
+                  ))
+              .toList(),
+          prefetchHooksCallback: ({taskId = false, employeeId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins: <
+                  T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic>>(state) {
+                if (taskId) {
+                  state = state.withJoin(
+                    currentTable: table,
+                    currentColumn: table.taskId,
+                    referencedTable:
+                        $$ParticipationTableReferences._taskIdTable(db),
+                    referencedColumn:
+                        $$ParticipationTableReferences._taskIdTable(db).id,
+                  ) as T;
+                }
+                if (employeeId) {
+                  state = state.withJoin(
+                    currentTable: table,
+                    currentColumn: table.employeeId,
+                    referencedTable:
+                        $$ParticipationTableReferences._employeeIdTable(db),
+                    referencedColumn:
+                        $$ParticipationTableReferences._employeeIdTable(db).id,
+                  ) as T;
+                }
+
+                return state;
+              },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ));
+}
+
+typedef $$ParticipationTableProcessedTableManager = ProcessedTableManager<
+    _$AppDatabase,
+    $ParticipationTable,
+    ParticipationData,
+    $$ParticipationTableFilterComposer,
+    $$ParticipationTableOrderingComposer,
+    $$ParticipationTableAnnotationComposer,
+    $$ParticipationTableCreateCompanionBuilder,
+    $$ParticipationTableUpdateCompanionBuilder,
+    (ParticipationData, $$ParticipationTableReferences),
+    ParticipationData,
+    PrefetchHooks Function({bool taskId, bool employeeId})>;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -2538,4 +3227,6 @@ class $AppDatabaseManager {
       $$DepartmentTasksTableTableManager(_db, _db.departmentTasks);
   $$EmployeesTableTableManager get employees =>
       $$EmployeesTableTableManager(_db, _db.employees);
+  $$ParticipationTableTableManager get participation =>
+      $$ParticipationTableTableManager(_db, _db.participation);
 }

@@ -3,7 +3,7 @@ import 'package:course_work/domain/enums/position.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
 import 'package:flutter/material.dart';
 
-import '../../presentation/employee/widgets/drop_down_button.dart';
+import '../../presentation/administrator/employee/widgets/drop_down_button.dart';
 import 'custom_text_form_field.dart';
 
 class ProfileData extends StatefulWidget {

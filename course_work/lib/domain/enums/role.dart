@@ -1,4 +1,5 @@
 enum Role {
+  administrator('Администратор'),
   employee('Сотрудник'),
   headOfDepartment('Заведующий кафедры');
 

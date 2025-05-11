@@ -49,5 +49,6 @@ class AppStrings {
   static const notFoundEmployee = 'Пользователь не найден.';
   static const add = 'Добавить';
   static const update = 'Редактировать';
+  static const save = 'Сохранить';
   static const required = 'Обязательное поле';
 }

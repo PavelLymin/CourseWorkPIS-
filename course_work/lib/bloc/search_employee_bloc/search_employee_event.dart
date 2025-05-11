@@ -6,15 +6,19 @@ class SearchEmployeeEvent with _$SearchEmployeeEvent {
     required String query,
   }) = _SearchEmployee;
 
-  const factory SearchEmployeeEvent.resetSearch() = _ResetSearch;
+  const factory SearchEmployeeEvent.resetSearch({
+    required int taskId,
+    required int departmentId,
+  }) = _ResetSearch;
 
-  const factory SearchEmployeeEvent.updateStateLoading() = _UpdateStateLoading;
+  const factory SearchEmployeeEvent.loadEmployee({
+    required int taskId,
+    required int departmentId,
+  }) = _LoadEmployee;
 
-  const factory SearchEmployeeEvent.updateStateLoaded({
+  const factory SearchEmployeeEvent.addSearchEmployees({
     required List<EmployeeModel> employees,
-  }) = _UpdateStateLoaded;
-
-  const factory SearchEmployeeEvent.updateStateFailure({
-    required String message,
-  }) = _UpdateStateFailure;
+    required int taskId,
+    required int departmentId,
+  }) = _AddSearchEmployees;
 }

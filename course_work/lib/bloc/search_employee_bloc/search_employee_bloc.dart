@@ -1,10 +1,7 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
+import 'package:course_work/domain/repositories/search_employee_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../employees_bloc/employees_bloc.dart';
 
 part 'search_employee_bloc.freezed.dart';
 part 'search_employee_event.dart';
@@ -12,67 +9,66 @@ part 'search_employee_state.dart';
 
 class SearchEmployeeBloc
     extends Bloc<SearchEmployeeEvent, SearchEmployeeState> {
-  late StreamSubscription<EmployeesState> _subscription;
-  List<EmployeeModel> _allEmployees = [];
-  List<EmployeeModel> _filteredEmployees = [];
+  final ISearchEmployeeRepository _repository;
 
   SearchEmployeeBloc({
-    required Stream<EmployeesState> stream,
-  }) : super(const SearchEmployeeState.loading()) {
-    _subscription = stream.listen((state) {
-      state.map(
-          loading: (_) => add(SearchEmployeeEvent.updateStateLoading()),
-          loadedEmployees: (state) => add(SearchEmployeeEvent.updateStateLoaded(
-              employees: state.employees)),
-          failure: (state) => add(
-              SearchEmployeeEvent.updateStateFailure(message: state.message)));
-    });
-
+    required ISearchEmployeeRepository repository,
+  })  : _repository = repository,
+        super(const SearchEmployeeState.loading()) {
     on<SearchEmployeeEvent>((event, emit) async {
-      event.map(
-          searchEmployee: (event) async => await _search(emit, event),
-          resetSearch: (_) => _resetSearch(emit),
-          updateStateLoading: (_) => _updateStateLoading(emit),
-          updateStateLoaded: (event) => _updateStateLoaded(emit, event),
-          updateStateFailure: (event) => _updateStateFailure(emit, event));
+      await event.map(
+        loadEmployee: (event) => _loadEmployee(emit, event),
+        searchEmployee: (event) => _searchEmployee(emit, event),
+        resetSearch: (event) => _resetSearch(emit, event),
+        addSearchEmployees: (event) => _addSearchEmployees(emit, event),
+      );
     });
   }
+  Future<void> _loadEmployee(
+      Emitter<SearchEmployeeState> emit, _LoadEmployee event) async {
+    final result = await _repository.getEmployeesWithoutParticipation(
+        taskId: event.taskId, departmentId: event.departmentId);
 
-  Future<void> _search(
+    result.fold(
+        (failure) =>
+            emit(SearchEmployeeState.failure(message: failure.message)),
+        (employees) => emit(SearchEmployeeState.loaded(employees: employees)));
+  }
+
+  Future<void> _searchEmployee(
       Emitter<SearchEmployeeState> emit, _SearchEmployee event) async {
     emit(SearchEmployeeState.loading());
-    final queryToLowerCase = event.query.toLowerCase();
 
-    _filteredEmployees = _allEmployees
-        .where((employee) => (employee.firstName.contains(queryToLowerCase) ||
-            employee.lastName.contains(queryToLowerCase)))
-        .toList();
+    final result = _repository.searchEmployee(query: event.query);
 
-    emit(SearchEmployeeState.loaded(employees: _filteredEmployees));
+    result.fold(
+        (failure) =>
+            emit(SearchEmployeeState.failure(message: failure.message)),
+        (employees) => emit(SearchEmployeeState.loaded(employees: employees)));
   }
 
-  void _resetSearch(Emitter<SearchEmployeeState> emit) {
-    emit(SearchEmployeeState.loaded(employees: _allEmployees));
-  }
-
-  void _updateStateLoading(Emitter<SearchEmployeeState> emit) {
+  Future<void> _resetSearch(
+      Emitter<SearchEmployeeState> emit, _ResetSearch event) async {
     emit(SearchEmployeeState.loading());
+
+    add(_LoadEmployee(
+      taskId: event.taskId,
+      departmentId: event.departmentId,
+    ));
   }
 
-  void _updateStateLoaded(
-      Emitter<SearchEmployeeState> emit, _UpdateStateLoaded event) {
-    _allEmployees = event.employees;
-    emit(SearchEmployeeState.loaded(employees: _allEmployees));
-  }
+  Future<void> _addSearchEmployees(
+      Emitter<SearchEmployeeState> emit, _AddSearchEmployees event) async {
+    emit(SearchEmployeeState.loading());
 
-  void _updateStateFailure(
-      Emitter<SearchEmployeeState> emit, _UpdateStateFailure event) {
-    emit(SearchEmployeeState.failure(message: event.message));
-  }
+    final result = await _repository.addSearchEmployees(
+        employees: event.employees, taskId: event.taskId);
 
-  @override
-  Future<void> close() {
-    _subscription.cancel();
-    return super.close();
+    result.fold(
+      (failure) => emit(SearchEmployeeState.failure(message: failure.message)),
+      (employees) => add(
+        _LoadEmployee(taskId: event.taskId, departmentId: event.departmentId),
+      ),
+    );
   }
 }
