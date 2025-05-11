@@ -36,7 +36,7 @@ class _CustomChoiceChipState extends State<CustomChoiceChip> {
         selectedColor: AppColors.primaryColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(25.0),
-          side: const BorderSide(color: Colors.transparent),
+          side: const BorderSide(color: AppColors.primaryColor),
         ),
         selected: widget.isSelected,
         onSelected: widget.onSelected,

@@ -1,6 +1,6 @@
 class AppStrings {
   // Кафедры
-  static const department = 'Кафедры';
+  static const departments = 'Кафедры';
   static const nameDepartment = 'Название кафедры';
   static const titleTask = 'Название задания';
 
@@ -23,6 +23,7 @@ class AppStrings {
   static const position = 'Должность';
   static const role = 'Роль';
   static const password = 'Пароль';
+  static const generatePassword = 'Генерация пароля';
 
   // Заведующий кафедры
   static const headOfDepartment = 'Заведующий';
@@ -38,6 +39,9 @@ class AppStrings {
   static const updatingEmployee = 'Редактирование сотрудника';
 
   // Специальные
+  static const login = 'Войти';
+  static const logOut = 'Выйти';
+  static const profile = 'Профиль';
   static const warning = 'Внимание';
   static const deleteDialogInfo =
       'При удалении кафедры, удаляться все задания этой кафедры';

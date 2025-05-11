@@ -1,14 +1,17 @@
 import 'package:course_work/core/errors/failure.dart';
+import 'package:course_work/core/utils/app_strings.dart';
 import 'package:course_work/data/data_base/data_base.dart';
 import 'package:course_work/data/dtos/employee_dto/employee_dto.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
 import 'package:course_work/domain/repositories/employee_repository.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:fpdart/src/unit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class EmployeeRepositoryImpl implements IEmployeeRepository {
-  EmployeeRepositoryImpl({required this.database});
+  EmployeeRepositoryImpl({required this.database, required this.preferences});
   final AppDatabase database;
+  final SharedPreferences preferences;
 
   @override
   Future<Either<Failure, Unit>> addEmployee({
@@ -41,15 +44,36 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
   }
 
   @override
+  Future<Either<Failure, EmployeeModel>> getEmployee() async {
+    try {
+      final employeeId = preferences.getInt('id');
+
+      if (employeeId == null) {
+        return left(Failure(message: AppStrings.notFoundEmployee));
+      }
+
+      final employeesDb = await (database.select(database.employees)
+            ..where((row) => row.id.equals(employeeId)))
+          .getSingle();
+
+      final employee = EmployeeDto.fromDataBase(employeesDb).toDomain();
+
+      return right(employee);
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
   Future<Either<Failure, List<EmployeeModel>>> getAllEmployees() async {
     try {
-      final tasksDb = await database.select(database.employees).get();
+      final employeesDb = await database.select(database.employees).get();
 
-      final tasks = tasksDb
+      final employees = employeesDb
           .map((element) => EmployeeDto.fromDataBase(element).toDomain())
           .toList();
 
-      return right(tasks);
+      return right(employees);
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
@@ -60,15 +84,15 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
     required int departmentId,
   }) async {
     try {
-      final tasksDb = await (database.select(database.employees)
+      final employeesDb = await (database.select(database.employees)
             ..where((row) => row.departmentId.equals(departmentId)))
           .get();
 
-      final tasks = tasksDb
+      final employees = employeesDb
           .map((element) => EmployeeDto.fromDataBase(element).toDomain())
           .toList();
 
-      return right(tasks);
+      return right(employees);
     } catch (e) {
       return left(Failure(message: e.toString()));
     }

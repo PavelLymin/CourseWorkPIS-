@@ -1,3 +1,4 @@
+import 'package:course_work/core/utils/app_strings.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
 import 'package:course_work/presentation/employee/pages/add_edit_employee_page.dart';
 import 'package:flutter/material.dart';
@@ -42,10 +43,15 @@ class ListTileEmployee extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const Divider(height: 1),
               ListTile(
                 title: Text('${employee.firstName} ${employee.lastName}'),
-                subtitle: Text('Должность ${employee.position.value}'),
+                subtitle: Text(
+                  '${AppStrings.position} ${employee.position.value}',
+                ),
+                trailing: Icon(Icons.person),
               ),
+              const Divider(height: 1),
             ],
           ),
         ),

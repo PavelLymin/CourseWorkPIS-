@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../employee_bloc/employee_bloc.dart';
+import '../employees_bloc/employees_bloc.dart';
 
 part 'search_employee_bloc.freezed.dart';
 part 'search_employee_event.dart';
@@ -12,17 +12,17 @@ part 'search_employee_state.dart';
 
 class SearchEmployeeBloc
     extends Bloc<SearchEmployeeEvent, SearchEmployeeState> {
-  late StreamSubscription<EmployeeState> _subscription;
+  late StreamSubscription<EmployeesState> _subscription;
   List<EmployeeModel> _allEmployees = [];
   List<EmployeeModel> _filteredEmployees = [];
 
   SearchEmployeeBloc({
-    required Stream<EmployeeState> stream,
+    required Stream<EmployeesState> stream,
   }) : super(const SearchEmployeeState.loading()) {
     _subscription = stream.listen((state) {
       state.map(
           loading: (_) => add(SearchEmployeeEvent.updateStateLoading()),
-          loaded: (state) => add(SearchEmployeeEvent.updateStateLoaded(
+          loadedEmployees: (state) => add(SearchEmployeeEvent.updateStateLoaded(
               employees: state.employees)),
           failure: (state) => add(
               SearchEmployeeEvent.updateStateFailure(message: state.message)));

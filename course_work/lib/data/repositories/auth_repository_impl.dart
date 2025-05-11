@@ -5,10 +5,12 @@ import 'package:course_work/data/dtos/employee_dto/employee_dto.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
 import 'package:course_work/domain/repositories/auth_repository.dart';
 import 'package:fpdart/src/either.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthRepositoryImpl implements IAuthRepository {
-  AuthRepositoryImpl({required this.database});
+  AuthRepositoryImpl({required this.database, required this.preferences});
   final AppDatabase database;
+  final SharedPreferences preferences;
 
   @override
   Future<Either<Failure, EmployeeModel>> loginWithEmailPassword(
@@ -16,13 +18,16 @@ class AuthRepositoryImpl implements IAuthRepository {
     try {
       final result = await (database.select(database.employees)
             ..where((employee) => employee.email.equals(email)))
-          .getSingle();
+          .get();
 
-      if (result.toString().isEmpty) {
+      if (result.isEmpty) {
         return left(Failure(message: AppStrings.notFoundEmployee));
       }
 
-      final employee = EmployeeDto.fromDataBase(result).toDomain();
+      final employee = EmployeeDto.fromDataBase(result.single).toDomain();
+
+      preferences.setInt('id', employee.id!);
+      preferences.setString('role', employee.role.value);
 
       return right(employee);
     } catch (e) {

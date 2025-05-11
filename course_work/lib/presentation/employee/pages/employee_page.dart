@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../bloc/employee_bloc/employee_bloc.dart';
+import '../../../bloc/employees_bloc/employees_bloc.dart';
 import '../../../core/routes/route_names.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/rounded_elevated_button.dart';
@@ -23,8 +23,9 @@ class EmployeePage extends StatefulWidget {
 class _EmployeePageState extends State<EmployeePage> {
   @override
   void initState() {
-    context.read<EmployeeBloc>().add(EmployeeEvent.loadEmployeeByDepartmentId(
-        departmentId: widget.departmentId));
+    context.read<EmployeesBloc>().add(
+        EmployeesEvent.loadEmployeesByDepartmentId(
+            departmentId: widget.departmentId));
     super.initState();
   }
 
@@ -45,11 +46,11 @@ class _EmployeePageState extends State<EmployeePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: BlocBuilder<EmployeeBloc, EmployeeState>(
+              child: BlocBuilder<EmployeesBloc, EmployeesState>(
                   builder: (context, state) {
                 return state.map(
                     loading: (_) => Center(child: CircularProgressIndicator()),
-                    loaded: (state) => ListView.separated(
+                    loadedEmployees: (state) => ListView.separated(
                           itemCount: state.employees.length,
                           separatorBuilder: (context, _) {
                             return SizedBox(
@@ -71,7 +72,7 @@ class _EmployeePageState extends State<EmployeePage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: RoundedElevatedButton(
-                  text: AppStrings.add,
+                  widget: Text(AppStrings.add),
                   onPressed: () {
                     showModalBottomSheet<void>(
                       context: context,
@@ -79,7 +80,7 @@ class _EmployeePageState extends State<EmployeePage> {
                       isScrollControlled: true,
                       builder: (newContext) {
                         return SizedBox(
-                            height: MediaQuery.of(context).size.height / 2,
+                            height: MediaQuery.of(context).size.height - 80,
                             child: AddEditEmployeePage(
                                 departmentId: widget.departmentId));
                       },

@@ -13,6 +13,11 @@ final appTheme = ThemeData(
   useMaterial3: true,
   scaffoldBackgroundColor: AppColors.backGroundColor,
   colorScheme: ColorScheme.dark(surface: Color(0xFF232323)),
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: TextButton.styleFrom(
+      foregroundColor: AppColors.whiteColor,
+    ),
+  ),
 );
 
 final textTheme = TextTheme(
@@ -25,7 +30,10 @@ final textTheme = TextTheme(
   ),
   headlineLarge: GoogleFonts.lato(
     textStyle: TextStyle(
-        fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    ),
   ),
   titleLarge: GoogleFonts.lato(
     textStyle: TextStyle(
@@ -38,7 +46,7 @@ final textTheme = TextTheme(
     textStyle: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w400,
-      color: Colors.grey[100],
+      color: Colors.white,
     ),
   ),
 );

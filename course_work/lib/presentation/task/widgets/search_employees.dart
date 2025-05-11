@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../bloc/employee_bloc/employee_bloc.dart';
+import '../../../bloc/employees_bloc/employees_bloc.dart';
 import '../../../bloc/search_employee_bloc/search_employee_bloc.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
@@ -10,10 +10,8 @@ class SearchEmployees extends StatefulWidget {
   const SearchEmployees({
     super.key,
     this.departmentId,
-    // required this.controller,
   });
   final int? departmentId;
-  // final TextEditingController controller;
 
   @override
   State<SearchEmployees> createState() => _SearchEmployeesState();
@@ -24,10 +22,11 @@ class _SearchEmployeesState extends State<SearchEmployees> {
   void initState() {
     super.initState();
     if (widget.departmentId != null) {
-      context.read<EmployeeBloc>().add(EmployeeEvent.loadEmployeeByDepartmentId(
-          departmentId: widget.departmentId!));
+      context.read<EmployeesBloc>().add(
+          EmployeesEvent.loadEmployeesByDepartmentId(
+              departmentId: widget.departmentId!));
     }
-    context.read<EmployeeBloc>().add(EmployeeEvent.loadAllEmployees());
+    context.read<EmployeesBloc>().add(EmployeesEvent.loadAllEmployees());
   }
 
   final controller = TextEditingController();

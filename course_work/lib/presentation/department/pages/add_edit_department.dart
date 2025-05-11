@@ -80,7 +80,8 @@ class _AddDepartmentState extends State<AddEditDepartment> {
                 bottom: 25.0,
               ),
               child: RoundedElevatedButton(
-                text: widget.isEdit ? AppStrings.update : AppStrings.add,
+                widget:
+                    Text(widget.isEdit ? AppStrings.update : AppStrings.add),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     if (widget.isEdit) {

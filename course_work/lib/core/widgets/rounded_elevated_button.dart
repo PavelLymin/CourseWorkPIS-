@@ -6,11 +6,11 @@ class RoundedElevatedButton extends StatelessWidget {
     super.key,
     this.onPressed,
     this.color = AppColors.primaryColor,
-    required this.text,
+    required this.widget,
   });
   final Function()? onPressed;
   final Color color;
-  final String text;
+  final Widget widget;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +33,7 @@ class RoundedElevatedButton extends StatelessWidget {
           ),
         ),
       ),
-      child: Text(
-        text,
-        style: Theme.of(context).textTheme.titleLarge,
-      ),
+      child: widget,
     );
   }
 }

@@ -79,7 +79,7 @@ class _TaskPageState extends State<TaskPage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: RoundedElevatedButton(
-                  text: AppStrings.add,
+                  widget: Text(AppStrings.add),
                   onPressed: () {
                     showModalBottomSheet<void>(
                       context: context,

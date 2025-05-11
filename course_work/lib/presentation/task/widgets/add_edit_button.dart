@@ -39,7 +39,7 @@ class AddEditButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 30.0),
       child: RoundedElevatedButton(
-        text: isEdit ? AppStrings.update : AppStrings.add,
+        widget: Text(isEdit ? AppStrings.update : AppStrings.add),
         onPressed: () {
           if (formKey.currentState!.validate()) {
             if (isEdit) {

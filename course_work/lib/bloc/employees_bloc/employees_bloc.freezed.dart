@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'employee_bloc.dart';
+part of 'employees_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,38 +15,38 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$EmployeeEvent {
+mixin _$EmployeesEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EmployeeModel employee, int? departmentId)
+    required TResult Function(EmployeeModel employee, int departmentId)
         addEmployee,
-    required TResult Function(int employeeId, int? departmentId) deleteEmployee,
+    required TResult Function(int employeeId, int departmentId) deleteEmployee,
     required TResult Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)
+            EmployeeModel changedEmployee, int departmentId)
         updateEmployee,
-    required TResult Function(int departmentId) loadEmployeeByDepartmentId,
+    required TResult Function(int departmentId) loadEmployeesByDepartmentId,
     required TResult Function() loadAllEmployees,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EmployeeModel employee, int? departmentId)? addEmployee,
-    TResult? Function(int employeeId, int? departmentId)? deleteEmployee,
+    TResult? Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult? Function(int employeeId, int departmentId)? deleteEmployee,
     TResult? Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)?
+            EmployeeModel changedEmployee, int departmentId)?
         updateEmployee,
-    TResult? Function(int departmentId)? loadEmployeeByDepartmentId,
+    TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult? Function()? loadAllEmployees,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmployeeModel employee, int? departmentId)? addEmployee,
-    TResult Function(int employeeId, int? departmentId)? deleteEmployee,
+    TResult Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult Function(int employeeId, int departmentId)? deleteEmployee,
     TResult Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)?
+            EmployeeModel changedEmployee, int departmentId)?
         updateEmployee,
-    TResult Function(int departmentId)? loadEmployeeByDepartmentId,
+    TResult Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult Function()? loadAllEmployees,
     required TResult orElse(),
   }) =>
@@ -56,8 +56,8 @@ mixin _$EmployeeEvent {
     required TResult Function(_AddEmployee value) addEmployee,
     required TResult Function(_DeleteEmployee value) deleteEmployee,
     required TResult Function(_UpdateEmployee value) updateEmployee,
-    required TResult Function(_LoadEmployeeByDepartmentId value)
-        loadEmployeeByDepartmentId,
+    required TResult Function(_LoadEmployeesByDepartmentId value)
+        loadEmployeesByDepartmentId,
     required TResult Function(_LoadAllEmployees value) loadAllEmployees,
   }) =>
       throw _privateConstructorUsedError;
@@ -66,8 +66,8 @@ mixin _$EmployeeEvent {
     TResult? Function(_AddEmployee value)? addEmployee,
     TResult? Function(_DeleteEmployee value)? deleteEmployee,
     TResult? Function(_UpdateEmployee value)? updateEmployee,
-    TResult? Function(_LoadEmployeeByDepartmentId value)?
-        loadEmployeeByDepartmentId,
+    TResult? Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
     TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
   }) =>
       throw _privateConstructorUsedError;
@@ -76,8 +76,8 @@ mixin _$EmployeeEvent {
     TResult Function(_AddEmployee value)? addEmployee,
     TResult Function(_DeleteEmployee value)? deleteEmployee,
     TResult Function(_UpdateEmployee value)? updateEmployee,
-    TResult Function(_LoadEmployeeByDepartmentId value)?
-        loadEmployeeByDepartmentId,
+    TResult Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
     TResult Function(_LoadAllEmployees value)? loadAllEmployees,
     required TResult orElse(),
   }) =>
@@ -85,23 +85,23 @@ mixin _$EmployeeEvent {
 }
 
 /// @nodoc
-abstract class $EmployeeEventCopyWith<$Res> {
-  factory $EmployeeEventCopyWith(
-          EmployeeEvent value, $Res Function(EmployeeEvent) then) =
-      _$EmployeeEventCopyWithImpl<$Res, EmployeeEvent>;
+abstract class $EmployeesEventCopyWith<$Res> {
+  factory $EmployeesEventCopyWith(
+          EmployeesEvent value, $Res Function(EmployeesEvent) then) =
+      _$EmployeesEventCopyWithImpl<$Res, EmployeesEvent>;
 }
 
 /// @nodoc
-class _$EmployeeEventCopyWithImpl<$Res, $Val extends EmployeeEvent>
-    implements $EmployeeEventCopyWith<$Res> {
-  _$EmployeeEventCopyWithImpl(this._value, this._then);
+class _$EmployeesEventCopyWithImpl<$Res, $Val extends EmployeesEvent>
+    implements $EmployeesEventCopyWith<$Res> {
+  _$EmployeesEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -111,40 +111,40 @@ abstract class _$$AddEmployeeImplCopyWith<$Res> {
           _$AddEmployeeImpl value, $Res Function(_$AddEmployeeImpl) then) =
       __$$AddEmployeeImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({EmployeeModel employee, int? departmentId});
+  $Res call({EmployeeModel employee, int departmentId});
 
   $EmployeeModelCopyWith<$Res> get employee;
 }
 
 /// @nodoc
 class __$$AddEmployeeImplCopyWithImpl<$Res>
-    extends _$EmployeeEventCopyWithImpl<$Res, _$AddEmployeeImpl>
+    extends _$EmployeesEventCopyWithImpl<$Res, _$AddEmployeeImpl>
     implements _$$AddEmployeeImplCopyWith<$Res> {
   __$$AddEmployeeImplCopyWithImpl(
       _$AddEmployeeImpl _value, $Res Function(_$AddEmployeeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? employee = null,
-    Object? departmentId = freezed,
+    Object? departmentId = null,
   }) {
     return _then(_$AddEmployeeImpl(
       employee: null == employee
           ? _value.employee
           : employee // ignore: cast_nullable_to_non_nullable
               as EmployeeModel,
-      departmentId: freezed == departmentId
+      departmentId: null == departmentId
           ? _value.departmentId
           : departmentId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -158,16 +158,16 @@ class __$$AddEmployeeImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddEmployeeImpl implements _AddEmployee {
-  const _$AddEmployeeImpl({required this.employee, this.departmentId});
+  const _$AddEmployeeImpl({required this.employee, required this.departmentId});
 
   @override
   final EmployeeModel employee;
   @override
-  final int? departmentId;
+  final int departmentId;
 
   @override
   String toString() {
-    return 'EmployeeEvent.addEmployee(employee: $employee, departmentId: $departmentId)';
+    return 'EmployeesEvent.addEmployee(employee: $employee, departmentId: $departmentId)';
   }
 
   @override
@@ -184,7 +184,7 @@ class _$AddEmployeeImpl implements _AddEmployee {
   @override
   int get hashCode => Object.hash(runtimeType, employee, departmentId);
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -195,13 +195,13 @@ class _$AddEmployeeImpl implements _AddEmployee {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EmployeeModel employee, int? departmentId)
+    required TResult Function(EmployeeModel employee, int departmentId)
         addEmployee,
-    required TResult Function(int employeeId, int? departmentId) deleteEmployee,
+    required TResult Function(int employeeId, int departmentId) deleteEmployee,
     required TResult Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)
+            EmployeeModel changedEmployee, int departmentId)
         updateEmployee,
-    required TResult Function(int departmentId) loadEmployeeByDepartmentId,
+    required TResult Function(int departmentId) loadEmployeesByDepartmentId,
     required TResult Function() loadAllEmployees,
   }) {
     return addEmployee(employee, departmentId);
@@ -210,12 +210,12 @@ class _$AddEmployeeImpl implements _AddEmployee {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EmployeeModel employee, int? departmentId)? addEmployee,
-    TResult? Function(int employeeId, int? departmentId)? deleteEmployee,
+    TResult? Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult? Function(int employeeId, int departmentId)? deleteEmployee,
     TResult? Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)?
+            EmployeeModel changedEmployee, int departmentId)?
         updateEmployee,
-    TResult? Function(int departmentId)? loadEmployeeByDepartmentId,
+    TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult? Function()? loadAllEmployees,
   }) {
     return addEmployee?.call(employee, departmentId);
@@ -224,12 +224,12 @@ class _$AddEmployeeImpl implements _AddEmployee {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmployeeModel employee, int? departmentId)? addEmployee,
-    TResult Function(int employeeId, int? departmentId)? deleteEmployee,
+    TResult Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult Function(int employeeId, int departmentId)? deleteEmployee,
     TResult Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)?
+            EmployeeModel changedEmployee, int departmentId)?
         updateEmployee,
-    TResult Function(int departmentId)? loadEmployeeByDepartmentId,
+    TResult Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult Function()? loadAllEmployees,
     required TResult orElse(),
   }) {
@@ -245,8 +245,8 @@ class _$AddEmployeeImpl implements _AddEmployee {
     required TResult Function(_AddEmployee value) addEmployee,
     required TResult Function(_DeleteEmployee value) deleteEmployee,
     required TResult Function(_UpdateEmployee value) updateEmployee,
-    required TResult Function(_LoadEmployeeByDepartmentId value)
-        loadEmployeeByDepartmentId,
+    required TResult Function(_LoadEmployeesByDepartmentId value)
+        loadEmployeesByDepartmentId,
     required TResult Function(_LoadAllEmployees value) loadAllEmployees,
   }) {
     return addEmployee(this);
@@ -258,8 +258,8 @@ class _$AddEmployeeImpl implements _AddEmployee {
     TResult? Function(_AddEmployee value)? addEmployee,
     TResult? Function(_DeleteEmployee value)? deleteEmployee,
     TResult? Function(_UpdateEmployee value)? updateEmployee,
-    TResult? Function(_LoadEmployeeByDepartmentId value)?
-        loadEmployeeByDepartmentId,
+    TResult? Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
     TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
   }) {
     return addEmployee?.call(this);
@@ -271,8 +271,8 @@ class _$AddEmployeeImpl implements _AddEmployee {
     TResult Function(_AddEmployee value)? addEmployee,
     TResult Function(_DeleteEmployee value)? deleteEmployee,
     TResult Function(_UpdateEmployee value)? updateEmployee,
-    TResult Function(_LoadEmployeeByDepartmentId value)?
-        loadEmployeeByDepartmentId,
+    TResult Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
     TResult Function(_LoadAllEmployees value)? loadAllEmployees,
     required TResult orElse(),
   }) {
@@ -283,15 +283,15 @@ class _$AddEmployeeImpl implements _AddEmployee {
   }
 }
 
-abstract class _AddEmployee implements EmployeeEvent {
+abstract class _AddEmployee implements EmployeesEvent {
   const factory _AddEmployee(
       {required final EmployeeModel employee,
-      final int? departmentId}) = _$AddEmployeeImpl;
+      required final int departmentId}) = _$AddEmployeeImpl;
 
   EmployeeModel get employee;
-  int? get departmentId;
+  int get departmentId;
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddEmployeeImplCopyWith<_$AddEmployeeImpl> get copyWith =>
@@ -304,34 +304,34 @@ abstract class _$$DeleteEmployeeImplCopyWith<$Res> {
           $Res Function(_$DeleteEmployeeImpl) then) =
       __$$DeleteEmployeeImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int employeeId, int? departmentId});
+  $Res call({int employeeId, int departmentId});
 }
 
 /// @nodoc
 class __$$DeleteEmployeeImplCopyWithImpl<$Res>
-    extends _$EmployeeEventCopyWithImpl<$Res, _$DeleteEmployeeImpl>
+    extends _$EmployeesEventCopyWithImpl<$Res, _$DeleteEmployeeImpl>
     implements _$$DeleteEmployeeImplCopyWith<$Res> {
   __$$DeleteEmployeeImplCopyWithImpl(
       _$DeleteEmployeeImpl _value, $Res Function(_$DeleteEmployeeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? employeeId = null,
-    Object? departmentId = freezed,
+    Object? departmentId = null,
   }) {
     return _then(_$DeleteEmployeeImpl(
       employeeId: null == employeeId
           ? _value.employeeId
           : employeeId // ignore: cast_nullable_to_non_nullable
               as int,
-      departmentId: freezed == departmentId
+      departmentId: null == departmentId
           ? _value.departmentId
           : departmentId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 }
@@ -339,16 +339,17 @@ class __$$DeleteEmployeeImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DeleteEmployeeImpl implements _DeleteEmployee {
-  const _$DeleteEmployeeImpl({required this.employeeId, this.departmentId});
+  const _$DeleteEmployeeImpl(
+      {required this.employeeId, required this.departmentId});
 
   @override
   final int employeeId;
   @override
-  final int? departmentId;
+  final int departmentId;
 
   @override
   String toString() {
-    return 'EmployeeEvent.deleteEmployee(employeeId: $employeeId, departmentId: $departmentId)';
+    return 'EmployeesEvent.deleteEmployee(employeeId: $employeeId, departmentId: $departmentId)';
   }
 
   @override
@@ -365,7 +366,7 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
   @override
   int get hashCode => Object.hash(runtimeType, employeeId, departmentId);
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -377,13 +378,13 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EmployeeModel employee, int? departmentId)
+    required TResult Function(EmployeeModel employee, int departmentId)
         addEmployee,
-    required TResult Function(int employeeId, int? departmentId) deleteEmployee,
+    required TResult Function(int employeeId, int departmentId) deleteEmployee,
     required TResult Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)
+            EmployeeModel changedEmployee, int departmentId)
         updateEmployee,
-    required TResult Function(int departmentId) loadEmployeeByDepartmentId,
+    required TResult Function(int departmentId) loadEmployeesByDepartmentId,
     required TResult Function() loadAllEmployees,
   }) {
     return deleteEmployee(employeeId, departmentId);
@@ -392,12 +393,12 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EmployeeModel employee, int? departmentId)? addEmployee,
-    TResult? Function(int employeeId, int? departmentId)? deleteEmployee,
+    TResult? Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult? Function(int employeeId, int departmentId)? deleteEmployee,
     TResult? Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)?
+            EmployeeModel changedEmployee, int departmentId)?
         updateEmployee,
-    TResult? Function(int departmentId)? loadEmployeeByDepartmentId,
+    TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult? Function()? loadAllEmployees,
   }) {
     return deleteEmployee?.call(employeeId, departmentId);
@@ -406,12 +407,12 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmployeeModel employee, int? departmentId)? addEmployee,
-    TResult Function(int employeeId, int? departmentId)? deleteEmployee,
+    TResult Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult Function(int employeeId, int departmentId)? deleteEmployee,
     TResult Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)?
+            EmployeeModel changedEmployee, int departmentId)?
         updateEmployee,
-    TResult Function(int departmentId)? loadEmployeeByDepartmentId,
+    TResult Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult Function()? loadAllEmployees,
     required TResult orElse(),
   }) {
@@ -427,8 +428,8 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
     required TResult Function(_AddEmployee value) addEmployee,
     required TResult Function(_DeleteEmployee value) deleteEmployee,
     required TResult Function(_UpdateEmployee value) updateEmployee,
-    required TResult Function(_LoadEmployeeByDepartmentId value)
-        loadEmployeeByDepartmentId,
+    required TResult Function(_LoadEmployeesByDepartmentId value)
+        loadEmployeesByDepartmentId,
     required TResult Function(_LoadAllEmployees value) loadAllEmployees,
   }) {
     return deleteEmployee(this);
@@ -440,8 +441,8 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
     TResult? Function(_AddEmployee value)? addEmployee,
     TResult? Function(_DeleteEmployee value)? deleteEmployee,
     TResult? Function(_UpdateEmployee value)? updateEmployee,
-    TResult? Function(_LoadEmployeeByDepartmentId value)?
-        loadEmployeeByDepartmentId,
+    TResult? Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
     TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
   }) {
     return deleteEmployee?.call(this);
@@ -453,8 +454,8 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
     TResult Function(_AddEmployee value)? addEmployee,
     TResult Function(_DeleteEmployee value)? deleteEmployee,
     TResult Function(_UpdateEmployee value)? updateEmployee,
-    TResult Function(_LoadEmployeeByDepartmentId value)?
-        loadEmployeeByDepartmentId,
+    TResult Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
     TResult Function(_LoadAllEmployees value)? loadAllEmployees,
     required TResult orElse(),
   }) {
@@ -465,15 +466,15 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
   }
 }
 
-abstract class _DeleteEmployee implements EmployeeEvent {
+abstract class _DeleteEmployee implements EmployeesEvent {
   const factory _DeleteEmployee(
       {required final int employeeId,
-      final int? departmentId}) = _$DeleteEmployeeImpl;
+      required final int departmentId}) = _$DeleteEmployeeImpl;
 
   int get employeeId;
-  int? get departmentId;
+  int get departmentId;
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeleteEmployeeImplCopyWith<_$DeleteEmployeeImpl> get copyWith =>
@@ -489,7 +490,7 @@ abstract class _$$UpdateEmployeeImplCopyWith<$Res> {
   $Res call(
       {EmployeeModel originalEmployee,
       EmployeeModel changedEmployee,
-      int? departmentId});
+      int departmentId});
 
   $EmployeeModelCopyWith<$Res> get originalEmployee;
   $EmployeeModelCopyWith<$Res> get changedEmployee;
@@ -497,20 +498,20 @@ abstract class _$$UpdateEmployeeImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$UpdateEmployeeImplCopyWithImpl<$Res>
-    extends _$EmployeeEventCopyWithImpl<$Res, _$UpdateEmployeeImpl>
+    extends _$EmployeesEventCopyWithImpl<$Res, _$UpdateEmployeeImpl>
     implements _$$UpdateEmployeeImplCopyWith<$Res> {
   __$$UpdateEmployeeImplCopyWithImpl(
       _$UpdateEmployeeImpl _value, $Res Function(_$UpdateEmployeeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? originalEmployee = null,
     Object? changedEmployee = null,
-    Object? departmentId = freezed,
+    Object? departmentId = null,
   }) {
     return _then(_$UpdateEmployeeImpl(
       originalEmployee: null == originalEmployee
@@ -521,14 +522,14 @@ class __$$UpdateEmployeeImplCopyWithImpl<$Res>
           ? _value.changedEmployee
           : changedEmployee // ignore: cast_nullable_to_non_nullable
               as EmployeeModel,
-      departmentId: freezed == departmentId
+      departmentId: null == departmentId
           ? _value.departmentId
           : departmentId // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
     ));
   }
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -538,7 +539,7 @@ class __$$UpdateEmployeeImplCopyWithImpl<$Res>
     });
   }
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -555,18 +556,18 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
   const _$UpdateEmployeeImpl(
       {required this.originalEmployee,
       required this.changedEmployee,
-      this.departmentId});
+      required this.departmentId});
 
   @override
   final EmployeeModel originalEmployee;
   @override
   final EmployeeModel changedEmployee;
   @override
-  final int? departmentId;
+  final int departmentId;
 
   @override
   String toString() {
-    return 'EmployeeEvent.updateEmployee(originalEmployee: $originalEmployee, changedEmployee: $changedEmployee, departmentId: $departmentId)';
+    return 'EmployeesEvent.updateEmployee(originalEmployee: $originalEmployee, changedEmployee: $changedEmployee, departmentId: $departmentId)';
   }
 
   @override
@@ -586,7 +587,7 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
   int get hashCode =>
       Object.hash(runtimeType, originalEmployee, changedEmployee, departmentId);
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -598,13 +599,13 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EmployeeModel employee, int? departmentId)
+    required TResult Function(EmployeeModel employee, int departmentId)
         addEmployee,
-    required TResult Function(int employeeId, int? departmentId) deleteEmployee,
+    required TResult Function(int employeeId, int departmentId) deleteEmployee,
     required TResult Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)
+            EmployeeModel changedEmployee, int departmentId)
         updateEmployee,
-    required TResult Function(int departmentId) loadEmployeeByDepartmentId,
+    required TResult Function(int departmentId) loadEmployeesByDepartmentId,
     required TResult Function() loadAllEmployees,
   }) {
     return updateEmployee(originalEmployee, changedEmployee, departmentId);
@@ -613,12 +614,12 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EmployeeModel employee, int? departmentId)? addEmployee,
-    TResult? Function(int employeeId, int? departmentId)? deleteEmployee,
+    TResult? Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult? Function(int employeeId, int departmentId)? deleteEmployee,
     TResult? Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)?
+            EmployeeModel changedEmployee, int departmentId)?
         updateEmployee,
-    TResult? Function(int departmentId)? loadEmployeeByDepartmentId,
+    TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult? Function()? loadAllEmployees,
   }) {
     return updateEmployee?.call(
@@ -628,12 +629,12 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmployeeModel employee, int? departmentId)? addEmployee,
-    TResult Function(int employeeId, int? departmentId)? deleteEmployee,
+    TResult Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult Function(int employeeId, int departmentId)? deleteEmployee,
     TResult Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)?
+            EmployeeModel changedEmployee, int departmentId)?
         updateEmployee,
-    TResult Function(int departmentId)? loadEmployeeByDepartmentId,
+    TResult Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult Function()? loadAllEmployees,
     required TResult orElse(),
   }) {
@@ -649,8 +650,8 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
     required TResult Function(_AddEmployee value) addEmployee,
     required TResult Function(_DeleteEmployee value) deleteEmployee,
     required TResult Function(_UpdateEmployee value) updateEmployee,
-    required TResult Function(_LoadEmployeeByDepartmentId value)
-        loadEmployeeByDepartmentId,
+    required TResult Function(_LoadEmployeesByDepartmentId value)
+        loadEmployeesByDepartmentId,
     required TResult Function(_LoadAllEmployees value) loadAllEmployees,
   }) {
     return updateEmployee(this);
@@ -662,8 +663,8 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
     TResult? Function(_AddEmployee value)? addEmployee,
     TResult? Function(_DeleteEmployee value)? deleteEmployee,
     TResult? Function(_UpdateEmployee value)? updateEmployee,
-    TResult? Function(_LoadEmployeeByDepartmentId value)?
-        loadEmployeeByDepartmentId,
+    TResult? Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
     TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
   }) {
     return updateEmployee?.call(this);
@@ -675,8 +676,8 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
     TResult Function(_AddEmployee value)? addEmployee,
     TResult Function(_DeleteEmployee value)? deleteEmployee,
     TResult Function(_UpdateEmployee value)? updateEmployee,
-    TResult Function(_LoadEmployeeByDepartmentId value)?
-        loadEmployeeByDepartmentId,
+    TResult Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
     TResult Function(_LoadAllEmployees value)? loadAllEmployees,
     required TResult orElse(),
   }) {
@@ -687,17 +688,17 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
   }
 }
 
-abstract class _UpdateEmployee implements EmployeeEvent {
+abstract class _UpdateEmployee implements EmployeesEvent {
   const factory _UpdateEmployee(
       {required final EmployeeModel originalEmployee,
       required final EmployeeModel changedEmployee,
-      final int? departmentId}) = _$UpdateEmployeeImpl;
+      required final int departmentId}) = _$UpdateEmployeeImpl;
 
   EmployeeModel get originalEmployee;
   EmployeeModel get changedEmployee;
-  int? get departmentId;
+  int get departmentId;
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateEmployeeImplCopyWith<_$UpdateEmployeeImpl> get copyWith =>
@@ -705,32 +706,33 @@ abstract class _UpdateEmployee implements EmployeeEvent {
 }
 
 /// @nodoc
-abstract class _$$LoadEmployeeByDepartmentIdImplCopyWith<$Res> {
-  factory _$$LoadEmployeeByDepartmentIdImplCopyWith(
-          _$LoadEmployeeByDepartmentIdImpl value,
-          $Res Function(_$LoadEmployeeByDepartmentIdImpl) then) =
-      __$$LoadEmployeeByDepartmentIdImplCopyWithImpl<$Res>;
+abstract class _$$LoadEmployeesByDepartmentIdImplCopyWith<$Res> {
+  factory _$$LoadEmployeesByDepartmentIdImplCopyWith(
+          _$LoadEmployeesByDepartmentIdImpl value,
+          $Res Function(_$LoadEmployeesByDepartmentIdImpl) then) =
+      __$$LoadEmployeesByDepartmentIdImplCopyWithImpl<$Res>;
   @useResult
   $Res call({int departmentId});
 }
 
 /// @nodoc
-class __$$LoadEmployeeByDepartmentIdImplCopyWithImpl<$Res>
-    extends _$EmployeeEventCopyWithImpl<$Res, _$LoadEmployeeByDepartmentIdImpl>
-    implements _$$LoadEmployeeByDepartmentIdImplCopyWith<$Res> {
-  __$$LoadEmployeeByDepartmentIdImplCopyWithImpl(
-      _$LoadEmployeeByDepartmentIdImpl _value,
-      $Res Function(_$LoadEmployeeByDepartmentIdImpl) _then)
+class __$$LoadEmployeesByDepartmentIdImplCopyWithImpl<$Res>
+    extends _$EmployeesEventCopyWithImpl<$Res,
+        _$LoadEmployeesByDepartmentIdImpl>
+    implements _$$LoadEmployeesByDepartmentIdImplCopyWith<$Res> {
+  __$$LoadEmployeesByDepartmentIdImplCopyWithImpl(
+      _$LoadEmployeesByDepartmentIdImpl _value,
+      $Res Function(_$LoadEmployeesByDepartmentIdImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? departmentId = null,
   }) {
-    return _then(_$LoadEmployeeByDepartmentIdImpl(
+    return _then(_$LoadEmployeesByDepartmentIdImpl(
       departmentId: null == departmentId
           ? _value.departmentId
           : departmentId // ignore: cast_nullable_to_non_nullable
@@ -741,22 +743,23 @@ class __$$LoadEmployeeByDepartmentIdImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadEmployeeByDepartmentIdImpl implements _LoadEmployeeByDepartmentId {
-  const _$LoadEmployeeByDepartmentIdImpl({required this.departmentId});
+class _$LoadEmployeesByDepartmentIdImpl
+    implements _LoadEmployeesByDepartmentId {
+  const _$LoadEmployeesByDepartmentIdImpl({required this.departmentId});
 
   @override
   final int departmentId;
 
   @override
   String toString() {
-    return 'EmployeeEvent.loadEmployeeByDepartmentId(departmentId: $departmentId)';
+    return 'EmployeesEvent.loadEmployeesByDepartmentId(departmentId: $departmentId)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadEmployeeByDepartmentIdImpl &&
+            other is _$LoadEmployeesByDepartmentIdImpl &&
             (identical(other.departmentId, departmentId) ||
                 other.departmentId == departmentId));
   }
@@ -764,58 +767,58 @@ class _$LoadEmployeeByDepartmentIdImpl implements _LoadEmployeeByDepartmentId {
   @override
   int get hashCode => Object.hash(runtimeType, departmentId);
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadEmployeeByDepartmentIdImplCopyWith<_$LoadEmployeeByDepartmentIdImpl>
-      get copyWith => __$$LoadEmployeeByDepartmentIdImplCopyWithImpl<
-          _$LoadEmployeeByDepartmentIdImpl>(this, _$identity);
+  _$$LoadEmployeesByDepartmentIdImplCopyWith<_$LoadEmployeesByDepartmentIdImpl>
+      get copyWith => __$$LoadEmployeesByDepartmentIdImplCopyWithImpl<
+          _$LoadEmployeesByDepartmentIdImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EmployeeModel employee, int? departmentId)
+    required TResult Function(EmployeeModel employee, int departmentId)
         addEmployee,
-    required TResult Function(int employeeId, int? departmentId) deleteEmployee,
+    required TResult Function(int employeeId, int departmentId) deleteEmployee,
     required TResult Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)
+            EmployeeModel changedEmployee, int departmentId)
         updateEmployee,
-    required TResult Function(int departmentId) loadEmployeeByDepartmentId,
+    required TResult Function(int departmentId) loadEmployeesByDepartmentId,
     required TResult Function() loadAllEmployees,
   }) {
-    return loadEmployeeByDepartmentId(departmentId);
+    return loadEmployeesByDepartmentId(departmentId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EmployeeModel employee, int? departmentId)? addEmployee,
-    TResult? Function(int employeeId, int? departmentId)? deleteEmployee,
+    TResult? Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult? Function(int employeeId, int departmentId)? deleteEmployee,
     TResult? Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)?
+            EmployeeModel changedEmployee, int departmentId)?
         updateEmployee,
-    TResult? Function(int departmentId)? loadEmployeeByDepartmentId,
+    TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult? Function()? loadAllEmployees,
   }) {
-    return loadEmployeeByDepartmentId?.call(departmentId);
+    return loadEmployeesByDepartmentId?.call(departmentId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmployeeModel employee, int? departmentId)? addEmployee,
-    TResult Function(int employeeId, int? departmentId)? deleteEmployee,
+    TResult Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult Function(int employeeId, int departmentId)? deleteEmployee,
     TResult Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)?
+            EmployeeModel changedEmployee, int departmentId)?
         updateEmployee,
-    TResult Function(int departmentId)? loadEmployeeByDepartmentId,
+    TResult Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult Function()? loadAllEmployees,
     required TResult orElse(),
   }) {
-    if (loadEmployeeByDepartmentId != null) {
-      return loadEmployeeByDepartmentId(departmentId);
+    if (loadEmployeesByDepartmentId != null) {
+      return loadEmployeesByDepartmentId(departmentId);
     }
     return orElse();
   }
@@ -826,11 +829,11 @@ class _$LoadEmployeeByDepartmentIdImpl implements _LoadEmployeeByDepartmentId {
     required TResult Function(_AddEmployee value) addEmployee,
     required TResult Function(_DeleteEmployee value) deleteEmployee,
     required TResult Function(_UpdateEmployee value) updateEmployee,
-    required TResult Function(_LoadEmployeeByDepartmentId value)
-        loadEmployeeByDepartmentId,
+    required TResult Function(_LoadEmployeesByDepartmentId value)
+        loadEmployeesByDepartmentId,
     required TResult Function(_LoadAllEmployees value) loadAllEmployees,
   }) {
-    return loadEmployeeByDepartmentId(this);
+    return loadEmployeesByDepartmentId(this);
   }
 
   @override
@@ -839,11 +842,11 @@ class _$LoadEmployeeByDepartmentIdImpl implements _LoadEmployeeByDepartmentId {
     TResult? Function(_AddEmployee value)? addEmployee,
     TResult? Function(_DeleteEmployee value)? deleteEmployee,
     TResult? Function(_UpdateEmployee value)? updateEmployee,
-    TResult? Function(_LoadEmployeeByDepartmentId value)?
-        loadEmployeeByDepartmentId,
+    TResult? Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
     TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
   }) {
-    return loadEmployeeByDepartmentId?.call(this);
+    return loadEmployeesByDepartmentId?.call(this);
   }
 
   @override
@@ -852,28 +855,28 @@ class _$LoadEmployeeByDepartmentIdImpl implements _LoadEmployeeByDepartmentId {
     TResult Function(_AddEmployee value)? addEmployee,
     TResult Function(_DeleteEmployee value)? deleteEmployee,
     TResult Function(_UpdateEmployee value)? updateEmployee,
-    TResult Function(_LoadEmployeeByDepartmentId value)?
-        loadEmployeeByDepartmentId,
+    TResult Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
     TResult Function(_LoadAllEmployees value)? loadAllEmployees,
     required TResult orElse(),
   }) {
-    if (loadEmployeeByDepartmentId != null) {
-      return loadEmployeeByDepartmentId(this);
+    if (loadEmployeesByDepartmentId != null) {
+      return loadEmployeesByDepartmentId(this);
     }
     return orElse();
   }
 }
 
-abstract class _LoadEmployeeByDepartmentId implements EmployeeEvent {
-  const factory _LoadEmployeeByDepartmentId({required final int departmentId}) =
-      _$LoadEmployeeByDepartmentIdImpl;
+abstract class _LoadEmployeesByDepartmentId implements EmployeesEvent {
+  const factory _LoadEmployeesByDepartmentId(
+      {required final int departmentId}) = _$LoadEmployeesByDepartmentIdImpl;
 
   int get departmentId;
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadEmployeeByDepartmentIdImplCopyWith<_$LoadEmployeeByDepartmentIdImpl>
+  _$$LoadEmployeesByDepartmentIdImplCopyWith<_$LoadEmployeesByDepartmentIdImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -886,13 +889,13 @@ abstract class _$$LoadAllEmployeesImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadAllEmployeesImplCopyWithImpl<$Res>
-    extends _$EmployeeEventCopyWithImpl<$Res, _$LoadAllEmployeesImpl>
+    extends _$EmployeesEventCopyWithImpl<$Res, _$LoadAllEmployeesImpl>
     implements _$$LoadAllEmployeesImplCopyWith<$Res> {
   __$$LoadAllEmployeesImplCopyWithImpl(_$LoadAllEmployeesImpl _value,
       $Res Function(_$LoadAllEmployeesImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EmployeeEvent
+  /// Create a copy of EmployeesEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -903,7 +906,7 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
 
   @override
   String toString() {
-    return 'EmployeeEvent.loadAllEmployees()';
+    return 'EmployeesEvent.loadAllEmployees()';
   }
 
   @override
@@ -918,13 +921,13 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(EmployeeModel employee, int? departmentId)
+    required TResult Function(EmployeeModel employee, int departmentId)
         addEmployee,
-    required TResult Function(int employeeId, int? departmentId) deleteEmployee,
+    required TResult Function(int employeeId, int departmentId) deleteEmployee,
     required TResult Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)
+            EmployeeModel changedEmployee, int departmentId)
         updateEmployee,
-    required TResult Function(int departmentId) loadEmployeeByDepartmentId,
+    required TResult Function(int departmentId) loadEmployeesByDepartmentId,
     required TResult Function() loadAllEmployees,
   }) {
     return loadAllEmployees();
@@ -933,12 +936,12 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(EmployeeModel employee, int? departmentId)? addEmployee,
-    TResult? Function(int employeeId, int? departmentId)? deleteEmployee,
+    TResult? Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult? Function(int employeeId, int departmentId)? deleteEmployee,
     TResult? Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)?
+            EmployeeModel changedEmployee, int departmentId)?
         updateEmployee,
-    TResult? Function(int departmentId)? loadEmployeeByDepartmentId,
+    TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult? Function()? loadAllEmployees,
   }) {
     return loadAllEmployees?.call();
@@ -947,12 +950,12 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(EmployeeModel employee, int? departmentId)? addEmployee,
-    TResult Function(int employeeId, int? departmentId)? deleteEmployee,
+    TResult Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult Function(int employeeId, int departmentId)? deleteEmployee,
     TResult Function(EmployeeModel originalEmployee,
-            EmployeeModel changedEmployee, int? departmentId)?
+            EmployeeModel changedEmployee, int departmentId)?
         updateEmployee,
-    TResult Function(int departmentId)? loadEmployeeByDepartmentId,
+    TResult Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult Function()? loadAllEmployees,
     required TResult orElse(),
   }) {
@@ -968,8 +971,8 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
     required TResult Function(_AddEmployee value) addEmployee,
     required TResult Function(_DeleteEmployee value) deleteEmployee,
     required TResult Function(_UpdateEmployee value) updateEmployee,
-    required TResult Function(_LoadEmployeeByDepartmentId value)
-        loadEmployeeByDepartmentId,
+    required TResult Function(_LoadEmployeesByDepartmentId value)
+        loadEmployeesByDepartmentId,
     required TResult Function(_LoadAllEmployees value) loadAllEmployees,
   }) {
     return loadAllEmployees(this);
@@ -981,8 +984,8 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
     TResult? Function(_AddEmployee value)? addEmployee,
     TResult? Function(_DeleteEmployee value)? deleteEmployee,
     TResult? Function(_UpdateEmployee value)? updateEmployee,
-    TResult? Function(_LoadEmployeeByDepartmentId value)?
-        loadEmployeeByDepartmentId,
+    TResult? Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
     TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
   }) {
     return loadAllEmployees?.call(this);
@@ -994,8 +997,8 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
     TResult Function(_AddEmployee value)? addEmployee,
     TResult Function(_DeleteEmployee value)? deleteEmployee,
     TResult Function(_UpdateEmployee value)? updateEmployee,
-    TResult Function(_LoadEmployeeByDepartmentId value)?
-        loadEmployeeByDepartmentId,
+    TResult Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
     TResult Function(_LoadAllEmployees value)? loadAllEmployees,
     required TResult orElse(),
   }) {
@@ -1006,30 +1009,30 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
   }
 }
 
-abstract class _LoadAllEmployees implements EmployeeEvent {
+abstract class _LoadAllEmployees implements EmployeesEvent {
   const factory _LoadAllEmployees() = _$LoadAllEmployeesImpl;
 }
 
 /// @nodoc
-mixin _$EmployeeState {
+mixin _$EmployeesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<EmployeeModel> employees) loaded,
+    required TResult Function(List<EmployeeModel> employees) loadedEmployees,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<EmployeeModel> employees)? loaded,
+    TResult? Function(List<EmployeeModel> employees)? loadedEmployees,
     TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<EmployeeModel> employees)? loaded,
+    TResult Function(List<EmployeeModel> employees)? loadedEmployees,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -1037,21 +1040,21 @@ mixin _$EmployeeState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LoadedEmployees value) loadedEmployees,
     required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LoadedEmployees value)? loadedEmployees,
     TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadedEmployees value)? loadedEmployees,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
@@ -1059,23 +1062,23 @@ mixin _$EmployeeState {
 }
 
 /// @nodoc
-abstract class $EmployeeStateCopyWith<$Res> {
-  factory $EmployeeStateCopyWith(
-          EmployeeState value, $Res Function(EmployeeState) then) =
-      _$EmployeeStateCopyWithImpl<$Res, EmployeeState>;
+abstract class $EmployeesStateCopyWith<$Res> {
+  factory $EmployeesStateCopyWith(
+          EmployeesState value, $Res Function(EmployeesState) then) =
+      _$EmployeesStateCopyWithImpl<$Res, EmployeesState>;
 }
 
 /// @nodoc
-class _$EmployeeStateCopyWithImpl<$Res, $Val extends EmployeeState>
-    implements $EmployeeStateCopyWith<$Res> {
-  _$EmployeeStateCopyWithImpl(this._value, this._then);
+class _$EmployeesStateCopyWithImpl<$Res, $Val extends EmployeesState>
+    implements $EmployeesStateCopyWith<$Res> {
+  _$EmployeesStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of EmployeeState
+  /// Create a copy of EmployeesState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -1088,13 +1091,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$EmployeeStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$EmployeesStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EmployeeState
+  /// Create a copy of EmployeesState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -1105,7 +1108,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'EmployeeState.loading()';
+    return 'EmployeesState.loading()';
   }
 
   @override
@@ -1121,7 +1124,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<EmployeeModel> employees) loaded,
+    required TResult Function(List<EmployeeModel> employees) loadedEmployees,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -1131,7 +1134,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<EmployeeModel> employees)? loaded,
+    TResult? Function(List<EmployeeModel> employees)? loadedEmployees,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -1141,7 +1144,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<EmployeeModel> employees)? loaded,
+    TResult Function(List<EmployeeModel> employees)? loadedEmployees,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -1155,7 +1158,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LoadedEmployees value) loadedEmployees,
     required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
@@ -1165,7 +1168,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LoadedEmployees value)? loadedEmployees,
     TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
@@ -1175,7 +1178,7 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadedEmployees value)? loadedEmployees,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -1186,35 +1189,35 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements EmployeeState {
+abstract class _Loading implements EmployeesState {
   const factory _Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadedImplCopyWith<$Res> {
-  factory _$$LoadedImplCopyWith(
-          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
-      __$$LoadedImplCopyWithImpl<$Res>;
+abstract class _$$LoadedEmployeesImplCopyWith<$Res> {
+  factory _$$LoadedEmployeesImplCopyWith(_$LoadedEmployeesImpl value,
+          $Res Function(_$LoadedEmployeesImpl) then) =
+      __$$LoadedEmployeesImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<EmployeeModel> employees});
 }
 
 /// @nodoc
-class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$EmployeeStateCopyWithImpl<$Res, _$LoadedImpl>
-    implements _$$LoadedImplCopyWith<$Res> {
-  __$$LoadedImplCopyWithImpl(
-      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
+class __$$LoadedEmployeesImplCopyWithImpl<$Res>
+    extends _$EmployeesStateCopyWithImpl<$Res, _$LoadedEmployeesImpl>
+    implements _$$LoadedEmployeesImplCopyWith<$Res> {
+  __$$LoadedEmployeesImplCopyWithImpl(
+      _$LoadedEmployeesImpl _value, $Res Function(_$LoadedEmployeesImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EmployeeState
+  /// Create a copy of EmployeesState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? employees = null,
   }) {
-    return _then(_$LoadedImpl(
+    return _then(_$LoadedEmployeesImpl(
       employees: null == employees
           ? _value._employees
           : employees // ignore: cast_nullable_to_non_nullable
@@ -1225,8 +1228,8 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl({required final List<EmployeeModel> employees})
+class _$LoadedEmployeesImpl implements _LoadedEmployees {
+  const _$LoadedEmployeesImpl({required final List<EmployeeModel> employees})
       : _employees = employees;
 
   final List<EmployeeModel> _employees;
@@ -1239,14 +1242,14 @@ class _$LoadedImpl implements _Loaded {
 
   @override
   String toString() {
-    return 'EmployeeState.loaded(employees: $employees)';
+    return 'EmployeesState.loadedEmployees(employees: $employees)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadedImpl &&
+            other is _$LoadedEmployeesImpl &&
             const DeepCollectionEquality()
                 .equals(other._employees, _employees));
   }
@@ -1255,44 +1258,45 @@ class _$LoadedImpl implements _Loaded {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_employees));
 
-  /// Create a copy of EmployeeState
+  /// Create a copy of EmployeesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
-      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
+  _$$LoadedEmployeesImplCopyWith<_$LoadedEmployeesImpl> get copyWith =>
+      __$$LoadedEmployeesImplCopyWithImpl<_$LoadedEmployeesImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<EmployeeModel> employees) loaded,
+    required TResult Function(List<EmployeeModel> employees) loadedEmployees,
     required TResult Function(String message) failure,
   }) {
-    return loaded(employees);
+    return loadedEmployees(employees);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<EmployeeModel> employees)? loaded,
+    TResult? Function(List<EmployeeModel> employees)? loadedEmployees,
     TResult? Function(String message)? failure,
   }) {
-    return loaded?.call(employees);
+    return loadedEmployees?.call(employees);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<EmployeeModel> employees)? loaded,
+    TResult Function(List<EmployeeModel> employees)? loadedEmployees,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(employees);
+    if (loadedEmployees != null) {
+      return loadedEmployees(employees);
     }
     return orElse();
   }
@@ -1301,47 +1305,47 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LoadedEmployees value) loadedEmployees,
     required TResult Function(_Failure value) failure,
   }) {
-    return loaded(this);
+    return loadedEmployees(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LoadedEmployees value)? loadedEmployees,
     TResult? Function(_Failure value)? failure,
   }) {
-    return loaded?.call(this);
+    return loadedEmployees?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadedEmployees value)? loadedEmployees,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (loadedEmployees != null) {
+      return loadedEmployees(this);
     }
     return orElse();
   }
 }
 
-abstract class _Loaded implements EmployeeState {
-  const factory _Loaded({required final List<EmployeeModel> employees}) =
-      _$LoadedImpl;
+abstract class _LoadedEmployees implements EmployeesState {
+  const factory _LoadedEmployees(
+      {required final List<EmployeeModel> employees}) = _$LoadedEmployeesImpl;
 
   List<EmployeeModel> get employees;
 
-  /// Create a copy of EmployeeState
+  /// Create a copy of EmployeesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+  _$$LoadedEmployeesImplCopyWith<_$LoadedEmployeesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1356,13 +1360,13 @@ abstract class _$$FailureImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$FailureImplCopyWithImpl<$Res>
-    extends _$EmployeeStateCopyWithImpl<$Res, _$FailureImpl>
+    extends _$EmployeesStateCopyWithImpl<$Res, _$FailureImpl>
     implements _$$FailureImplCopyWith<$Res> {
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of EmployeeState
+  /// Create a copy of EmployeesState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1388,7 +1392,7 @@ class _$FailureImpl implements _Failure {
 
   @override
   String toString() {
-    return 'EmployeeState.failure(message: $message)';
+    return 'EmployeesState.failure(message: $message)';
   }
 
   @override
@@ -1402,7 +1406,7 @@ class _$FailureImpl implements _Failure {
   @override
   int get hashCode => Object.hash(runtimeType, message);
 
-  /// Create a copy of EmployeeState
+  /// Create a copy of EmployeesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -1414,7 +1418,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<EmployeeModel> employees) loaded,
+    required TResult Function(List<EmployeeModel> employees) loadedEmployees,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -1424,7 +1428,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<EmployeeModel> employees)? loaded,
+    TResult? Function(List<EmployeeModel> employees)? loadedEmployees,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -1434,7 +1438,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<EmployeeModel> employees)? loaded,
+    TResult Function(List<EmployeeModel> employees)? loadedEmployees,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -1448,7 +1452,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
-    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_LoadedEmployees value) loadedEmployees,
     required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
@@ -1458,7 +1462,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
-    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_LoadedEmployees value)? loadedEmployees,
     TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
@@ -1468,7 +1472,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? loaded,
+    TResult Function(_LoadedEmployees value)? loadedEmployees,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -1479,12 +1483,12 @@ class _$FailureImpl implements _Failure {
   }
 }
 
-abstract class _Failure implements EmployeeState {
+abstract class _Failure implements EmployeesState {
   const factory _Failure({required final String message}) = _$FailureImpl;
 
   String get message;
 
-  /// Create a copy of EmployeeState
+  /// Create a copy of EmployeesState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>

@@ -1,16 +1,19 @@
-import 'dart:developer';
-
 import 'package:course_work/domain/enums/position.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
 import 'package:course_work/presentation/employee/widgets/add_edit_employee_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../bloc/generate_password_cubit/generate_password_cubit.dart';
+import '../../../core/dependencies/dependencies.dart';
 import '../../../core/utils/app_strings.dart';
 import '../../../core/utils/validator.dart';
 import '../../../core/widgets/custom_choice_chip.dart';
 import '../../../core/widgets/custom_text_form_field.dart';
 import '../../../core/widgets/scroll_line.dart';
 import '../../../domain/enums/role.dart';
+import '../widgets/drop_down_button.dart';
+import '../widgets/generate_password.dart';
 
 class AddEditEmployeePage extends StatefulWidget {
   const AddEditEmployeePage({
@@ -31,9 +34,9 @@ class _AddEditEmployeePageState extends State<AddEditEmployeePage> {
   final _firstName = TextEditingController();
   final _lastName = TextEditingController();
   final _email = TextEditingController();
+  final _password = TextEditingController();
   Role _role = Role.employee;
   Position _position = Position.teacher;
-  String _password = '';
 
   @override
   void initState() {
@@ -52,6 +55,7 @@ class _AddEditEmployeePageState extends State<AddEditEmployeePage> {
     _firstName.dispose();
     _lastName.dispose();
     _email.dispose();
+    _password.dispose();
     super.dispose();
   }
 
@@ -106,7 +110,7 @@ class _AddEditEmployeePageState extends State<AddEditEmployeePage> {
                       validator: (value) {
                         return Validator.emptyValidate(value!);
                       }),
-                )
+                ),
               ]),
               const SizedBox(
                 height: 10.0,
@@ -142,24 +146,58 @@ class _AddEditEmployeePageState extends State<AddEditEmployeePage> {
                         _role =
                             onSelected ? Role.headOfDepartment : Role.employee;
                       });
-                      log(_role.value);
                     })
-              ])
+              ]),
+              const SizedBox(
+                height: 10.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: CustomTextFormField(
+                      readOnly: true,
+                      controller: _password,
+                      hintText: AppStrings.password,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10.0,
+                  ),
+                  BlocProvider(
+                    create: (context) => getIt<GeneratePasswordCubit>(),
+                    child: Expanded(
+                      child: GeneratePassword(
+                        password: _password,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              DropDownButton(
+                position: _position,
+                onSelected: (value) {
+                  setState(() {
+                    _position = value;
+                  });
+                },
+              ),
             ]),
             Align(
               alignment: Alignment.bottomCenter,
               child: AddEditEmployeeButton(
-                formKey: _formKey,
-                isEdit: widget.isEdit,
-                departmentId: widget.departmentId,
-                employee: widget.employee,
-                firstName: _firstName,
-                lastName: _lastName,
-                email: _email,
-                role: _role,
-                position: _position,
-                password: _password,
-              ),
+                  formKey: _formKey,
+                  isEdit: widget.isEdit,
+                  departmentId: widget.departmentId,
+                  employee: widget.employee,
+                  firstName: _firstName,
+                  lastName: _lastName,
+                  email: _email,
+                  role: _role,
+                  position: _position,
+                  password: _password),
             ),
           ],
         ),

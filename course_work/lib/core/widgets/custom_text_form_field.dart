@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
 
-class CustomTextFormField extends StatefulWidget {
+class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
     required this.controller,
     required this.hintText,
     this.validator,
     this.suffixIcon,
-    this.color,
+    this.textColor,
+    this.borderColor = AppColors.primaryColor,
     this.onChanged,
     this.keyboardType,
     this.obscureText = false,
@@ -21,43 +22,30 @@ class CustomTextFormField extends StatefulWidget {
   final TextInputType? keyboardType;
   final String hintText;
   final Widget? suffixIcon;
-  final Color? color;
+  final Color? textColor;
+  final Color borderColor;
   final bool obscureText;
   final int maxLines;
   final bool readOnly;
   final ValueChanged<String>? onChanged;
 
   @override
-  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
-}
-
-class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: widget.obscureText,
-      controller: widget.controller,
-      keyboardType: widget.keyboardType,
-      validator: widget.validator,
-      maxLines: widget.maxLines,
-      readOnly: widget.readOnly,
-      onChanged: widget.onChanged,
+      obscureText: obscureText,
+      controller: controller,
+      keyboardType: keyboardType,
+      validator: validator,
+      maxLines: maxLines,
+      readOnly: readOnly,
+      onChanged: onChanged,
       style: TextStyle(
-        color: widget.color,
+        color: textColor,
       ),
       decoration: InputDecoration(
-        suffixIcon: widget.controller.text.isNotEmpty
-            ? IconButton(
-                onPressed: () {
-                  setState(() {
-                    widget.controller.clear();
-                  });
-                },
-                icon: const Icon(Icons.clear),
-              )
-            : null,
-        hintText: widget.hintText,
-        hintStyle: TextStyle(color: widget.color),
+        suffixIcon: suffixIcon,
+        hintText: hintText,
+        hintStyle: TextStyle(color: textColor),
         errorStyle: TextStyle(
           fontSize: 11,
         ),
@@ -65,21 +53,21 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             const EdgeInsets.symmetric(vertical: 13, horizontal: 20),
         border: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.primaryColor,
+            color: borderColor,
             width: 2.0,
           ),
           borderRadius: BorderRadius.circular(25.0),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.primaryColor,
+            color: borderColor,
             width: 2.0,
           ),
           borderRadius: BorderRadius.circular(25.0),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: AppColors.primaryColor,
+            color: borderColor,
             width: 2.0,
           ),
           borderRadius: BorderRadius.circular(25.0),

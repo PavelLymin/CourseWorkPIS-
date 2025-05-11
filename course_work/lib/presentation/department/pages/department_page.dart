@@ -25,7 +25,7 @@ class _DepartmentPageState extends State<DepartmentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(AppStrings.department),
+        title: const Text(AppStrings.departments),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -66,7 +66,9 @@ class _DepartmentPageState extends State<DepartmentPage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: RoundedElevatedButton(
-                  text: AppStrings.add,
+                  widget: const Text(
+                    AppStrings.add,
+                  ),
                   onPressed: () {
                     showModalBottomSheet<void>(
                       context: context,
