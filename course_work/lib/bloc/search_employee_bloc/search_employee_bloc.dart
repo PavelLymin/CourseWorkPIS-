@@ -20,7 +20,6 @@ class SearchEmployeeBloc
         loadEmployee: (event) => _loadEmployee(emit, event),
         searchEmployee: (event) => _searchEmployee(emit, event),
         resetSearch: (event) => _resetSearch(emit, event),
-        addSearchEmployees: (event) => _addSearchEmployees(emit, event),
       );
     });
   }
@@ -55,20 +54,5 @@ class SearchEmployeeBloc
       taskId: event.taskId,
       departmentId: event.departmentId,
     ));
-  }
-
-  Future<void> _addSearchEmployees(
-      Emitter<SearchEmployeeState> emit, _AddSearchEmployees event) async {
-    emit(SearchEmployeeState.loading());
-
-    final result = await _repository.addSearchEmployees(
-        employees: event.employees, taskId: event.taskId);
-
-    result.fold(
-      (failure) => emit(SearchEmployeeState.failure(message: failure.message)),
-      (employees) => add(
-        _LoadEmployee(taskId: event.taskId, departmentId: event.departmentId),
-      ),
-    );
   }
 }

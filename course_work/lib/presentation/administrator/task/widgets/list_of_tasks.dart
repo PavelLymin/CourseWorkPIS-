@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../bloc/task_bloc/task_bloc.dart';
-import '../../administrator/task/widgets/list_tile_task.dart';
-import '../../head_of_department/task/widgets/add_employees_button.dart';
+import '../../../../bloc/task_bloc/task_bloc.dart';
+import 'list_tile_task.dart';
 
 class ListOfTasks extends StatelessWidget {
   const ListOfTasks({
@@ -23,6 +22,7 @@ class ListOfTasks extends StatelessWidget {
             loading: (_) => const Center(
               child: CircularProgressIndicator(),
             ),
+            loadTask: (_) => Container(),
             load: (state) {
               return ListView.separated(
                 itemCount: state.tasks.length,
@@ -35,11 +35,6 @@ class ListOfTasks extends StatelessWidget {
                   return ListTileTask(
                     task: state.tasks[index],
                     departmentId: departmentId,
-                    isNeedAddEmployeesButton: isNeedAddEmployeesButton,
-                    addEmployeesButton: AddEmployeesButton(
-                      taskId: state.tasks[index].id!,
-                      departmentId: departmentId,
-                    ),
                   );
                 },
               );

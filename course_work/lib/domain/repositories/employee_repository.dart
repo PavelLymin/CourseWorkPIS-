@@ -16,6 +16,10 @@ abstract interface class IEmployeeRepository {
     required int departmentId,
   });
 
+  Future<Either<Failure, List<EmployeeModel>>> getEmployeeFromParticipation({
+    required int participationId,
+  });
+
   Future<Either<Failure, Unit>> updateEmployee({
     required EmployeeModel originalEmployee,
     required EmployeeModel changedEmployee,

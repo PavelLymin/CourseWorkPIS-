@@ -1,20 +1,22 @@
+import 'package:course_work/core/utils/app_strings.dart';
+import 'package:course_work/domain/models/participation/participation.dart';
+import 'package:course_work/presentation/head_of_department/task/widgets/add_employees_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../bloc/task_bloc/task_bloc.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/date_time_format.dart';
-import '../../../../domain/models/task/task.dart';
-import '../pages/add_edit_task_page.dart';
+import '../pages/participation_info_page.dart';
 
-class ListTileTask extends StatelessWidget {
-  const ListTileTask({
+class ListTileParticipation extends StatelessWidget {
+  const ListTileParticipation({
     super.key,
-    required this.task,
+    required this.participation,
     required this.departmentId,
+    required this.date,
   });
-  final TaskModel task;
+  final ParticipationModel participation;
   final int departmentId;
+  final DateTime date;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +28,15 @@ class ListTileTask extends StatelessWidget {
           isScrollControlled: true,
           builder: (context) {
             return SizedBox(
-              height: MediaQuery.of(context).size.height - 80,
-              child: AddEditTaskPage(
-                departmentId: departmentId,
-                task: task,
+              height: MediaQuery.of(context).size.height - 200,
+              child: ParticipationInfoPage(
+                task: participation.task,
+                employees: participation.employees,
               ),
             );
           },
         );
+        print(participation.employees);
       },
       child: Container(
         padding: const EdgeInsets.all(16.0),
@@ -43,12 +46,13 @@ class ListTileTask extends StatelessWidget {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  task.title,
+                  participation.task.title,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(
@@ -63,15 +67,26 @@ class ListTileTask extends StatelessWidget {
                     ),
                     const SizedBox(width: 4.0),
                     Text(
-                      "${AppDateFormat.hm.format(task.startTime)} - ${AppDateFormat.hm.format(task.finishTime)}",
+                      "${AppDateFormat.hm.format(participation.task.startTime)} - ${AppDateFormat.hm.format(participation.task.finishTime)}",
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ],
                 ),
-                const SizedBox(height: 12.0),
+              ],
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Text(
-                  task.description,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  '${AppStrings.status}:',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(
+                  height: 12.0,
+                ),
+                Text(
+                  participation.task.status.value,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
               ],
             ),
@@ -82,14 +97,10 @@ class ListTileTask extends StatelessWidget {
                   width: 0.5,
                   color: Colors.white,
                 ),
-                IconButton(
-                  onPressed: () {
-                    context.read<TaskBloc>().add(TaskEvent.deleteTask(
-                          taskId: task.id!,
-                          departmentId: departmentId,
-                        ));
-                  },
-                  icon: const Icon(Icons.delete),
+                AddEmployeesButton(
+                  taskId: participation.task.id!,
+                  departmentId: departmentId,
+                  date: date,
                 ),
               ],
             ),

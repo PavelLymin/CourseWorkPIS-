@@ -1,29 +1,34 @@
 import 'package:course_work/data/data_base/data_base.dart';
-import 'package:drift/drift.dart';
+import 'package:course_work/data/dtos/employee_dto.dart';
+import 'package:course_work/data/dtos/task_dto.dart';
+import 'package:course_work/domain/models/participation/participation.dart';
 
 class ParticipationDto {
   ParticipationDto({
-    required this.taskId,
-    required this.employeeId,
+    required this.task,
+    required this.employees,
   });
+  final TaskDto task;
+  final List<EmployeeDto> employees;
 
-  final int taskId;
-  final int employeeId;
-
-  factory ParticipationDto.toDto(int taskId, int employeeId) =>
-      ParticipationDto(
-        taskId: taskId,
-        employeeId: employeeId,
+  ParticipationModel toDomain() => ParticipationModel(
+        task: task.toDomain(),
+        employees: employees.map((employee) => employee.toDomain()).toList(),
       );
 
-  ParticipationCompanion toDataBase() => ParticipationCompanion(
-        taskId: Value(taskId),
-        employeeId: Value(employeeId),
+  factory ParticipationDto.fromDomain(ParticipationModel object) =>
+      ParticipationDto(
+        task: TaskDto.fromDomain(object.task),
+        employees: object.employees
+            .map((employee) => EmployeeDto.fromDomain(employee))
+            .toList(),
       );
 
-  factory ParticipationDto.fromDataBase(ParticipationData object) =>
+  factory ParticipationDto.fromDataBase(Task task, List<Employee> employees) =>
       ParticipationDto(
-        taskId: object.taskId,
-        employeeId: object.employeeId,
+        task: TaskDto.fromDataBase(task),
+        employees: employees
+            .map((employee) => EmployeeDto.fromDataBase(employee))
+            .toList(),
       );
 }

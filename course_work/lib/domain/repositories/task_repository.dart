@@ -9,6 +9,10 @@ abstract interface class ITaskRepository {
     required int departmentId,
   });
 
+  Future<Either<Failure, TaskModel>> getTaskById({
+    required int taskId,
+  });
+
   Future<Either<Failure, Unit>> deleteTask({
     required int taskId,
   });

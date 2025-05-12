@@ -3,6 +3,7 @@ import 'package:course_work/data/data_base/data_base.dart';
 import 'package:course_work/data/dtos/employee_dto.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
 import 'package:course_work/domain/repositories/employee_repository.dart';
+import 'package:drift/drift.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:fpdart/src/unit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -91,6 +92,31 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
 
       final employees = employeesDb
           .map((element) => EmployeeDto.fromDataBase(element).toDomain())
+          .toList();
+
+      return right(employees);
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<EmployeeModel>>> getEmployeeFromParticipation({
+    required int participationId,
+  }) async {
+    try {
+      final query = database.select(database.employees).join([
+        innerJoin(database.participation,
+            database.participation.employeeId.equalsExp(database.employees.id)),
+      ])
+        ..where(database.participation.id.equals(participationId));
+
+      final employeeDb = await query.map((row) {
+        return row.readTable(database.employees);
+      }).get();
+
+      final employees = employeeDb
+          .map((employee) => EmployeeDto.fromDataBase(employee).toDomain())
           .toList();
 
       return right(employees);

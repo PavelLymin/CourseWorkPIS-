@@ -43,7 +43,7 @@ class _AddTaskPageState extends State<AddEditTaskPage> {
       _descriptionController.text = widget.task!.description;
       _paymentController.text = widget.task!.payment.toString();
       _amountOfHoursController.text = widget.task!.amountOfHours.toString();
-      if (widget.task!.priority.value == Priority.busy.value) readOnly = true;
+      if (widget.task!.status == Status.issued) readOnly = true;
     }
   }
 

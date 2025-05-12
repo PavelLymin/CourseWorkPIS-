@@ -15,10 +15,4 @@ class SearchEmployeeEvent with _$SearchEmployeeEvent {
     required int taskId,
     required int departmentId,
   }) = _LoadEmployee;
-
-  const factory SearchEmployeeEvent.addSearchEmployees({
-    required List<EmployeeModel> employees,
-    required int taskId,
-    required int departmentId,
-  }) = _AddSearchEmployees;
 }

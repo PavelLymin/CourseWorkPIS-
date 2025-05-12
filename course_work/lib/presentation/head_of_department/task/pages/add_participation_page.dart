@@ -1,3 +1,4 @@
+import 'package:course_work/bloc/participation_bloc/participation_bloc.dart';
 import 'package:course_work/core/widgets/rounded_elevated_button.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
 import 'package:flutter/material.dart';
@@ -10,20 +11,22 @@ import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/scroll_line.dart';
 import '../widgets/list_of_search_task.dart';
 
-class AddParticipation extends StatefulWidget {
-  const AddParticipation({
+class AddParticipationPage extends StatefulWidget {
+  const AddParticipationPage({
     super.key,
     required this.taskId,
     required this.departmentId,
+    required this.date,
   });
   final int taskId;
   final int departmentId;
+  final DateTime date;
 
   @override
-  State<AddParticipation> createState() => _AddParticipationState();
+  State<AddParticipationPage> createState() => _AddParticipationStatePage();
 }
 
-class _AddParticipationState extends State<AddParticipation> {
+class _AddParticipationStatePage extends State<AddParticipationPage> {
   final _searchController = TextEditingController();
   final List<EmployeeModel> _selectedEmployee = [];
 
@@ -90,11 +93,14 @@ class _AddParticipationState extends State<AddParticipation> {
                   },
                 ),
                 onPressed: () {
-                  context.read<SearchEmployeeBloc>().add(
-                      SearchEmployeeEvent.addSearchEmployees(
+                  context.read<ParticipationBloc>().add(
+                        ParticipationEvent.addParticipation(
                           employees: _selectedEmployee,
                           taskId: widget.taskId,
-                          departmentId: widget.departmentId));
+                          departmentId: widget.departmentId,
+                          date: widget.date,
+                        ),
+                      );
                 },
               ),
             ),

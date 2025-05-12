@@ -1,9 +1,9 @@
 import 'package:course_work/data/data_base/data_base.dart';
+import 'package:course_work/domain/enums/status_task.dart';
 import 'package:course_work/domain/models/task/task.dart';
 import 'package:drift/drift.dart';
 import 'package:drift_postgres/drift_postgres.dart';
 
-import '../../domain/enums/status_task.dart';
 import 'set_changed.dart';
 
 class TaskDto {
@@ -16,7 +16,7 @@ class TaskDto {
     required this.date,
     required this.startTime,
     required this.finishTime,
-    required this.priority,
+    required this.status,
   });
   final int? id;
   final String title;
@@ -26,7 +26,7 @@ class TaskDto {
   final DateTime date;
   final DateTime startTime;
   final DateTime finishTime;
-  final String priority;
+  final String status;
 
   TaskModel toDomain() => TaskModel(
         id: id,
@@ -34,10 +34,10 @@ class TaskDto {
         description: description,
         amountOfHours: amountOfHours,
         payment: payment,
-        priority: getPriority(priority),
         date: date,
         startTime: startTime,
         finishTime: finishTime,
+        status: getStatus(status),
       );
 
   factory TaskDto.fromDomain(TaskModel object) => TaskDto(
@@ -46,16 +46,16 @@ class TaskDto {
         description: object.description,
         amountOfHours: object.amountOfHours,
         payment: object.payment,
-        priority: object.priority.value,
         date: object.date,
         startTime: object.startTime,
         finishTime: object.finishTime,
+        status: object.status.value,
       );
 
-  Priority getPriority(String priority) {
-    return Priority.values.firstWhere(
-      (item) => item.value == priority,
-      orElse: () => Priority.none,
+  Status getStatus(String status) {
+    return Status.values.firstWhere(
+      (item) => item.value == status,
+      orElse: () => Status.notIssued,
     );
   }
 
@@ -64,10 +64,10 @@ class TaskDto {
         description: Value(description),
         amountOfHours: Value(amountOfHours),
         payment: Value(payment),
-        priority: Value(priority),
         date: Value(PgDate.fromDateTime(date)),
         startTime: Value(PgDateTime(startTime)),
         finishTime: Value(PgDateTime(finishTime)),
+        status: Value(status),
       );
 
   factory TaskDto.fromDataBase(Task object) => TaskDto(
@@ -79,7 +79,7 @@ class TaskDto {
         date: object.date.toDateTime(),
         startTime: object.startTime.dateTime,
         finishTime: object.finishTime.dateTime,
-        priority: object.priority,
+        status: object.status,
       );
 
   TasksCompanion getChangesData(TaskDto task) {

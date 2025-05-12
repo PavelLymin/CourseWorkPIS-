@@ -57,11 +57,10 @@ class $TasksTable extends Tasks with TableInfo<$TasksTable, Task> {
   late final GeneratedColumn<PgDateTime> finishTime =
       GeneratedColumn<PgDateTime>('finish_time', aliasedName, false,
           type: PgTypes.timestampNoTimezone, requiredDuringInsert: true);
-  static const VerificationMeta _priorityMeta =
-      const VerificationMeta('priority');
+  static const VerificationMeta _statusMeta = const VerificationMeta('status');
   @override
-  late final GeneratedColumn<String> priority = GeneratedColumn<String>(
-      'priority', aliasedName, false,
+  late final GeneratedColumn<String> status = GeneratedColumn<String>(
+      'status', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns => [
@@ -73,7 +72,7 @@ class $TasksTable extends Tasks with TableInfo<$TasksTable, Task> {
         date,
         startTime,
         finishTime,
-        priority
+        status
       ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -136,11 +135,11 @@ class $TasksTable extends Tasks with TableInfo<$TasksTable, Task> {
     } else if (isInserting) {
       context.missing(_finishTimeMeta);
     }
-    if (data.containsKey('priority')) {
-      context.handle(_priorityMeta,
-          priority.isAcceptableOrUnknown(data['priority']!, _priorityMeta));
+    if (data.containsKey('status')) {
+      context.handle(_statusMeta,
+          status.isAcceptableOrUnknown(data['status']!, _statusMeta));
     } else if (isInserting) {
-      context.missing(_priorityMeta);
+      context.missing(_statusMeta);
     }
     return context;
   }
@@ -167,8 +166,8 @@ class $TasksTable extends Tasks with TableInfo<$TasksTable, Task> {
           PgTypes.timestampNoTimezone, data['${effectivePrefix}start_time'])!,
       finishTime: attachedDatabase.typeMapping.read(
           PgTypes.timestampNoTimezone, data['${effectivePrefix}finish_time'])!,
-      priority: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}priority'])!,
+      status: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}status'])!,
     );
   }
 
@@ -187,7 +186,7 @@ class Task extends DataClass implements Insertable<Task> {
   final PgDate date;
   final PgDateTime startTime;
   final PgDateTime finishTime;
-  final String priority;
+  final String status;
   const Task(
       {required this.id,
       required this.title,
@@ -197,7 +196,7 @@ class Task extends DataClass implements Insertable<Task> {
       required this.date,
       required this.startTime,
       required this.finishTime,
-      required this.priority});
+      required this.status});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -211,7 +210,7 @@ class Task extends DataClass implements Insertable<Task> {
         Variable<PgDateTime>(startTime, PgTypes.timestampNoTimezone);
     map['finish_time'] =
         Variable<PgDateTime>(finishTime, PgTypes.timestampNoTimezone);
-    map['priority'] = Variable<String>(priority);
+    map['status'] = Variable<String>(status);
     return map;
   }
 
@@ -225,7 +224,7 @@ class Task extends DataClass implements Insertable<Task> {
       date: Value(date),
       startTime: Value(startTime),
       finishTime: Value(finishTime),
-      priority: Value(priority),
+      status: Value(status),
     );
   }
 
@@ -241,7 +240,7 @@ class Task extends DataClass implements Insertable<Task> {
       date: serializer.fromJson<PgDate>(json['date']),
       startTime: serializer.fromJson<PgDateTime>(json['startTime']),
       finishTime: serializer.fromJson<PgDateTime>(json['finishTime']),
-      priority: serializer.fromJson<String>(json['priority']),
+      status: serializer.fromJson<String>(json['status']),
     );
   }
   @override
@@ -256,7 +255,7 @@ class Task extends DataClass implements Insertable<Task> {
       'date': serializer.toJson<PgDate>(date),
       'startTime': serializer.toJson<PgDateTime>(startTime),
       'finishTime': serializer.toJson<PgDateTime>(finishTime),
-      'priority': serializer.toJson<String>(priority),
+      'status': serializer.toJson<String>(status),
     };
   }
 
@@ -269,7 +268,7 @@ class Task extends DataClass implements Insertable<Task> {
           PgDate? date,
           PgDateTime? startTime,
           PgDateTime? finishTime,
-          String? priority}) =>
+          String? status}) =>
       Task(
         id: id ?? this.id,
         title: title ?? this.title,
@@ -279,7 +278,7 @@ class Task extends DataClass implements Insertable<Task> {
         date: date ?? this.date,
         startTime: startTime ?? this.startTime,
         finishTime: finishTime ?? this.finishTime,
-        priority: priority ?? this.priority,
+        status: status ?? this.status,
       );
   Task copyWithCompanion(TasksCompanion data) {
     return Task(
@@ -295,7 +294,7 @@ class Task extends DataClass implements Insertable<Task> {
       startTime: data.startTime.present ? data.startTime.value : this.startTime,
       finishTime:
           data.finishTime.present ? data.finishTime.value : this.finishTime,
-      priority: data.priority.present ? data.priority.value : this.priority,
+      status: data.status.present ? data.status.value : this.status,
     );
   }
 
@@ -310,14 +309,14 @@ class Task extends DataClass implements Insertable<Task> {
           ..write('date: $date, ')
           ..write('startTime: $startTime, ')
           ..write('finishTime: $finishTime, ')
-          ..write('priority: $priority')
+          ..write('status: $status')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode => Object.hash(id, title, description, amountOfHours,
-      payment, date, startTime, finishTime, priority);
+      payment, date, startTime, finishTime, status);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -330,7 +329,7 @@ class Task extends DataClass implements Insertable<Task> {
           other.date == this.date &&
           other.startTime == this.startTime &&
           other.finishTime == this.finishTime &&
-          other.priority == this.priority);
+          other.status == this.status);
 }
 
 class TasksCompanion extends UpdateCompanion<Task> {
@@ -342,7 +341,7 @@ class TasksCompanion extends UpdateCompanion<Task> {
   final Value<PgDate> date;
   final Value<PgDateTime> startTime;
   final Value<PgDateTime> finishTime;
-  final Value<String> priority;
+  final Value<String> status;
   const TasksCompanion({
     this.id = const Value.absent(),
     this.title = const Value.absent(),
@@ -352,7 +351,7 @@ class TasksCompanion extends UpdateCompanion<Task> {
     this.date = const Value.absent(),
     this.startTime = const Value.absent(),
     this.finishTime = const Value.absent(),
-    this.priority = const Value.absent(),
+    this.status = const Value.absent(),
   });
   TasksCompanion.insert({
     this.id = const Value.absent(),
@@ -363,7 +362,7 @@ class TasksCompanion extends UpdateCompanion<Task> {
     required PgDate date,
     required PgDateTime startTime,
     required PgDateTime finishTime,
-    required String priority,
+    required String status,
   })  : title = Value(title),
         description = Value(description),
         amountOfHours = Value(amountOfHours),
@@ -371,7 +370,7 @@ class TasksCompanion extends UpdateCompanion<Task> {
         date = Value(date),
         startTime = Value(startTime),
         finishTime = Value(finishTime),
-        priority = Value(priority);
+        status = Value(status);
   static Insertable<Task> custom({
     Expression<int>? id,
     Expression<String>? title,
@@ -381,7 +380,7 @@ class TasksCompanion extends UpdateCompanion<Task> {
     Expression<PgDate>? date,
     Expression<PgDateTime>? startTime,
     Expression<PgDateTime>? finishTime,
-    Expression<String>? priority,
+    Expression<String>? status,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -392,7 +391,7 @@ class TasksCompanion extends UpdateCompanion<Task> {
       if (date != null) 'date': date,
       if (startTime != null) 'start_time': startTime,
       if (finishTime != null) 'finish_time': finishTime,
-      if (priority != null) 'priority': priority,
+      if (status != null) 'status': status,
     });
   }
 
@@ -405,7 +404,7 @@ class TasksCompanion extends UpdateCompanion<Task> {
       Value<PgDate>? date,
       Value<PgDateTime>? startTime,
       Value<PgDateTime>? finishTime,
-      Value<String>? priority}) {
+      Value<String>? status}) {
     return TasksCompanion(
       id: id ?? this.id,
       title: title ?? this.title,
@@ -415,7 +414,7 @@ class TasksCompanion extends UpdateCompanion<Task> {
       date: date ?? this.date,
       startTime: startTime ?? this.startTime,
       finishTime: finishTime ?? this.finishTime,
-      priority: priority ?? this.priority,
+      status: status ?? this.status,
     );
   }
 
@@ -448,8 +447,8 @@ class TasksCompanion extends UpdateCompanion<Task> {
       map['finish_time'] =
           Variable<PgDateTime>(finishTime.value, PgTypes.timestampNoTimezone);
     }
-    if (priority.present) {
-      map['priority'] = Variable<String>(priority.value);
+    if (status.present) {
+      map['status'] = Variable<String>(status.value);
     }
     return map;
   }
@@ -465,7 +464,7 @@ class TasksCompanion extends UpdateCompanion<Task> {
           ..write('date: $date, ')
           ..write('startTime: $startTime, ')
           ..write('finishTime: $finishTime, ')
-          ..write('priority: $priority')
+          ..write('status: $status')
           ..write(')'))
         .toString();
   }
@@ -1544,7 +1543,7 @@ typedef $$TasksTableCreateCompanionBuilder = TasksCompanion Function({
   required PgDate date,
   required PgDateTime startTime,
   required PgDateTime finishTime,
-  required String priority,
+  required String status,
 });
 typedef $$TasksTableUpdateCompanionBuilder = TasksCompanion Function({
   Value<int> id,
@@ -1555,7 +1554,7 @@ typedef $$TasksTableUpdateCompanionBuilder = TasksCompanion Function({
   Value<PgDate> date,
   Value<PgDateTime> startTime,
   Value<PgDateTime> finishTime,
-  Value<String> priority,
+  Value<String> status,
 });
 
 final class $$TasksTableReferences
@@ -1627,8 +1626,8 @@ class $$TasksTableFilterComposer extends Composer<_$AppDatabase, $TasksTable> {
   ColumnFilters<PgDateTime> get finishTime => $composableBuilder(
       column: $table.finishTime, builder: (column) => ColumnFilters(column));
 
-  ColumnFilters<String> get priority => $composableBuilder(
-      column: $table.priority, builder: (column) => ColumnFilters(column));
+  ColumnFilters<String> get status => $composableBuilder(
+      column: $table.status, builder: (column) => ColumnFilters(column));
 
   Expression<bool> departmentTasksRefs(
       Expression<bool> Function($$DepartmentTasksTableFilterComposer f) f) {
@@ -1707,8 +1706,8 @@ class $$TasksTableOrderingComposer
   ColumnOrderings<PgDateTime> get finishTime => $composableBuilder(
       column: $table.finishTime, builder: (column) => ColumnOrderings(column));
 
-  ColumnOrderings<String> get priority => $composableBuilder(
-      column: $table.priority, builder: (column) => ColumnOrderings(column));
+  ColumnOrderings<String> get status => $composableBuilder(
+      column: $table.status, builder: (column) => ColumnOrderings(column));
 }
 
 class $$TasksTableAnnotationComposer
@@ -1744,8 +1743,8 @@ class $$TasksTableAnnotationComposer
   GeneratedColumn<PgDateTime> get finishTime => $composableBuilder(
       column: $table.finishTime, builder: (column) => column);
 
-  GeneratedColumn<String> get priority =>
-      $composableBuilder(column: $table.priority, builder: (column) => column);
+  GeneratedColumn<String> get status =>
+      $composableBuilder(column: $table.status, builder: (column) => column);
 
   Expression<T> departmentTasksRefs<T extends Object>(
       Expression<T> Function($$DepartmentTasksTableAnnotationComposer a) f) {
@@ -1822,7 +1821,7 @@ class $$TasksTableTableManager extends RootTableManager<
             Value<PgDate> date = const Value.absent(),
             Value<PgDateTime> startTime = const Value.absent(),
             Value<PgDateTime> finishTime = const Value.absent(),
-            Value<String> priority = const Value.absent(),
+            Value<String> status = const Value.absent(),
           }) =>
               TasksCompanion(
             id: id,
@@ -1833,7 +1832,7 @@ class $$TasksTableTableManager extends RootTableManager<
             date: date,
             startTime: startTime,
             finishTime: finishTime,
-            priority: priority,
+            status: status,
           ),
           createCompanionCallback: ({
             Value<int> id = const Value.absent(),
@@ -1844,7 +1843,7 @@ class $$TasksTableTableManager extends RootTableManager<
             required PgDate date,
             required PgDateTime startTime,
             required PgDateTime finishTime,
-            required String priority,
+            required String status,
           }) =>
               TasksCompanion.insert(
             id: id,
@@ -1855,7 +1854,7 @@ class $$TasksTableTableManager extends RootTableManager<
             date: date,
             startTime: startTime,
             finishTime: finishTime,
-            priority: priority,
+            status: status,
           ),
           withReferenceMapper: (p0) => p0
               .map((e) =>

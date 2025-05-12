@@ -21,4 +21,8 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.loadTaskByDepartmentId({
     required int departmentId,
   }) = _LoadTaskByDepartmentId;
+
+  const factory TaskEvent.loadTaskById({
+    required int taskId,
+  }) = _LoadTaskById;
 }

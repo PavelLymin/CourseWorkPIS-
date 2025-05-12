@@ -37,14 +37,21 @@ final textTheme = TextTheme(
   ),
   titleLarge: GoogleFonts.lato(
     textStyle: TextStyle(
-      fontSize: 16,
+      fontSize: 18,
       fontWeight: FontWeight.w400,
       color: Colors.white,
     ),
   ),
   titleMedium: GoogleFonts.lato(
     textStyle: TextStyle(
-      fontSize: 14,
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      color: Colors.white,
+    ),
+  ),
+  bodyMedium: GoogleFonts.lato(
+    textStyle: TextStyle(
+      fontSize: 16,
       fontWeight: FontWeight.w400,
       color: Colors.white,
     ),

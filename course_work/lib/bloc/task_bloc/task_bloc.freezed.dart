@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TaskEvent {
-  int get departmentId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(TaskModel task, int departmentId) addTask,
@@ -25,6 +24,7 @@ mixin _$TaskEvent {
             TaskModel originalTask, TaskModel changedTask, int departmentId)
         updateTask,
     required TResult Function(int departmentId) loadTaskByDepartmentId,
+    required TResult Function(int taskId) loadTaskById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +35,7 @@ mixin _$TaskEvent {
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
         updateTask,
     TResult? Function(int departmentId)? loadTaskByDepartmentId,
+    TResult? Function(int taskId)? loadTaskById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,6 +46,7 @@ mixin _$TaskEvent {
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
         updateTask,
     TResult Function(int departmentId)? loadTaskByDepartmentId,
+    TResult Function(int taskId)? loadTaskById,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,6 +57,7 @@ mixin _$TaskEvent {
     required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_LoadTaskByDepartmentId value)
         loadTaskByDepartmentId,
+    required TResult Function(_LoadTaskById value) loadTaskById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +66,7 @@ mixin _$TaskEvent {
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
+    TResult? Function(_LoadTaskById value)? loadTaskById,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -71,14 +75,9 @@ mixin _$TaskEvent {
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
+    TResult Function(_LoadTaskById value)? loadTaskById,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of TaskEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TaskEventCopyWith<TaskEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -86,8 +85,6 @@ mixin _$TaskEvent {
 abstract class $TaskEventCopyWith<$Res> {
   factory $TaskEventCopyWith(TaskEvent value, $Res Function(TaskEvent) then) =
       _$TaskEventCopyWithImpl<$Res, TaskEvent>;
-  @useResult
-  $Res call({int departmentId});
 }
 
 /// @nodoc
@@ -102,27 +99,13 @@ class _$TaskEventCopyWithImpl<$Res, $Val extends TaskEvent>
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? departmentId = null,
-  }) {
-    return _then(_value.copyWith(
-      departmentId: null == departmentId
-          ? _value.departmentId
-          : departmentId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$AddTaskImplCopyWith<$Res>
-    implements $TaskEventCopyWith<$Res> {
+abstract class _$$AddTaskImplCopyWith<$Res> {
   factory _$$AddTaskImplCopyWith(
           _$AddTaskImpl value, $Res Function(_$AddTaskImpl) then) =
       __$$AddTaskImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({TaskModel task, int departmentId});
 
@@ -213,6 +196,7 @@ class _$AddTaskImpl implements _AddTask {
             TaskModel originalTask, TaskModel changedTask, int departmentId)
         updateTask,
     required TResult Function(int departmentId) loadTaskByDepartmentId,
+    required TResult Function(int taskId) loadTaskById,
   }) {
     return addTask(task, departmentId);
   }
@@ -226,6 +210,7 @@ class _$AddTaskImpl implements _AddTask {
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
         updateTask,
     TResult? Function(int departmentId)? loadTaskByDepartmentId,
+    TResult? Function(int taskId)? loadTaskById,
   }) {
     return addTask?.call(task, departmentId);
   }
@@ -239,6 +224,7 @@ class _$AddTaskImpl implements _AddTask {
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
         updateTask,
     TResult Function(int departmentId)? loadTaskByDepartmentId,
+    TResult Function(int taskId)? loadTaskById,
     required TResult orElse(),
   }) {
     if (addTask != null) {
@@ -255,6 +241,7 @@ class _$AddTaskImpl implements _AddTask {
     required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_LoadTaskByDepartmentId value)
         loadTaskByDepartmentId,
+    required TResult Function(_LoadTaskById value) loadTaskById,
   }) {
     return addTask(this);
   }
@@ -266,6 +253,7 @@ class _$AddTaskImpl implements _AddTask {
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
+    TResult? Function(_LoadTaskById value)? loadTaskById,
   }) {
     return addTask?.call(this);
   }
@@ -277,6 +265,7 @@ class _$AddTaskImpl implements _AddTask {
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
+    TResult Function(_LoadTaskById value)? loadTaskById,
     required TResult orElse(),
   }) {
     if (addTask != null) {
@@ -292,24 +281,20 @@ abstract class _AddTask implements TaskEvent {
       required final int departmentId}) = _$AddTaskImpl;
 
   TaskModel get task;
-  @override
   int get departmentId;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddTaskImplCopyWith<_$AddTaskImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DeleteTaskImplCopyWith<$Res>
-    implements $TaskEventCopyWith<$Res> {
+abstract class _$$DeleteTaskImplCopyWith<$Res> {
   factory _$$DeleteTaskImplCopyWith(
           _$DeleteTaskImpl value, $Res Function(_$DeleteTaskImpl) then) =
       __$$DeleteTaskImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int taskId, int departmentId});
 }
@@ -388,6 +373,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
             TaskModel originalTask, TaskModel changedTask, int departmentId)
         updateTask,
     required TResult Function(int departmentId) loadTaskByDepartmentId,
+    required TResult Function(int taskId) loadTaskById,
   }) {
     return deleteTask(taskId, departmentId);
   }
@@ -401,6 +387,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
         updateTask,
     TResult? Function(int departmentId)? loadTaskByDepartmentId,
+    TResult? Function(int taskId)? loadTaskById,
   }) {
     return deleteTask?.call(taskId, departmentId);
   }
@@ -414,6 +401,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
         updateTask,
     TResult Function(int departmentId)? loadTaskByDepartmentId,
+    TResult Function(int taskId)? loadTaskById,
     required TResult orElse(),
   }) {
     if (deleteTask != null) {
@@ -430,6 +418,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_LoadTaskByDepartmentId value)
         loadTaskByDepartmentId,
+    required TResult Function(_LoadTaskById value) loadTaskById,
   }) {
     return deleteTask(this);
   }
@@ -441,6 +430,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
+    TResult? Function(_LoadTaskById value)? loadTaskById,
   }) {
     return deleteTask?.call(this);
   }
@@ -452,6 +442,7 @@ class _$DeleteTaskImpl implements _DeleteTask {
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
+    TResult Function(_LoadTaskById value)? loadTaskById,
     required TResult orElse(),
   }) {
     if (deleteTask != null) {
@@ -467,24 +458,20 @@ abstract class _DeleteTask implements TaskEvent {
       required final int departmentId}) = _$DeleteTaskImpl;
 
   int get taskId;
-  @override
   int get departmentId;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeleteTaskImplCopyWith<_$DeleteTaskImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdateTaskImplCopyWith<$Res>
-    implements $TaskEventCopyWith<$Res> {
+abstract class _$$UpdateTaskImplCopyWith<$Res> {
   factory _$$UpdateTaskImplCopyWith(
           _$UpdateTaskImpl value, $Res Function(_$UpdateTaskImpl) then) =
       __$$UpdateTaskImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({TaskModel originalTask, TaskModel changedTask, int departmentId});
 
@@ -600,6 +587,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
             TaskModel originalTask, TaskModel changedTask, int departmentId)
         updateTask,
     required TResult Function(int departmentId) loadTaskByDepartmentId,
+    required TResult Function(int taskId) loadTaskById,
   }) {
     return updateTask(originalTask, changedTask, departmentId);
   }
@@ -613,6 +601,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
         updateTask,
     TResult? Function(int departmentId)? loadTaskByDepartmentId,
+    TResult? Function(int taskId)? loadTaskById,
   }) {
     return updateTask?.call(originalTask, changedTask, departmentId);
   }
@@ -626,6 +615,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
         updateTask,
     TResult Function(int departmentId)? loadTaskByDepartmentId,
+    TResult Function(int taskId)? loadTaskById,
     required TResult orElse(),
   }) {
     if (updateTask != null) {
@@ -642,6 +632,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_LoadTaskByDepartmentId value)
         loadTaskByDepartmentId,
+    required TResult Function(_LoadTaskById value) loadTaskById,
   }) {
     return updateTask(this);
   }
@@ -653,6 +644,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
+    TResult? Function(_LoadTaskById value)? loadTaskById,
   }) {
     return updateTask?.call(this);
   }
@@ -664,6 +656,7 @@ class _$UpdateTaskImpl implements _UpdateTask {
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
+    TResult Function(_LoadTaskById value)? loadTaskById,
     required TResult orElse(),
   }) {
     if (updateTask != null) {
@@ -681,25 +674,21 @@ abstract class _UpdateTask implements TaskEvent {
 
   TaskModel get originalTask;
   TaskModel get changedTask;
-  @override
   int get departmentId;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateTaskImplCopyWith<_$UpdateTaskImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadTaskByDepartmentIdImplCopyWith<$Res>
-    implements $TaskEventCopyWith<$Res> {
+abstract class _$$LoadTaskByDepartmentIdImplCopyWith<$Res> {
   factory _$$LoadTaskByDepartmentIdImplCopyWith(
           _$LoadTaskByDepartmentIdImpl value,
           $Res Function(_$LoadTaskByDepartmentIdImpl) then) =
       __$$LoadTaskByDepartmentIdImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int departmentId});
 }
@@ -772,6 +761,7 @@ class _$LoadTaskByDepartmentIdImpl implements _LoadTaskByDepartmentId {
             TaskModel originalTask, TaskModel changedTask, int departmentId)
         updateTask,
     required TResult Function(int departmentId) loadTaskByDepartmentId,
+    required TResult Function(int taskId) loadTaskById,
   }) {
     return loadTaskByDepartmentId(departmentId);
   }
@@ -785,6 +775,7 @@ class _$LoadTaskByDepartmentIdImpl implements _LoadTaskByDepartmentId {
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
         updateTask,
     TResult? Function(int departmentId)? loadTaskByDepartmentId,
+    TResult? Function(int taskId)? loadTaskById,
   }) {
     return loadTaskByDepartmentId?.call(departmentId);
   }
@@ -798,6 +789,7 @@ class _$LoadTaskByDepartmentIdImpl implements _LoadTaskByDepartmentId {
             TaskModel originalTask, TaskModel changedTask, int departmentId)?
         updateTask,
     TResult Function(int departmentId)? loadTaskByDepartmentId,
+    TResult Function(int taskId)? loadTaskById,
     required TResult orElse(),
   }) {
     if (loadTaskByDepartmentId != null) {
@@ -814,6 +806,7 @@ class _$LoadTaskByDepartmentIdImpl implements _LoadTaskByDepartmentId {
     required TResult Function(_UpdateTask value) updateTask,
     required TResult Function(_LoadTaskByDepartmentId value)
         loadTaskByDepartmentId,
+    required TResult Function(_LoadTaskById value) loadTaskById,
   }) {
     return loadTaskByDepartmentId(this);
   }
@@ -825,6 +818,7 @@ class _$LoadTaskByDepartmentIdImpl implements _LoadTaskByDepartmentId {
     TResult? Function(_DeleteTask value)? deleteTask,
     TResult? Function(_UpdateTask value)? updateTask,
     TResult? Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
+    TResult? Function(_LoadTaskById value)? loadTaskById,
   }) {
     return loadTaskByDepartmentId?.call(this);
   }
@@ -836,6 +830,7 @@ class _$LoadTaskByDepartmentIdImpl implements _LoadTaskByDepartmentId {
     TResult Function(_DeleteTask value)? deleteTask,
     TResult Function(_UpdateTask value)? updateTask,
     TResult Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
+    TResult Function(_LoadTaskById value)? loadTaskById,
     required TResult orElse(),
   }) {
     if (loadTaskByDepartmentId != null) {
@@ -849,15 +844,178 @@ abstract class _LoadTaskByDepartmentId implements TaskEvent {
   const factory _LoadTaskByDepartmentId({required final int departmentId}) =
       _$LoadTaskByDepartmentIdImpl;
 
-  @override
   int get departmentId;
 
   /// Create a copy of TaskEvent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadTaskByDepartmentIdImplCopyWith<_$LoadTaskByDepartmentIdImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadTaskByIdImplCopyWith<$Res> {
+  factory _$$LoadTaskByIdImplCopyWith(
+          _$LoadTaskByIdImpl value, $Res Function(_$LoadTaskByIdImpl) then) =
+      __$$LoadTaskByIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int taskId});
+}
+
+/// @nodoc
+class __$$LoadTaskByIdImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$LoadTaskByIdImpl>
+    implements _$$LoadTaskByIdImplCopyWith<$Res> {
+  __$$LoadTaskByIdImplCopyWithImpl(
+      _$LoadTaskByIdImpl _value, $Res Function(_$LoadTaskByIdImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? taskId = null,
+  }) {
+    return _then(_$LoadTaskByIdImpl(
+      taskId: null == taskId
+          ? _value.taskId
+          : taskId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadTaskByIdImpl implements _LoadTaskById {
+  const _$LoadTaskByIdImpl({required this.taskId});
+
+  @override
+  final int taskId;
+
+  @override
+  String toString() {
+    return 'TaskEvent.loadTaskById(taskId: $taskId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadTaskByIdImpl &&
+            (identical(other.taskId, taskId) || other.taskId == taskId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, taskId);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadTaskByIdImplCopyWith<_$LoadTaskByIdImpl> get copyWith =>
+      __$$LoadTaskByIdImplCopyWithImpl<_$LoadTaskByIdImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(TaskModel task, int departmentId) addTask,
+    required TResult Function(int taskId, int departmentId) deleteTask,
+    required TResult Function(
+            TaskModel originalTask, TaskModel changedTask, int departmentId)
+        updateTask,
+    required TResult Function(int departmentId) loadTaskByDepartmentId,
+    required TResult Function(int taskId) loadTaskById,
+  }) {
+    return loadTaskById(taskId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(TaskModel task, int departmentId)? addTask,
+    TResult? Function(int taskId, int departmentId)? deleteTask,
+    TResult? Function(
+            TaskModel originalTask, TaskModel changedTask, int departmentId)?
+        updateTask,
+    TResult? Function(int departmentId)? loadTaskByDepartmentId,
+    TResult? Function(int taskId)? loadTaskById,
+  }) {
+    return loadTaskById?.call(taskId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(TaskModel task, int departmentId)? addTask,
+    TResult Function(int taskId, int departmentId)? deleteTask,
+    TResult Function(
+            TaskModel originalTask, TaskModel changedTask, int departmentId)?
+        updateTask,
+    TResult Function(int departmentId)? loadTaskByDepartmentId,
+    TResult Function(int taskId)? loadTaskById,
+    required TResult orElse(),
+  }) {
+    if (loadTaskById != null) {
+      return loadTaskById(taskId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddTask value) addTask,
+    required TResult Function(_DeleteTask value) deleteTask,
+    required TResult Function(_UpdateTask value) updateTask,
+    required TResult Function(_LoadTaskByDepartmentId value)
+        loadTaskByDepartmentId,
+    required TResult Function(_LoadTaskById value) loadTaskById,
+  }) {
+    return loadTaskById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddTask value)? addTask,
+    TResult? Function(_DeleteTask value)? deleteTask,
+    TResult? Function(_UpdateTask value)? updateTask,
+    TResult? Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
+    TResult? Function(_LoadTaskById value)? loadTaskById,
+  }) {
+    return loadTaskById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddTask value)? addTask,
+    TResult Function(_DeleteTask value)? deleteTask,
+    TResult Function(_UpdateTask value)? updateTask,
+    TResult Function(_LoadTaskByDepartmentId value)? loadTaskByDepartmentId,
+    TResult Function(_LoadTaskById value)? loadTaskById,
+    required TResult orElse(),
+  }) {
+    if (loadTaskById != null) {
+      return loadTaskById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadTaskById implements TaskEvent {
+  const factory _LoadTaskById({required final int taskId}) = _$LoadTaskByIdImpl;
+
+  int get taskId;
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadTaskByIdImplCopyWith<_$LoadTaskByIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -866,6 +1024,7 @@ mixin _$TaskState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) load,
+    required TResult Function(TaskModel task) loadTask,
     required TResult Function(String message) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -873,6 +1032,7 @@ mixin _$TaskState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? load,
+    TResult? Function(TaskModel task)? loadTask,
     TResult? Function(String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -880,6 +1040,7 @@ mixin _$TaskState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? load,
+    TResult Function(TaskModel task)? loadTask,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) =>
@@ -888,6 +1049,7 @@ mixin _$TaskState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_Load value) load,
+    required TResult Function(_LoadTask value) loadTask,
     required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -895,6 +1057,7 @@ mixin _$TaskState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Load value)? load,
+    TResult? Function(_LoadTask value)? loadTask,
     TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -902,6 +1065,7 @@ mixin _$TaskState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Load value)? load,
+    TResult Function(_LoadTask value)? loadTask,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
@@ -971,6 +1135,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) load,
+    required TResult Function(TaskModel task) loadTask,
     required TResult Function(String message) failure,
   }) {
     return loading();
@@ -981,6 +1146,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? load,
+    TResult? Function(TaskModel task)? loadTask,
     TResult? Function(String message)? failure,
   }) {
     return loading?.call();
@@ -991,6 +1157,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? load,
+    TResult Function(TaskModel task)? loadTask,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -1005,6 +1172,7 @@ class _$LoadingImpl implements _Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_Load value) load,
+    required TResult Function(_LoadTask value) loadTask,
     required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
@@ -1015,6 +1183,7 @@ class _$LoadingImpl implements _Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Load value)? load,
+    TResult? Function(_LoadTask value)? loadTask,
     TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
@@ -1025,6 +1194,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Load value)? load,
+    TResult Function(_LoadTask value)? loadTask,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -1114,6 +1284,7 @@ class _$LoadImpl implements _Load {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) load,
+    required TResult Function(TaskModel task) loadTask,
     required TResult Function(String message) failure,
   }) {
     return load(tasks);
@@ -1124,6 +1295,7 @@ class _$LoadImpl implements _Load {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? load,
+    TResult? Function(TaskModel task)? loadTask,
     TResult? Function(String message)? failure,
   }) {
     return load?.call(tasks);
@@ -1134,6 +1306,7 @@ class _$LoadImpl implements _Load {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? load,
+    TResult Function(TaskModel task)? loadTask,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -1148,6 +1321,7 @@ class _$LoadImpl implements _Load {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_Load value) load,
+    required TResult Function(_LoadTask value) loadTask,
     required TResult Function(_Failure value) failure,
   }) {
     return load(this);
@@ -1158,6 +1332,7 @@ class _$LoadImpl implements _Load {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Load value)? load,
+    TResult? Function(_LoadTask value)? loadTask,
     TResult? Function(_Failure value)? failure,
   }) {
     return load?.call(this);
@@ -1168,6 +1343,7 @@ class _$LoadImpl implements _Load {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Load value)? load,
+    TResult Function(_LoadTask value)? loadTask,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -1187,6 +1363,170 @@ abstract class _Load implements TaskState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadImplCopyWith<_$LoadImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadTaskImplCopyWith<$Res> {
+  factory _$$LoadTaskImplCopyWith(
+          _$LoadTaskImpl value, $Res Function(_$LoadTaskImpl) then) =
+      __$$LoadTaskImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TaskModel task});
+
+  $TaskModelCopyWith<$Res> get task;
+}
+
+/// @nodoc
+class __$$LoadTaskImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$LoadTaskImpl>
+    implements _$$LoadTaskImplCopyWith<$Res> {
+  __$$LoadTaskImplCopyWithImpl(
+      _$LoadTaskImpl _value, $Res Function(_$LoadTaskImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? task = null,
+  }) {
+    return _then(_$LoadTaskImpl(
+      task: null == task
+          ? _value.task
+          : task // ignore: cast_nullable_to_non_nullable
+              as TaskModel,
+    ));
+  }
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $TaskModelCopyWith<$Res> get task {
+    return $TaskModelCopyWith<$Res>(_value.task, (value) {
+      return _then(_value.copyWith(task: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$LoadTaskImpl implements _LoadTask {
+  const _$LoadTaskImpl({required this.task});
+
+  @override
+  final TaskModel task;
+
+  @override
+  String toString() {
+    return 'TaskState.loadTask(task: $task)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadTaskImpl &&
+            (identical(other.task, task) || other.task == task));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, task);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadTaskImplCopyWith<_$LoadTaskImpl> get copyWith =>
+      __$$LoadTaskImplCopyWithImpl<_$LoadTaskImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loading,
+    required TResult Function(List<TaskModel> tasks) load,
+    required TResult Function(TaskModel task) loadTask,
+    required TResult Function(String message) failure,
+  }) {
+    return loadTask(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loading,
+    TResult? Function(List<TaskModel> tasks)? load,
+    TResult? Function(TaskModel task)? loadTask,
+    TResult? Function(String message)? failure,
+  }) {
+    return loadTask?.call(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loading,
+    TResult Function(List<TaskModel> tasks)? load,
+    TResult Function(TaskModel task)? loadTask,
+    TResult Function(String message)? failure,
+    required TResult orElse(),
+  }) {
+    if (loadTask != null) {
+      return loadTask(task);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) load,
+    required TResult Function(_LoadTask value) loadTask,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return loadTask(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? load,
+    TResult? Function(_LoadTask value)? loadTask,
+    TResult? Function(_Failure value)? failure,
+  }) {
+    return loadTask?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? load,
+    TResult Function(_LoadTask value)? loadTask,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (loadTask != null) {
+      return loadTask(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadTask implements TaskState {
+  const factory _LoadTask({required final TaskModel task}) = _$LoadTaskImpl;
+
+  TaskModel get task;
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadTaskImplCopyWith<_$LoadTaskImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1260,6 +1600,7 @@ class _$FailureImpl implements _Failure {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) load,
+    required TResult Function(TaskModel task) loadTask,
     required TResult Function(String message) failure,
   }) {
     return failure(message);
@@ -1270,6 +1611,7 @@ class _$FailureImpl implements _Failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? load,
+    TResult? Function(TaskModel task)? loadTask,
     TResult? Function(String message)? failure,
   }) {
     return failure?.call(message);
@@ -1280,6 +1622,7 @@ class _$FailureImpl implements _Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? load,
+    TResult Function(TaskModel task)? loadTask,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
@@ -1294,6 +1637,7 @@ class _$FailureImpl implements _Failure {
   TResult map<TResult extends Object?>({
     required TResult Function(_Loading value) loading,
     required TResult Function(_Load value) load,
+    required TResult Function(_LoadTask value) loadTask,
     required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
@@ -1304,6 +1648,7 @@ class _$FailureImpl implements _Failure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Load value)? load,
+    TResult? Function(_LoadTask value)? loadTask,
     TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
@@ -1314,6 +1659,7 @@ class _$FailureImpl implements _Failure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loading value)? loading,
     TResult Function(_Load value)? load,
+    TResult Function(_LoadTask value)? loadTask,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {

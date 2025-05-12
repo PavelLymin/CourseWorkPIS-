@@ -23,4 +23,8 @@ class EmployeesEvent with _$EmployeesEvent {
   }) = _LoadEmployeesByDepartmentId;
 
   const factory EmployeesEvent.loadAllEmployees() = _LoadAllEmployees;
+
+  const factory EmployeesEvent.loadEmployeeFromParticipation({
+    required int? participationId,
+  }) = _LoadEmployeeFromParticipation;
 }

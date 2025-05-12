@@ -1,5 +1,5 @@
 import 'package:course_work/core/routes/route_names.dart';
-import 'package:course_work/presentation/task/pages/list_of_tasks.dart';
+import 'package:course_work/presentation/administrator/task/widgets/list_of_tasks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';

@@ -14,9 +14,9 @@ import '../../presentation/navigation_bar/administrator.dart';
 import '../dependencies/dependencies.dart';
 
 final GoRouter router = GoRouter(
-    // initialLocation: getIt<SharedPreferences>().getInt('id') != null
-    //     ? '/department'
-    //     : '/login',
+    initialLocation: getIt<SharedPreferences>().getInt('id') != null
+        ? '/department'
+        : '/login',
     routes: [
       GoRoute(
           name: RoutesNames.login,
@@ -24,7 +24,7 @@ final GoRouter router = GoRouter(
           builder: (context, state) => const LoginPage()),
       GoRoute(
         name: RoutesNames.taskForHeadOfDepartment,
-        path: '/',
+        path: '/taskForHeadOfDepartment',
         builder: (context, state) => TaskDepartmentPage(
           departmentId: getIt<SharedPreferences>().getInt('departmentId')!,
         ),

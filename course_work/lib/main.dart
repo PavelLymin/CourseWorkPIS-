@@ -1,5 +1,6 @@
 import 'package:course_work/bloc/auth_bloc/auth_bloc.dart';
 import 'package:course_work/bloc/login_bloc/login_bloc.dart';
+import 'package:course_work/bloc/participation_bloc/participation_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -27,6 +28,7 @@ void main() async {
         BlocProvider(create: (_) => getIt<TaskBloc>()),
         BlocProvider(create: (_) => getIt<EmployeesBloc>()),
         BlocProvider(create: (_) => getIt<SearchEmployeeBloc>()),
+        BlocProvider(create: (_) => getIt<ParticipationBloc>()),
       ],
       child: const MyApp(),
     ),

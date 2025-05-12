@@ -17,7 +17,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
           deleteTask: (event) => _deleteTask(emit, event),
           updateTask: (event) => _updateTask(emit, event),
           loadTaskByDepartmentId: (event) =>
-              _loadTaskByDepartmentId(emit, event));
+              _loadTaskByDepartmentId(emit, event),
+          loadTaskById: (event) => _loadTaskById(emit, event));
     });
   }
 
@@ -59,5 +60,15 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
     result.fold((failure) => emit(TaskState.failure(message: failure.message)),
         (tasks) => emit(TaskState.load(tasks: tasks)));
+  }
+
+  Future<void> _loadTaskById(
+      Emitter<TaskState> emit, _LoadTaskById event) async {
+    emit(TaskState.loading());
+
+    final result = await repository.getTaskById(taskId: event.taskId);
+
+    result.fold((failure) => emit(TaskState.failure(message: failure.message)),
+        (task) => emit(TaskState.loadTask(task: task)));
   }
 }

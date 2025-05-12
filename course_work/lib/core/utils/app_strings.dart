@@ -5,6 +5,7 @@ class AppStrings {
   static const titleTask = 'Название задания';
 
   // Задания
+  static const nameTask = 'Название задания';
   static const task = 'Задание';
   static const tasks = 'Задания';
   static const descriptionTask = 'Описание задания';
@@ -13,6 +14,7 @@ class AppStrings {
   static const correctNumberHours = 'Введите правильное количество часов';
   static const correctAmount = 'Введите правильную сумму';
   static const correctEmail = 'Введите корректный E-mail';
+  static const status = 'Статус';
 
   // Сотрудники
   static const employees = 'Сотрудники';
@@ -38,6 +40,9 @@ class AppStrings {
   static const updatingTask = 'Редактирование задания';
   static const updatingEmployee = 'Редактирование сотрудника';
 
+  // Участие в выполнении задания
+  static const participationEmployees = 'Количество сотрудников на выполнение';
+
   // Специальные
   static const login = 'Войти';
   static const logOut = 'Выйти';
@@ -51,4 +56,5 @@ class AppStrings {
   static const update = 'Редактировать';
   static const save = 'Сохранить';
   static const required = 'Обязательное поле';
+  static const notFoundData = 'Данные не найдены';
 }

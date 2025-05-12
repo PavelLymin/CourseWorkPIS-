@@ -31,7 +31,7 @@ class Tasks extends Table {
   Column<PgDateTime> get startTime => customType(PgTypes.timestampNoTimezone)();
   Column<PgDateTime> get finishTime =>
       customType(PgTypes.timestampNoTimezone)();
-  TextColumn get priority => text()();
+  TextColumn get status => text()();
 }
 
 class Employees extends Table {

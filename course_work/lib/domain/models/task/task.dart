@@ -1,6 +1,5 @@
+import 'package:course_work/domain/enums/status_task.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../enums/status_task.dart';
 
 part 'task.freezed.dart';
 
@@ -15,6 +14,6 @@ class TaskModel with _$TaskModel {
     required DateTime date,
     required DateTime startTime,
     required DateTime finishTime,
-    @Default(Priority.none) Priority priority,
+    @Default(Status.notIssued) Status status,
   }) = _TaskModel;
 }

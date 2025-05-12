@@ -19,7 +19,9 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
           updateEmployee: (event) => _updateEmployee(emit, event),
           loadAllEmployees: (_) => _loadAllEmployees(emit),
           loadEmployeesByDepartmentId: (event) =>
-              _loadEmployeesByDepartmentId(emit, event));
+              _loadEmployeesByDepartmentId(emit, event),
+          loadEmployeeFromParticipation: (event) =>
+              _loadEmployeeFromParticipation(emit, event));
     });
   }
 
@@ -27,6 +29,7 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
       Emitter<EmployeesState> emit, _AddEmployee event) async {
     emit(EmployeesState.loading());
     final result = await repository.addEmployee(employee: event.employee);
+
     result.fold(
         (failure) => emit(EmployeesState.failure(message: failure.message)),
         (_) => add(
@@ -38,6 +41,7 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
     emit(EmployeesState.loading());
     final result =
         await repository.deleteEmployee(employeeId: event.employeeId);
+
     result.fold(
         (failure) => emit(EmployeesState.failure(message: failure.message)),
         (_) => add(
@@ -50,6 +54,7 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
     final result = await repository.updateEmployee(
         originalEmployee: event.originalEmployee,
         changedEmployee: event.changedEmployee);
+
     result.fold(
         (failure) => emit(EmployeesState.failure(message: failure.message)),
         (_) => add(
@@ -58,6 +63,7 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
 
   Future<void> _loadAllEmployees(Emitter<EmployeesState> emit) async {
     final result = await repository.getAllEmployees();
+
     result.fold(
         (failure) => emit(EmployeesState.failure(message: failure.message)),
         (employees) =>
@@ -69,6 +75,22 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
     emit(EmployeesState.loading());
     final result = await repository.getEmployeesByDepartmentId(
         departmentId: event.departmentId);
+
+    result.fold(
+        (failure) => emit(EmployeesState.failure(message: failure.message)),
+        (employees) =>
+            emit(EmployeesState.loadedEmployees(employees: employees)));
+  }
+
+  Future<void> _loadEmployeeFromParticipation(Emitter<EmployeesState> emit,
+      _LoadEmployeeFromParticipation event) async {
+    emit(EmployeesState.loading());
+    if (event.participationId == null) {
+      return emit(EmployeesState.loadedEmployees(employees: []));
+    }
+
+    final result = await repository.getEmployeeFromParticipation(
+        participationId: event.participationId!);
     result.fold(
         (failure) => emit(EmployeesState.failure(message: failure.message)),
         (employees) =>

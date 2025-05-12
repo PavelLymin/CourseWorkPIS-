@@ -1,9 +1,9 @@
-enum Priority {
-  busy('Занят'),
-  free('Свободен'),
-  low('Низкий'),
-  none('Без приоритета');
+enum Status {
+  notIssued('Не выдана'),
+  issued('Выдана'),
+  started('Начата'),
+  completed('Выполнена');
 
-  const Priority(this.value);
+  const Status(this.value);
   final String value;
 }

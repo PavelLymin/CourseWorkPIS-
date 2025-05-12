@@ -24,7 +24,7 @@ mixin _$TaskModel {
   DateTime get date => throw _privateConstructorUsedError;
   DateTime get startTime => throw _privateConstructorUsedError;
   DateTime get finishTime => throw _privateConstructorUsedError;
-  Priority get priority => throw _privateConstructorUsedError;
+  Status get status => throw _privateConstructorUsedError;
 
   /// Create a copy of TaskModel
   /// with the given fields replaced by the non-null parameter values.
@@ -47,7 +47,7 @@ abstract class $TaskModelCopyWith<$Res> {
       DateTime date,
       DateTime startTime,
       DateTime finishTime,
-      Priority priority});
+      Status status});
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
     Object? date = null,
     Object? startTime = null,
     Object? finishTime = null,
-    Object? priority = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -108,10 +108,10 @@ class _$TaskModelCopyWithImpl<$Res, $Val extends TaskModel>
           ? _value.finishTime
           : finishTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      priority: null == priority
-          ? _value.priority
-          : priority // ignore: cast_nullable_to_non_nullable
-              as Priority,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status,
     ) as $Val);
   }
 }
@@ -133,7 +133,7 @@ abstract class _$$TaskModelImplCopyWith<$Res>
       DateTime date,
       DateTime startTime,
       DateTime finishTime,
-      Priority priority});
+      Status status});
 }
 
 /// @nodoc
@@ -157,7 +157,7 @@ class __$$TaskModelImplCopyWithImpl<$Res>
     Object? date = null,
     Object? startTime = null,
     Object? finishTime = null,
-    Object? priority = null,
+    Object? status = null,
   }) {
     return _then(_$TaskModelImpl(
       id: freezed == id
@@ -192,10 +192,10 @@ class __$$TaskModelImplCopyWithImpl<$Res>
           ? _value.finishTime
           : finishTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      priority: null == priority
-          ? _value.priority
-          : priority // ignore: cast_nullable_to_non_nullable
-              as Priority,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as Status,
     ));
   }
 }
@@ -212,7 +212,7 @@ class _$TaskModelImpl implements _TaskModel {
       required this.date,
       required this.startTime,
       required this.finishTime,
-      this.priority = Priority.none});
+      this.status = Status.notIssued});
 
   @override
   final int? id;
@@ -232,11 +232,11 @@ class _$TaskModelImpl implements _TaskModel {
   final DateTime finishTime;
   @override
   @JsonKey()
-  final Priority priority;
+  final Status status;
 
   @override
   String toString() {
-    return 'TaskModel(id: $id, title: $title, description: $description, amountOfHours: $amountOfHours, payment: $payment, date: $date, startTime: $startTime, finishTime: $finishTime, priority: $priority)';
+    return 'TaskModel(id: $id, title: $title, description: $description, amountOfHours: $amountOfHours, payment: $payment, date: $date, startTime: $startTime, finishTime: $finishTime, status: $status)';
   }
 
   @override
@@ -256,13 +256,12 @@ class _$TaskModelImpl implements _TaskModel {
                 other.startTime == startTime) &&
             (identical(other.finishTime, finishTime) ||
                 other.finishTime == finishTime) &&
-            (identical(other.priority, priority) ||
-                other.priority == priority));
+            (identical(other.status, status) || other.status == status));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, id, title, description,
-      amountOfHours, payment, date, startTime, finishTime, priority);
+      amountOfHours, payment, date, startTime, finishTime, status);
 
   /// Create a copy of TaskModel
   /// with the given fields replaced by the non-null parameter values.
@@ -283,7 +282,7 @@ abstract class _TaskModel implements TaskModel {
       required final DateTime date,
       required final DateTime startTime,
       required final DateTime finishTime,
-      final Priority priority}) = _$TaskModelImpl;
+      final Status status}) = _$TaskModelImpl;
 
   @override
   int? get id;
@@ -302,7 +301,7 @@ abstract class _TaskModel implements TaskModel {
   @override
   DateTime get finishTime;
   @override
-  Priority get priority;
+  Status get status;
 
   /// Create a copy of TaskModel
   /// with the given fields replaced by the non-null parameter values.

@@ -26,6 +26,8 @@ mixin _$EmployeesEvent {
         updateEmployee,
     required TResult Function(int departmentId) loadEmployeesByDepartmentId,
     required TResult Function() loadAllEmployees,
+    required TResult Function(int? participationId)
+        loadEmployeeFromParticipation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,6 +39,7 @@ mixin _$EmployeesEvent {
         updateEmployee,
     TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult? Function()? loadAllEmployees,
+    TResult? Function(int? participationId)? loadEmployeeFromParticipation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,6 +51,7 @@ mixin _$EmployeesEvent {
         updateEmployee,
     TResult Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult Function()? loadAllEmployees,
+    TResult Function(int? participationId)? loadEmployeeFromParticipation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +63,8 @@ mixin _$EmployeesEvent {
     required TResult Function(_LoadEmployeesByDepartmentId value)
         loadEmployeesByDepartmentId,
     required TResult Function(_LoadAllEmployees value) loadAllEmployees,
+    required TResult Function(_LoadEmployeeFromParticipation value)
+        loadEmployeeFromParticipation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +75,8 @@ mixin _$EmployeesEvent {
     TResult? Function(_LoadEmployeesByDepartmentId value)?
         loadEmployeesByDepartmentId,
     TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult? Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -79,6 +87,8 @@ mixin _$EmployeesEvent {
     TResult Function(_LoadEmployeesByDepartmentId value)?
         loadEmployeesByDepartmentId,
     TResult Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -203,6 +213,8 @@ class _$AddEmployeeImpl implements _AddEmployee {
         updateEmployee,
     required TResult Function(int departmentId) loadEmployeesByDepartmentId,
     required TResult Function() loadAllEmployees,
+    required TResult Function(int? participationId)
+        loadEmployeeFromParticipation,
   }) {
     return addEmployee(employee, departmentId);
   }
@@ -217,6 +229,7 @@ class _$AddEmployeeImpl implements _AddEmployee {
         updateEmployee,
     TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult? Function()? loadAllEmployees,
+    TResult? Function(int? participationId)? loadEmployeeFromParticipation,
   }) {
     return addEmployee?.call(employee, departmentId);
   }
@@ -231,6 +244,7 @@ class _$AddEmployeeImpl implements _AddEmployee {
         updateEmployee,
     TResult Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult Function()? loadAllEmployees,
+    TResult Function(int? participationId)? loadEmployeeFromParticipation,
     required TResult orElse(),
   }) {
     if (addEmployee != null) {
@@ -248,6 +262,8 @@ class _$AddEmployeeImpl implements _AddEmployee {
     required TResult Function(_LoadEmployeesByDepartmentId value)
         loadEmployeesByDepartmentId,
     required TResult Function(_LoadAllEmployees value) loadAllEmployees,
+    required TResult Function(_LoadEmployeeFromParticipation value)
+        loadEmployeeFromParticipation,
   }) {
     return addEmployee(this);
   }
@@ -261,6 +277,8 @@ class _$AddEmployeeImpl implements _AddEmployee {
     TResult? Function(_LoadEmployeesByDepartmentId value)?
         loadEmployeesByDepartmentId,
     TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult? Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
   }) {
     return addEmployee?.call(this);
   }
@@ -274,6 +292,8 @@ class _$AddEmployeeImpl implements _AddEmployee {
     TResult Function(_LoadEmployeesByDepartmentId value)?
         loadEmployeesByDepartmentId,
     TResult Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
     required TResult orElse(),
   }) {
     if (addEmployee != null) {
@@ -386,6 +406,8 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
         updateEmployee,
     required TResult Function(int departmentId) loadEmployeesByDepartmentId,
     required TResult Function() loadAllEmployees,
+    required TResult Function(int? participationId)
+        loadEmployeeFromParticipation,
   }) {
     return deleteEmployee(employeeId, departmentId);
   }
@@ -400,6 +422,7 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
         updateEmployee,
     TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult? Function()? loadAllEmployees,
+    TResult? Function(int? participationId)? loadEmployeeFromParticipation,
   }) {
     return deleteEmployee?.call(employeeId, departmentId);
   }
@@ -414,6 +437,7 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
         updateEmployee,
     TResult Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult Function()? loadAllEmployees,
+    TResult Function(int? participationId)? loadEmployeeFromParticipation,
     required TResult orElse(),
   }) {
     if (deleteEmployee != null) {
@@ -431,6 +455,8 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
     required TResult Function(_LoadEmployeesByDepartmentId value)
         loadEmployeesByDepartmentId,
     required TResult Function(_LoadAllEmployees value) loadAllEmployees,
+    required TResult Function(_LoadEmployeeFromParticipation value)
+        loadEmployeeFromParticipation,
   }) {
     return deleteEmployee(this);
   }
@@ -444,6 +470,8 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
     TResult? Function(_LoadEmployeesByDepartmentId value)?
         loadEmployeesByDepartmentId,
     TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult? Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
   }) {
     return deleteEmployee?.call(this);
   }
@@ -457,6 +485,8 @@ class _$DeleteEmployeeImpl implements _DeleteEmployee {
     TResult Function(_LoadEmployeesByDepartmentId value)?
         loadEmployeesByDepartmentId,
     TResult Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
     required TResult orElse(),
   }) {
     if (deleteEmployee != null) {
@@ -607,6 +637,8 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
         updateEmployee,
     required TResult Function(int departmentId) loadEmployeesByDepartmentId,
     required TResult Function() loadAllEmployees,
+    required TResult Function(int? participationId)
+        loadEmployeeFromParticipation,
   }) {
     return updateEmployee(originalEmployee, changedEmployee, departmentId);
   }
@@ -621,6 +653,7 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
         updateEmployee,
     TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult? Function()? loadAllEmployees,
+    TResult? Function(int? participationId)? loadEmployeeFromParticipation,
   }) {
     return updateEmployee?.call(
         originalEmployee, changedEmployee, departmentId);
@@ -636,6 +669,7 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
         updateEmployee,
     TResult Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult Function()? loadAllEmployees,
+    TResult Function(int? participationId)? loadEmployeeFromParticipation,
     required TResult orElse(),
   }) {
     if (updateEmployee != null) {
@@ -653,6 +687,8 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
     required TResult Function(_LoadEmployeesByDepartmentId value)
         loadEmployeesByDepartmentId,
     required TResult Function(_LoadAllEmployees value) loadAllEmployees,
+    required TResult Function(_LoadEmployeeFromParticipation value)
+        loadEmployeeFromParticipation,
   }) {
     return updateEmployee(this);
   }
@@ -666,6 +702,8 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
     TResult? Function(_LoadEmployeesByDepartmentId value)?
         loadEmployeesByDepartmentId,
     TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult? Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
   }) {
     return updateEmployee?.call(this);
   }
@@ -679,6 +717,8 @@ class _$UpdateEmployeeImpl implements _UpdateEmployee {
     TResult Function(_LoadEmployeesByDepartmentId value)?
         loadEmployeesByDepartmentId,
     TResult Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
     required TResult orElse(),
   }) {
     if (updateEmployee != null) {
@@ -787,6 +827,8 @@ class _$LoadEmployeesByDepartmentIdImpl
         updateEmployee,
     required TResult Function(int departmentId) loadEmployeesByDepartmentId,
     required TResult Function() loadAllEmployees,
+    required TResult Function(int? participationId)
+        loadEmployeeFromParticipation,
   }) {
     return loadEmployeesByDepartmentId(departmentId);
   }
@@ -801,6 +843,7 @@ class _$LoadEmployeesByDepartmentIdImpl
         updateEmployee,
     TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult? Function()? loadAllEmployees,
+    TResult? Function(int? participationId)? loadEmployeeFromParticipation,
   }) {
     return loadEmployeesByDepartmentId?.call(departmentId);
   }
@@ -815,6 +858,7 @@ class _$LoadEmployeesByDepartmentIdImpl
         updateEmployee,
     TResult Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult Function()? loadAllEmployees,
+    TResult Function(int? participationId)? loadEmployeeFromParticipation,
     required TResult orElse(),
   }) {
     if (loadEmployeesByDepartmentId != null) {
@@ -832,6 +876,8 @@ class _$LoadEmployeesByDepartmentIdImpl
     required TResult Function(_LoadEmployeesByDepartmentId value)
         loadEmployeesByDepartmentId,
     required TResult Function(_LoadAllEmployees value) loadAllEmployees,
+    required TResult Function(_LoadEmployeeFromParticipation value)
+        loadEmployeeFromParticipation,
   }) {
     return loadEmployeesByDepartmentId(this);
   }
@@ -845,6 +891,8 @@ class _$LoadEmployeesByDepartmentIdImpl
     TResult? Function(_LoadEmployeesByDepartmentId value)?
         loadEmployeesByDepartmentId,
     TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult? Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
   }) {
     return loadEmployeesByDepartmentId?.call(this);
   }
@@ -858,6 +906,8 @@ class _$LoadEmployeesByDepartmentIdImpl
     TResult Function(_LoadEmployeesByDepartmentId value)?
         loadEmployeesByDepartmentId,
     TResult Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
     required TResult orElse(),
   }) {
     if (loadEmployeesByDepartmentId != null) {
@@ -929,6 +979,8 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
         updateEmployee,
     required TResult Function(int departmentId) loadEmployeesByDepartmentId,
     required TResult Function() loadAllEmployees,
+    required TResult Function(int? participationId)
+        loadEmployeeFromParticipation,
   }) {
     return loadAllEmployees();
   }
@@ -943,6 +995,7 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
         updateEmployee,
     TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult? Function()? loadAllEmployees,
+    TResult? Function(int? participationId)? loadEmployeeFromParticipation,
   }) {
     return loadAllEmployees?.call();
   }
@@ -957,6 +1010,7 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
         updateEmployee,
     TResult Function(int departmentId)? loadEmployeesByDepartmentId,
     TResult Function()? loadAllEmployees,
+    TResult Function(int? participationId)? loadEmployeeFromParticipation,
     required TResult orElse(),
   }) {
     if (loadAllEmployees != null) {
@@ -974,6 +1028,8 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
     required TResult Function(_LoadEmployeesByDepartmentId value)
         loadEmployeesByDepartmentId,
     required TResult Function(_LoadAllEmployees value) loadAllEmployees,
+    required TResult Function(_LoadEmployeeFromParticipation value)
+        loadEmployeeFromParticipation,
   }) {
     return loadAllEmployees(this);
   }
@@ -987,6 +1043,8 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
     TResult? Function(_LoadEmployeesByDepartmentId value)?
         loadEmployeesByDepartmentId,
     TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult? Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
   }) {
     return loadAllEmployees?.call(this);
   }
@@ -1000,6 +1058,8 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
     TResult Function(_LoadEmployeesByDepartmentId value)?
         loadEmployeesByDepartmentId,
     TResult Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
     required TResult orElse(),
   }) {
     if (loadAllEmployees != null) {
@@ -1011,6 +1071,194 @@ class _$LoadAllEmployeesImpl implements _LoadAllEmployees {
 
 abstract class _LoadAllEmployees implements EmployeesEvent {
   const factory _LoadAllEmployees() = _$LoadAllEmployeesImpl;
+}
+
+/// @nodoc
+abstract class _$$LoadEmployeeFromParticipationImplCopyWith<$Res> {
+  factory _$$LoadEmployeeFromParticipationImplCopyWith(
+          _$LoadEmployeeFromParticipationImpl value,
+          $Res Function(_$LoadEmployeeFromParticipationImpl) then) =
+      __$$LoadEmployeeFromParticipationImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? participationId});
+}
+
+/// @nodoc
+class __$$LoadEmployeeFromParticipationImplCopyWithImpl<$Res>
+    extends _$EmployeesEventCopyWithImpl<$Res,
+        _$LoadEmployeeFromParticipationImpl>
+    implements _$$LoadEmployeeFromParticipationImplCopyWith<$Res> {
+  __$$LoadEmployeeFromParticipationImplCopyWithImpl(
+      _$LoadEmployeeFromParticipationImpl _value,
+      $Res Function(_$LoadEmployeeFromParticipationImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of EmployeesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? participationId = freezed,
+  }) {
+    return _then(_$LoadEmployeeFromParticipationImpl(
+      participationId: freezed == participationId
+          ? _value.participationId
+          : participationId // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadEmployeeFromParticipationImpl
+    implements _LoadEmployeeFromParticipation {
+  const _$LoadEmployeeFromParticipationImpl({required this.participationId});
+
+  @override
+  final int? participationId;
+
+  @override
+  String toString() {
+    return 'EmployeesEvent.loadEmployeeFromParticipation(participationId: $participationId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadEmployeeFromParticipationImpl &&
+            (identical(other.participationId, participationId) ||
+                other.participationId == participationId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, participationId);
+
+  /// Create a copy of EmployeesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadEmployeeFromParticipationImplCopyWith<
+          _$LoadEmployeeFromParticipationImpl>
+      get copyWith => __$$LoadEmployeeFromParticipationImplCopyWithImpl<
+          _$LoadEmployeeFromParticipationImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(EmployeeModel employee, int departmentId)
+        addEmployee,
+    required TResult Function(int employeeId, int departmentId) deleteEmployee,
+    required TResult Function(EmployeeModel originalEmployee,
+            EmployeeModel changedEmployee, int departmentId)
+        updateEmployee,
+    required TResult Function(int departmentId) loadEmployeesByDepartmentId,
+    required TResult Function() loadAllEmployees,
+    required TResult Function(int? participationId)
+        loadEmployeeFromParticipation,
+  }) {
+    return loadEmployeeFromParticipation(participationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult? Function(int employeeId, int departmentId)? deleteEmployee,
+    TResult? Function(EmployeeModel originalEmployee,
+            EmployeeModel changedEmployee, int departmentId)?
+        updateEmployee,
+    TResult? Function(int departmentId)? loadEmployeesByDepartmentId,
+    TResult? Function()? loadAllEmployees,
+    TResult? Function(int? participationId)? loadEmployeeFromParticipation,
+  }) {
+    return loadEmployeeFromParticipation?.call(participationId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(EmployeeModel employee, int departmentId)? addEmployee,
+    TResult Function(int employeeId, int departmentId)? deleteEmployee,
+    TResult Function(EmployeeModel originalEmployee,
+            EmployeeModel changedEmployee, int departmentId)?
+        updateEmployee,
+    TResult Function(int departmentId)? loadEmployeesByDepartmentId,
+    TResult Function()? loadAllEmployees,
+    TResult Function(int? participationId)? loadEmployeeFromParticipation,
+    required TResult orElse(),
+  }) {
+    if (loadEmployeeFromParticipation != null) {
+      return loadEmployeeFromParticipation(participationId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddEmployee value) addEmployee,
+    required TResult Function(_DeleteEmployee value) deleteEmployee,
+    required TResult Function(_UpdateEmployee value) updateEmployee,
+    required TResult Function(_LoadEmployeesByDepartmentId value)
+        loadEmployeesByDepartmentId,
+    required TResult Function(_LoadAllEmployees value) loadAllEmployees,
+    required TResult Function(_LoadEmployeeFromParticipation value)
+        loadEmployeeFromParticipation,
+  }) {
+    return loadEmployeeFromParticipation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddEmployee value)? addEmployee,
+    TResult? Function(_DeleteEmployee value)? deleteEmployee,
+    TResult? Function(_UpdateEmployee value)? updateEmployee,
+    TResult? Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
+    TResult? Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult? Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
+  }) {
+    return loadEmployeeFromParticipation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddEmployee value)? addEmployee,
+    TResult Function(_DeleteEmployee value)? deleteEmployee,
+    TResult Function(_UpdateEmployee value)? updateEmployee,
+    TResult Function(_LoadEmployeesByDepartmentId value)?
+        loadEmployeesByDepartmentId,
+    TResult Function(_LoadAllEmployees value)? loadAllEmployees,
+    TResult Function(_LoadEmployeeFromParticipation value)?
+        loadEmployeeFromParticipation,
+    required TResult orElse(),
+  }) {
+    if (loadEmployeeFromParticipation != null) {
+      return loadEmployeeFromParticipation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadEmployeeFromParticipation implements EmployeesEvent {
+  const factory _LoadEmployeeFromParticipation(
+          {required final int? participationId}) =
+      _$LoadEmployeeFromParticipationImpl;
+
+  int? get participationId;
+
+  /// Create a copy of EmployeesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadEmployeeFromParticipationImplCopyWith<
+          _$LoadEmployeeFromParticipationImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

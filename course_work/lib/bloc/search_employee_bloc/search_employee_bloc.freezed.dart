@@ -21,9 +21,6 @@ mixin _$SearchEmployeeEvent {
     required TResult Function(String query) searchEmployee,
     required TResult Function(int taskId, int departmentId) resetSearch,
     required TResult Function(int taskId, int departmentId) loadEmployee,
-    required TResult Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)
-        addSearchEmployees,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,9 +28,6 @@ mixin _$SearchEmployeeEvent {
     TResult? Function(String query)? searchEmployee,
     TResult? Function(int taskId, int departmentId)? resetSearch,
     TResult? Function(int taskId, int departmentId)? loadEmployee,
-    TResult? Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)?
-        addSearchEmployees,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,9 +35,6 @@ mixin _$SearchEmployeeEvent {
     TResult Function(String query)? searchEmployee,
     TResult Function(int taskId, int departmentId)? resetSearch,
     TResult Function(int taskId, int departmentId)? loadEmployee,
-    TResult Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)?
-        addSearchEmployees,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,7 +43,6 @@ mixin _$SearchEmployeeEvent {
     required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
     required TResult Function(_LoadEmployee value) loadEmployee,
-    required TResult Function(_AddSearchEmployees value) addSearchEmployees,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,7 +50,6 @@ mixin _$SearchEmployeeEvent {
     TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
     TResult? Function(_LoadEmployee value)? loadEmployee,
-    TResult? Function(_AddSearchEmployees value)? addSearchEmployees,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,7 +57,6 @@ mixin _$SearchEmployeeEvent {
     TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
     TResult Function(_LoadEmployee value)? loadEmployee,
-    TResult Function(_AddSearchEmployees value)? addSearchEmployees,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -167,9 +155,6 @@ class _$SearchEmployeeImpl implements _SearchEmployee {
     required TResult Function(String query) searchEmployee,
     required TResult Function(int taskId, int departmentId) resetSearch,
     required TResult Function(int taskId, int departmentId) loadEmployee,
-    required TResult Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)
-        addSearchEmployees,
   }) {
     return searchEmployee(query);
   }
@@ -180,9 +165,6 @@ class _$SearchEmployeeImpl implements _SearchEmployee {
     TResult? Function(String query)? searchEmployee,
     TResult? Function(int taskId, int departmentId)? resetSearch,
     TResult? Function(int taskId, int departmentId)? loadEmployee,
-    TResult? Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)?
-        addSearchEmployees,
   }) {
     return searchEmployee?.call(query);
   }
@@ -193,9 +175,6 @@ class _$SearchEmployeeImpl implements _SearchEmployee {
     TResult Function(String query)? searchEmployee,
     TResult Function(int taskId, int departmentId)? resetSearch,
     TResult Function(int taskId, int departmentId)? loadEmployee,
-    TResult Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)?
-        addSearchEmployees,
     required TResult orElse(),
   }) {
     if (searchEmployee != null) {
@@ -210,7 +189,6 @@ class _$SearchEmployeeImpl implements _SearchEmployee {
     required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
     required TResult Function(_LoadEmployee value) loadEmployee,
-    required TResult Function(_AddSearchEmployees value) addSearchEmployees,
   }) {
     return searchEmployee(this);
   }
@@ -221,7 +199,6 @@ class _$SearchEmployeeImpl implements _SearchEmployee {
     TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
     TResult? Function(_LoadEmployee value)? loadEmployee,
-    TResult? Function(_AddSearchEmployees value)? addSearchEmployees,
   }) {
     return searchEmployee?.call(this);
   }
@@ -232,7 +209,6 @@ class _$SearchEmployeeImpl implements _SearchEmployee {
     TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
     TResult Function(_LoadEmployee value)? loadEmployee,
-    TResult Function(_AddSearchEmployees value)? addSearchEmployees,
     required TResult orElse(),
   }) {
     if (searchEmployee != null) {
@@ -335,9 +311,6 @@ class _$ResetSearchImpl implements _ResetSearch {
     required TResult Function(String query) searchEmployee,
     required TResult Function(int taskId, int departmentId) resetSearch,
     required TResult Function(int taskId, int departmentId) loadEmployee,
-    required TResult Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)
-        addSearchEmployees,
   }) {
     return resetSearch(taskId, departmentId);
   }
@@ -348,9 +321,6 @@ class _$ResetSearchImpl implements _ResetSearch {
     TResult? Function(String query)? searchEmployee,
     TResult? Function(int taskId, int departmentId)? resetSearch,
     TResult? Function(int taskId, int departmentId)? loadEmployee,
-    TResult? Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)?
-        addSearchEmployees,
   }) {
     return resetSearch?.call(taskId, departmentId);
   }
@@ -361,9 +331,6 @@ class _$ResetSearchImpl implements _ResetSearch {
     TResult Function(String query)? searchEmployee,
     TResult Function(int taskId, int departmentId)? resetSearch,
     TResult Function(int taskId, int departmentId)? loadEmployee,
-    TResult Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)?
-        addSearchEmployees,
     required TResult orElse(),
   }) {
     if (resetSearch != null) {
@@ -378,7 +345,6 @@ class _$ResetSearchImpl implements _ResetSearch {
     required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
     required TResult Function(_LoadEmployee value) loadEmployee,
-    required TResult Function(_AddSearchEmployees value) addSearchEmployees,
   }) {
     return resetSearch(this);
   }
@@ -389,7 +355,6 @@ class _$ResetSearchImpl implements _ResetSearch {
     TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
     TResult? Function(_LoadEmployee value)? loadEmployee,
-    TResult? Function(_AddSearchEmployees value)? addSearchEmployees,
   }) {
     return resetSearch?.call(this);
   }
@@ -400,7 +365,6 @@ class _$ResetSearchImpl implements _ResetSearch {
     TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
     TResult Function(_LoadEmployee value)? loadEmployee,
-    TResult Function(_AddSearchEmployees value)? addSearchEmployees,
     required TResult orElse(),
   }) {
     if (resetSearch != null) {
@@ -505,9 +469,6 @@ class _$LoadEmployeeImpl implements _LoadEmployee {
     required TResult Function(String query) searchEmployee,
     required TResult Function(int taskId, int departmentId) resetSearch,
     required TResult Function(int taskId, int departmentId) loadEmployee,
-    required TResult Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)
-        addSearchEmployees,
   }) {
     return loadEmployee(taskId, departmentId);
   }
@@ -518,9 +479,6 @@ class _$LoadEmployeeImpl implements _LoadEmployee {
     TResult? Function(String query)? searchEmployee,
     TResult? Function(int taskId, int departmentId)? resetSearch,
     TResult? Function(int taskId, int departmentId)? loadEmployee,
-    TResult? Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)?
-        addSearchEmployees,
   }) {
     return loadEmployee?.call(taskId, departmentId);
   }
@@ -531,9 +489,6 @@ class _$LoadEmployeeImpl implements _LoadEmployee {
     TResult Function(String query)? searchEmployee,
     TResult Function(int taskId, int departmentId)? resetSearch,
     TResult Function(int taskId, int departmentId)? loadEmployee,
-    TResult Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)?
-        addSearchEmployees,
     required TResult orElse(),
   }) {
     if (loadEmployee != null) {
@@ -548,7 +503,6 @@ class _$LoadEmployeeImpl implements _LoadEmployee {
     required TResult Function(_SearchEmployee value) searchEmployee,
     required TResult Function(_ResetSearch value) resetSearch,
     required TResult Function(_LoadEmployee value) loadEmployee,
-    required TResult Function(_AddSearchEmployees value) addSearchEmployees,
   }) {
     return loadEmployee(this);
   }
@@ -559,7 +513,6 @@ class _$LoadEmployeeImpl implements _LoadEmployee {
     TResult? Function(_SearchEmployee value)? searchEmployee,
     TResult? Function(_ResetSearch value)? resetSearch,
     TResult? Function(_LoadEmployee value)? loadEmployee,
-    TResult? Function(_AddSearchEmployees value)? addSearchEmployees,
   }) {
     return loadEmployee?.call(this);
   }
@@ -570,7 +523,6 @@ class _$LoadEmployeeImpl implements _LoadEmployee {
     TResult Function(_SearchEmployee value)? searchEmployee,
     TResult Function(_ResetSearch value)? resetSearch,
     TResult Function(_LoadEmployee value)? loadEmployee,
-    TResult Function(_AddSearchEmployees value)? addSearchEmployees,
     required TResult orElse(),
   }) {
     if (loadEmployee != null) {
@@ -592,199 +544,6 @@ abstract class _LoadEmployee implements SearchEmployeeEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadEmployeeImplCopyWith<_$LoadEmployeeImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$AddSearchEmployeesImplCopyWith<$Res> {
-  factory _$$AddSearchEmployeesImplCopyWith(_$AddSearchEmployeesImpl value,
-          $Res Function(_$AddSearchEmployeesImpl) then) =
-      __$$AddSearchEmployeesImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({List<EmployeeModel> employees, int taskId, int departmentId});
-}
-
-/// @nodoc
-class __$$AddSearchEmployeesImplCopyWithImpl<$Res>
-    extends _$SearchEmployeeEventCopyWithImpl<$Res, _$AddSearchEmployeesImpl>
-    implements _$$AddSearchEmployeesImplCopyWith<$Res> {
-  __$$AddSearchEmployeesImplCopyWithImpl(_$AddSearchEmployeesImpl _value,
-      $Res Function(_$AddSearchEmployeesImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SearchEmployeeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? employees = null,
-    Object? taskId = null,
-    Object? departmentId = null,
-  }) {
-    return _then(_$AddSearchEmployeesImpl(
-      employees: null == employees
-          ? _value._employees
-          : employees // ignore: cast_nullable_to_non_nullable
-              as List<EmployeeModel>,
-      taskId: null == taskId
-          ? _value.taskId
-          : taskId // ignore: cast_nullable_to_non_nullable
-              as int,
-      departmentId: null == departmentId
-          ? _value.departmentId
-          : departmentId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AddSearchEmployeesImpl implements _AddSearchEmployees {
-  const _$AddSearchEmployeesImpl(
-      {required final List<EmployeeModel> employees,
-      required this.taskId,
-      required this.departmentId})
-      : _employees = employees;
-
-  final List<EmployeeModel> _employees;
-  @override
-  List<EmployeeModel> get employees {
-    if (_employees is EqualUnmodifiableListView) return _employees;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_employees);
-  }
-
-  @override
-  final int taskId;
-  @override
-  final int departmentId;
-
-  @override
-  String toString() {
-    return 'SearchEmployeeEvent.addSearchEmployees(employees: $employees, taskId: $taskId, departmentId: $departmentId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddSearchEmployeesImpl &&
-            const DeepCollectionEquality()
-                .equals(other._employees, _employees) &&
-            (identical(other.taskId, taskId) || other.taskId == taskId) &&
-            (identical(other.departmentId, departmentId) ||
-                other.departmentId == departmentId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_employees), taskId, departmentId);
-
-  /// Create a copy of SearchEmployeeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddSearchEmployeesImplCopyWith<_$AddSearchEmployeesImpl> get copyWith =>
-      __$$AddSearchEmployeesImplCopyWithImpl<_$AddSearchEmployeesImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String query) searchEmployee,
-    required TResult Function(int taskId, int departmentId) resetSearch,
-    required TResult Function(int taskId, int departmentId) loadEmployee,
-    required TResult Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)
-        addSearchEmployees,
-  }) {
-    return addSearchEmployees(employees, taskId, departmentId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String query)? searchEmployee,
-    TResult? Function(int taskId, int departmentId)? resetSearch,
-    TResult? Function(int taskId, int departmentId)? loadEmployee,
-    TResult? Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)?
-        addSearchEmployees,
-  }) {
-    return addSearchEmployees?.call(employees, taskId, departmentId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String query)? searchEmployee,
-    TResult Function(int taskId, int departmentId)? resetSearch,
-    TResult Function(int taskId, int departmentId)? loadEmployee,
-    TResult Function(
-            List<EmployeeModel> employees, int taskId, int departmentId)?
-        addSearchEmployees,
-    required TResult orElse(),
-  }) {
-    if (addSearchEmployees != null) {
-      return addSearchEmployees(employees, taskId, departmentId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SearchEmployee value) searchEmployee,
-    required TResult Function(_ResetSearch value) resetSearch,
-    required TResult Function(_LoadEmployee value) loadEmployee,
-    required TResult Function(_AddSearchEmployees value) addSearchEmployees,
-  }) {
-    return addSearchEmployees(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SearchEmployee value)? searchEmployee,
-    TResult? Function(_ResetSearch value)? resetSearch,
-    TResult? Function(_LoadEmployee value)? loadEmployee,
-    TResult? Function(_AddSearchEmployees value)? addSearchEmployees,
-  }) {
-    return addSearchEmployees?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SearchEmployee value)? searchEmployee,
-    TResult Function(_ResetSearch value)? resetSearch,
-    TResult Function(_LoadEmployee value)? loadEmployee,
-    TResult Function(_AddSearchEmployees value)? addSearchEmployees,
-    required TResult orElse(),
-  }) {
-    if (addSearchEmployees != null) {
-      return addSearchEmployees(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _AddSearchEmployees implements SearchEmployeeEvent {
-  const factory _AddSearchEmployees(
-      {required final List<EmployeeModel> employees,
-      required final int taskId,
-      required final int departmentId}) = _$AddSearchEmployeesImpl;
-
-  List<EmployeeModel> get employees;
-  int get taskId;
-  int get departmentId;
-
-  /// Create a copy of SearchEmployeeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AddSearchEmployeesImplCopyWith<_$AddSearchEmployeesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

@@ -1,11 +1,9 @@
 import 'package:course_work/core/errors/failure.dart';
 import 'package:course_work/data/dtos/employee_dto.dart';
-import 'package:course_work/data/dtos/participation_dto.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
 import 'package:course_work/domain/repositories/search_employee_repository.dart';
 import 'package:drift/drift.dart';
 import 'package:fpdart/src/either.dart';
-import 'package:fpdart/src/unit.dart';
 
 import '../data_base/data_base.dart';
 
@@ -13,25 +11,6 @@ class SearchRepositoryImpl implements ISearchEmployeeRepository {
   SearchRepositoryImpl({required this.database});
   final AppDatabase database;
   List<EmployeeModel> cache = [];
-
-  @override
-  Future<Either<Failure, Unit>> addSearchEmployees(
-      {required List<EmployeeModel> employees, required int taskId}) async {
-    try {
-      final employeesDb = employees
-          .map((employee) =>
-              ParticipationDto.toDto(taskId, employee.id!).toDataBase())
-          .toList();
-
-      await database.batch((batch) {
-        batch.insertAll(database.participation, employeesDb);
-      });
-
-      return right(unit);
-    } catch (e) {
-      return left(Failure(message: e.toString()));
-    }
-  }
 
   @override
   Future<Either<Failure, List<EmployeeModel>>> getEmployeesWithoutParticipation(

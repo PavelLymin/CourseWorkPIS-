@@ -1,4 +1,5 @@
 import 'package:course_work/core/errors/failure.dart';
+import 'package:course_work/core/utils/app_strings.dart';
 import 'package:course_work/data/dtos/task_dto.dart';
 import 'package:course_work/domain/models/task/task.dart';
 import 'package:course_work/domain/repositories/task_repository.dart';
@@ -91,6 +92,24 @@ class TaskRepositoryImpl implements ITaskRepository {
           .toList();
 
       return right(tasks);
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, TaskModel>> getTaskById({
+    required int taskId,
+  }) async {
+    try {
+      final taskDb = await (database.select(database.tasks)
+            ..where((row) => row.id.equals(taskId)))
+          .get();
+
+      final task = TaskDto.fromDataBase(taskDb[0]).toDomain();
+      return right(task);
+    } on StateError catch (_) {
+      return left(Failure(message: AppStrings.notFoundData));
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
