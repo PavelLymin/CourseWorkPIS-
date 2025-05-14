@@ -1022,6 +1022,7 @@ abstract class _LoadTaskById implements TaskEvent {
 mixin _$TaskState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) load,
     required TResult Function(TaskModel task) loadTask,
@@ -1030,6 +1031,7 @@ mixin _$TaskState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? load,
     TResult? Function(TaskModel task)? loadTask,
@@ -1038,6 +1040,7 @@ mixin _$TaskState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? load,
     TResult Function(TaskModel task)? loadTask,
@@ -1047,6 +1050,7 @@ mixin _$TaskState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Load value) load,
     required TResult Function(_LoadTask value) loadTask,
@@ -1055,6 +1059,7 @@ mixin _$TaskState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Load value)? load,
     TResult? Function(_LoadTask value)? loadTask,
@@ -1063,6 +1068,7 @@ mixin _$TaskState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Load value)? load,
     TResult Function(_LoadTask value)? loadTask,
@@ -1090,6 +1096,129 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$InitialImplCopyWith<$Res> {
+  factory _$$InitialImplCopyWith(
+          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
+      __$$InitialImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitialImplCopyWithImpl<$Res>
+    extends _$TaskStateCopyWithImpl<$Res, _$InitialImpl>
+    implements _$$InitialImplCopyWith<$Res> {
+  __$$InitialImplCopyWithImpl(
+      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$InitialImpl implements _Initial {
+  const _$InitialImpl();
+
+  @override
+  String toString() {
+    return 'TaskState.initial()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitialImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<TaskModel> tasks) load,
+    required TResult Function(TaskModel task) loadTask,
+    required TResult Function(String message) failure,
+  }) {
+    return initial();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<TaskModel> tasks)? load,
+    TResult? Function(TaskModel task)? loadTask,
+    TResult? Function(String message)? failure,
+  }) {
+    return initial?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<TaskModel> tasks)? load,
+    TResult Function(TaskModel task)? loadTask,
+    TResult Function(String message)? failure,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Load value) load,
+    required TResult Function(_LoadTask value) loadTask,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return initial(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Load value)? load,
+    TResult? Function(_LoadTask value)? loadTask,
+    TResult? Function(_Failure value)? failure,
+  }) {
+    return initial?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Load value)? load,
+    TResult Function(_LoadTask value)? loadTask,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (initial != null) {
+      return initial(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Initial implements TaskState {
+  const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
@@ -1133,6 +1262,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) load,
     required TResult Function(TaskModel task) loadTask,
@@ -1144,6 +1274,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? load,
     TResult? Function(TaskModel task)? loadTask,
@@ -1155,6 +1286,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? load,
     TResult Function(TaskModel task)? loadTask,
@@ -1170,6 +1302,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Load value) load,
     required TResult Function(_LoadTask value) loadTask,
@@ -1181,6 +1314,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Load value)? load,
     TResult? Function(_LoadTask value)? loadTask,
@@ -1192,6 +1326,7 @@ class _$LoadingImpl implements _Loading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Load value)? load,
     TResult Function(_LoadTask value)? loadTask,
@@ -1282,6 +1417,7 @@ class _$LoadImpl implements _Load {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) load,
     required TResult Function(TaskModel task) loadTask,
@@ -1293,6 +1429,7 @@ class _$LoadImpl implements _Load {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? load,
     TResult? Function(TaskModel task)? loadTask,
@@ -1304,6 +1441,7 @@ class _$LoadImpl implements _Load {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? load,
     TResult Function(TaskModel task)? loadTask,
@@ -1319,6 +1457,7 @@ class _$LoadImpl implements _Load {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Load value) load,
     required TResult Function(_LoadTask value) loadTask,
@@ -1330,6 +1469,7 @@ class _$LoadImpl implements _Load {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Load value)? load,
     TResult? Function(_LoadTask value)? loadTask,
@@ -1341,6 +1481,7 @@ class _$LoadImpl implements _Load {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Load value)? load,
     TResult Function(_LoadTask value)? loadTask,
@@ -1446,6 +1587,7 @@ class _$LoadTaskImpl implements _LoadTask {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) load,
     required TResult Function(TaskModel task) loadTask,
@@ -1457,6 +1599,7 @@ class _$LoadTaskImpl implements _LoadTask {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? load,
     TResult? Function(TaskModel task)? loadTask,
@@ -1468,6 +1611,7 @@ class _$LoadTaskImpl implements _LoadTask {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? load,
     TResult Function(TaskModel task)? loadTask,
@@ -1483,6 +1627,7 @@ class _$LoadTaskImpl implements _LoadTask {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Load value) load,
     required TResult Function(_LoadTask value) loadTask,
@@ -1494,6 +1639,7 @@ class _$LoadTaskImpl implements _LoadTask {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Load value)? load,
     TResult? Function(_LoadTask value)? loadTask,
@@ -1505,6 +1651,7 @@ class _$LoadTaskImpl implements _LoadTask {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Load value)? load,
     TResult Function(_LoadTask value)? loadTask,
@@ -1598,6 +1745,7 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<TaskModel> tasks) load,
     required TResult Function(TaskModel task) loadTask,
@@ -1609,6 +1757,7 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<TaskModel> tasks)? load,
     TResult? Function(TaskModel task)? loadTask,
@@ -1620,6 +1769,7 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<TaskModel> tasks)? load,
     TResult Function(TaskModel task)? loadTask,
@@ -1635,6 +1785,7 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
     required TResult Function(_Loading value) loading,
     required TResult Function(_Load value) load,
     required TResult Function(_LoadTask value) loadTask,
@@ -1646,6 +1797,7 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Load value)? load,
     TResult? Function(_LoadTask value)? loadTask,
@@ -1657,6 +1809,7 @@ class _$FailureImpl implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
     TResult Function(_Loading value)? loading,
     TResult Function(_Load value)? load,
     TResult Function(_LoadTask value)? loadTask,

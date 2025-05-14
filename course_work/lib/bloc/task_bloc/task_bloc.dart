@@ -3,6 +3,7 @@ import 'package:course_work/domain/repositories/task_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../domain/models/task/task.dart';
+import '../../domain/enums/status_task.dart';
 
 part 'task_bloc.freezed.dart';
 part 'task_event.dart';
@@ -10,7 +11,7 @@ part 'task_state.dart';
 
 class TaskBloc extends Bloc<TaskEvent, TaskState> {
   final ITaskRepository repository;
-  TaskBloc({required this.repository}) : super(const TaskState.loading()) {
+  TaskBloc({required this.repository}) : super(const TaskState.initial()) {
     on<TaskEvent>((event, emit) async {
       await event.map(
           addTask: (event) => _addTask(emit, event),
@@ -42,13 +43,22 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   }
 
   Future<void> _updateTask(Emitter<TaskState> emit, _UpdateTask event) async {
+    final checkResult = _checkUpdateStatus(
+        prev: event.originalTask.status, cur: event.changedTask.status);
     emit(TaskState.loading());
+    if (checkResult) {
+      final result = await repository.updateTask(
+          originalTask: event.originalTask, changedTask: event.changedTask);
 
-    final result = await repository.updateTask(
-        originalTask: event.originalTask, changedTask: event.changedTask);
-
-    result.fold((failure) => emit(TaskState.failure(message: failure.message)),
-        (_) => add(_LoadTaskByDepartmentId(departmentId: event.departmentId)));
+      result.fold(
+          (failure) => emit(TaskState.failure(message: failure.message)),
+          (_) =>
+              add(_LoadTaskByDepartmentId(departmentId: event.departmentId)));
+    } else {
+      emit(TaskState.failure(
+          message:
+              'Для того, чтобы выполнить задание, нужно сначала ее начать'));
+    }
   }
 
   Future<void> _loadTaskByDepartmentId(
@@ -70,5 +80,10 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
     result.fold((failure) => emit(TaskState.failure(message: failure.message)),
         (task) => emit(TaskState.loadTask(task: task)));
+  }
+
+  bool _checkUpdateStatus({required Status prev, required Status cur}) {
+    if (prev != Status.started && cur == Status.completed) return false;
+    return true;
   }
 }

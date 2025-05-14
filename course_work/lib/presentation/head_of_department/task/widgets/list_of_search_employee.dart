@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../bloc/search_employee_bloc/search_employee_bloc.dart';
 
-class ListOfSearchTask extends StatefulWidget {
-  const ListOfSearchTask({
+class ListOfSearchEmployee extends StatefulWidget {
+  const ListOfSearchEmployee({
     super.key,
     required this.searchController,
     required this.selectedEmployee,
@@ -14,10 +14,10 @@ class ListOfSearchTask extends StatefulWidget {
   final List<EmployeeModel> selectedEmployee;
 
   @override
-  State<ListOfSearchTask> createState() => _ListOfSearchTaskState();
+  State<ListOfSearchEmployee> createState() => _ListOfSearchEmployeeState();
 }
 
-class _ListOfSearchTaskState extends State<ListOfSearchTask> {
+class _ListOfSearchEmployeeState extends State<ListOfSearchEmployee> {
   @override
   Widget build(BuildContext context) {
     return Expanded(

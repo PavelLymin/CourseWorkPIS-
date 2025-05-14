@@ -9,7 +9,7 @@ import '../../../../bloc/search_employee_bloc/search_employee_bloc.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/scroll_line.dart';
-import '../widgets/list_of_search_task.dart';
+import '../widgets/list_of_search_employee.dart';
 
 class AddParticipationPage extends StatefulWidget {
   const AddParticipationPage({
@@ -17,10 +17,12 @@ class AddParticipationPage extends StatefulWidget {
     required this.taskId,
     required this.departmentId,
     required this.date,
+    required this.status,
   });
   final int taskId;
   final int departmentId;
-  final DateTime date;
+  final DateTime? date;
+  final String? status;
 
   @override
   State<AddParticipationPage> createState() => _AddParticipationStatePage();
@@ -76,7 +78,7 @@ class _AddParticipationStatePage extends State<AddParticipationPage> {
                 height: 10.0,
               ),
               const Divider(height: 1),
-              ListOfSearchTask(
+              ListOfSearchEmployee(
                 searchController: _searchController,
                 selectedEmployee: _selectedEmployee,
               ),
@@ -93,12 +95,14 @@ class _AddParticipationStatePage extends State<AddParticipationPage> {
                   },
                 ),
                 onPressed: () {
+                  Navigator.pop(context);
                   context.read<ParticipationBloc>().add(
                         ParticipationEvent.addParticipation(
                           employees: _selectedEmployee,
                           taskId: widget.taskId,
                           departmentId: widget.departmentId,
                           date: widget.date,
+                          status: widget.status,
                         ),
                       );
                 },

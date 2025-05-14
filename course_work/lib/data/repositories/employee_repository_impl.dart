@@ -11,9 +11,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/utils/app_strings.dart';
 
 class EmployeeRepositoryImpl implements IEmployeeRepository {
-  EmployeeRepositoryImpl({required this.database, required this.preferences});
-  final AppDatabase database;
-  final SharedPreferences preferences;
+  EmployeeRepositoryImpl({
+    required AppDatabase database,
+    required SharedPreferences preferences,
+  })  : _database = database,
+        _preferences = preferences;
+  final AppDatabase _database;
+  final SharedPreferences _preferences;
 
   @override
   Future<Either<Failure, Unit>> addEmployee({
@@ -22,7 +26,7 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
     try {
       final employeeDb = EmployeeDto.fromDomain(employee).toDataBase();
 
-      await database.into(database.employees).insert(employeeDb);
+      await _database.into(_database.employees).insert(employeeDb);
 
       return right(unit);
     } catch (e) {
@@ -35,7 +39,7 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
     required int employeeId,
   }) async {
     try {
-      await (database.delete(database.employees)
+      await (_database.delete(_database.employees)
             ..where((row) => row.id.equals(employeeId)))
           .go();
 
@@ -48,17 +52,21 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
   @override
   Future<Either<Failure, EmployeeModel>> getEmployee() async {
     try {
-      final employeeId = preferences.getInt('id');
+      final employeeId = _preferences.getInt('id');
 
       if (employeeId == null) {
         return left(Failure(message: AppStrings.notFoundEmployee));
       }
 
-      final employeesDb = await (database.select(database.employees)
+      final employeesDb = await (_database.select(_database.employees)
             ..where((row) => row.id.equals(employeeId)))
-          .getSingle();
+          .get();
 
-      final employee = EmployeeDto.fromDataBase(employeesDb).toDomain();
+      if (employeesDb.isEmpty) {
+        return left(Failure(message: AppStrings.notFoundEmployee));
+      }
+
+      final employee = EmployeeDto.fromDataBase(employeesDb.first).toDomain();
 
       return right(employee);
     } catch (e) {
@@ -69,7 +77,7 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
   @override
   Future<Either<Failure, List<EmployeeModel>>> getAllEmployees() async {
     try {
-      final employeesDb = await database.select(database.employees).get();
+      final employeesDb = await _database.select(_database.employees).get();
 
       final employees = employeesDb
           .map((element) => EmployeeDto.fromDataBase(element).toDomain())
@@ -86,7 +94,7 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
     required int departmentId,
   }) async {
     try {
-      final employeesDb = await (database.select(database.employees)
+      final employeesDb = await (_database.select(_database.employees)
             ..where((row) => row.departmentId.equals(departmentId)))
           .get();
 
@@ -105,14 +113,16 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
     required int participationId,
   }) async {
     try {
-      final query = database.select(database.employees).join([
-        innerJoin(database.participation,
-            database.participation.employeeId.equalsExp(database.employees.id)),
+      final query = _database.select(_database.employees).join([
+        innerJoin(
+            _database.participation,
+            _database.participation.employeeId
+                .equalsExp(_database.employees.id)),
       ])
-        ..where(database.participation.id.equals(participationId));
+        ..where(_database.participation.id.equals(participationId));
 
       final employeeDb = await query.map((row) {
-        return row.readTable(database.employees);
+        return row.readTable(_database.employees);
       }).get();
 
       final employees = employeeDb
@@ -136,7 +146,7 @@ class EmployeeRepositoryImpl implements IEmployeeRepository {
       final changedDto = EmployeeDto.fromDomain(changedEmployee);
       final changes = originalDto.getChangesData(changedDto);
 
-      await (database.update(database.employees)
+      await (_database.update(_database.employees)
             ..where((task) => task.id.equals(id!)))
           .write(changes);
 

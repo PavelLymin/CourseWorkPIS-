@@ -1,8 +1,8 @@
+import 'package:course_work/presentation/administrator/task/widgets/list_tile_task_administrator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../bloc/task_bloc/task_bloc.dart';
-import 'list_tile_task.dart';
 
 class ListOfTasks extends StatelessWidget {
   const ListOfTasks({
@@ -19,6 +19,7 @@ class ListOfTasks extends StatelessWidget {
       child: BlocBuilder<TaskBloc, TaskState>(
         builder: (context, state) {
           return state.map(
+            initial: (_) => Container(),
             loading: (_) => const Center(
               child: CircularProgressIndicator(),
             ),
@@ -32,7 +33,7 @@ class ListOfTasks extends StatelessWidget {
                   );
                 },
                 itemBuilder: (context, index) {
-                  return ListTileTask(
+                  return ListTileTaskAdministrator(
                     task: state.tasks[index],
                     departmentId: departmentId,
                   );

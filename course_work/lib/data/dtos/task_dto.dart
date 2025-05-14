@@ -84,16 +84,16 @@ class TaskDto {
 
   TasksCompanion getChangesData(TaskDto task) {
     return TasksCompanion(
-      title: setIfChanged(title, task.title),
-      description: setIfChanged(description, task.description),
-      amountOfHours: setIfChanged(amountOfHours, task.amountOfHours),
-      payment: setIfChanged(payment, task.payment),
-      date: setIfChanged(
-          PgDate.fromDateTime(date), PgDate.fromDateTime(task.date)),
-      startTime:
-          setIfChanged(PgDateTime(task.startTime), PgDateTime(task.startTime)),
-      finishTime: setIfChanged(
-          PgDateTime(task.finishTime), PgDateTime(task.finishTime)),
-    );
+        title: setIfChanged(title, task.title),
+        description: setIfChanged(description, task.description),
+        amountOfHours: setIfChanged(amountOfHours, task.amountOfHours),
+        payment: setIfChanged(payment, task.payment),
+        date: setIfChanged(
+            PgDate.fromDateTime(date), PgDate.fromDateTime(task.date)),
+        startTime:
+            setIfChanged(PgDateTime(startTime), PgDateTime(task.startTime)),
+        finishTime:
+            setIfChanged(PgDateTime(finishTime), PgDateTime(task.finishTime)),
+        status: setIfChanged(status, task.status));
   }
 }

@@ -23,7 +23,7 @@ final appTheme = ThemeData(
 final textTheme = TextTheme(
   headlineMedium: GoogleFonts.lato(
     textStyle: TextStyle(
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: FontWeight.w400,
       color: Colors.white,
     ),
@@ -44,7 +44,7 @@ final textTheme = TextTheme(
   ),
   titleMedium: GoogleFonts.lato(
     textStyle: TextStyle(
-      fontSize: 16,
+      fontSize: 14,
       fontWeight: FontWeight.w400,
       color: Colors.white,
     ),

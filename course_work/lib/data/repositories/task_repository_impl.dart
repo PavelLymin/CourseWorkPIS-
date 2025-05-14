@@ -106,7 +106,11 @@ class TaskRepositoryImpl implements ITaskRepository {
             ..where((row) => row.id.equals(taskId)))
           .get();
 
-      final task = TaskDto.fromDataBase(taskDb[0]).toDomain();
+      if (taskDb.isEmpty) {
+        return left(Failure(message: AppStrings.notFountTask));
+      }
+
+      final task = TaskDto.fromDataBase(taskDb.first).toDomain();
       return right(task);
     } on StateError catch (_) {
       return left(Failure(message: AppStrings.notFoundData));

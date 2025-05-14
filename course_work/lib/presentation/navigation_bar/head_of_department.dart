@@ -24,12 +24,16 @@ class _HeadOfDepartmentState extends State<HeadOfDepartment> {
         onTap: (index) => _onItemTapped(context, index),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.task),
-            label: AppStrings.profile,
+            icon: Icon(Icons.calendar_today),
+            label: AppStrings.calendarTask,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_add_alt_sharp),
-            label: AppStrings.departments,
+            icon: Icon(Icons.task),
+            label: AppStrings.tasks,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_rounded),
+            label: AppStrings.profile,
           ),
         ],
       ),

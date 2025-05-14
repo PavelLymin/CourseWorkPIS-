@@ -5,6 +5,7 @@ class AppStrings {
   static const titleTask = 'Название задания';
 
   // Задания
+  static const calendarTask = 'Календарь заданий';
   static const nameTask = 'Название задания';
   static const task = 'Задание';
   static const tasks = 'Задания';
@@ -15,6 +16,7 @@ class AppStrings {
   static const correctAmount = 'Введите правильную сумму';
   static const correctEmail = 'Введите корректный E-mail';
   static const status = 'Статус';
+  static const notFountTask = 'Календарь заданий';
 
   // Сотрудники
   static const employees = 'Сотрудники';

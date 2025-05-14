@@ -106,7 +106,7 @@ void _initParticipation() {
             database: getIt<AppDatabase>(),
           ));
 
-  getIt.registerLazySingleton<ParticipationBloc>(
+  getIt.registerFactory<ParticipationBloc>(
       () => ParticipationBloc(repository: getIt<IParticipationRepository>()));
 }
 

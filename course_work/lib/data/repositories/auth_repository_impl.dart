@@ -4,6 +4,7 @@ import 'package:course_work/data/data_base/data_base.dart';
 import 'package:course_work/data/dtos/employee_dto.dart';
 import 'package:course_work/domain/models/employee/employee.dart';
 import 'package:course_work/domain/repositories/auth_repository.dart';
+import 'package:drift/drift.dart';
 import 'package:fpdart/src/either.dart';
 import 'package:fpdart/src/unit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,7 +19,8 @@ class AuthRepositoryImpl implements IAuthRepository {
       {required String email, required String password}) async {
     try {
       final result = await (database.select(database.employees)
-            ..where((employee) => employee.email.equals(email)))
+            ..where((employee) => (employee.email.equals(email) &
+                employee.password.equals(password))))
           .get();
 
       if (result.isEmpty) {

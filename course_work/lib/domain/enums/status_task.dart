@@ -3,7 +3,6 @@ enum Status {
   issued('Выдана'),
   started('Начата'),
   completed('Выполнена');
-
   const Status(this.value);
   final String value;
 }
